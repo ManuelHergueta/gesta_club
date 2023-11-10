@@ -1,26 +1,25 @@
-//const { body } = require('express-validator');
-const Deportista = require('../../models/Deportista');
+const Usuario = require('../../models/Usuario');
 const ConexionSequelize = require('../conexion/ConexionSequelize');
 
-class ConexionDeportista extends ConexionSequelize {
+class ConexionUsuario extends ConexionSequelize {
 
     constructor() {
         super();
     }
 
     //CRUD
-    getDeportistas = async() => {
+    getUsuarios = async() => {
         let resultado = [];
         this.conectar();
-        resultado = await Deportista.findAll();
+        resultado = await Usuario.findAll();
         this.desconectar();
         return resultado;
     }
 
-    getDeportista = async(dni) => {
+    getUsuario = async(email) => {
         let resultado = [];
         this.conectar();
-        resultado = await Deportista.findByPk(dni);
+        resultado = await Usuario.findByPk(email);
         this.desconectar();
         if(!resultado){
             throw error;
@@ -28,19 +27,20 @@ class ConexionDeportista extends ConexionSequelize {
         return resultado;
     }
 
-    registrarDeportista = async(body) => {
+    //Preparar para login ////----->>>>>>>>>>>>>>>>>>>>><
+    registrarUsuario = async(body) => {
         let resultado = 0;
         this.conectar();
-        const deportistaNuevo = new Deportista(body);
-        await deportistaNuevo.save();
+        const usuarioNuevo = new Usuario(body);
+        await usuarioNuevo.save();
         this.desconectar();
         return resultado;
     }
 
-    modificarDeportista = async(dni, body) => {
+    modificarUsuario = async(email, body) => {
         let resultado;
         this.conectar();
-        resultado = await Deportista.findByPk(dni);
+        resultado = await Usuario.findByPk(email);
         if(!resultado){
             this.desconectar();
             throw error;
@@ -50,10 +50,10 @@ class ConexionDeportista extends ConexionSequelize {
         return resultado;
     }
 
-    borrarDeportista = async(dni) => {
+    borrarUsuario = async(email) => {
         let resultado;
         this.conectar();
-        resultado = await Deportista.findByPk(dni);
+        resultado = await Usuario.findByPk(email);
         if (!resultado) {
             this.desconectar();
             throw error;
@@ -64,4 +64,4 @@ class ConexionDeportista extends ConexionSequelize {
     }
 }
 
-module.exports = ConexionDeportista;
+module.exports = ConexionUsuario;
