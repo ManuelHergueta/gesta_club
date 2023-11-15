@@ -37,30 +37,37 @@ class ConexionDeportista extends ConexionSequelize {
         return resultado;
     }
 
+    /**Cambio este código, porque no me gusta que devuelva todos los datos del deportista borrado
+    puede pensarse que no está siendo borrado. De esta manera devuelve nº de lineas afectadas
+    no recuperamos datos innecesarios (los datos que se estan eliminando), además hacemos una
+    sola consulta a la BD en vez de dos consultas.*/
+
     modificarDeportista = async(dni, body) => {
         let resultado;
         this.conectar();
-        resultado = await Deportista.findByPk(dni);
-        if(!resultado){
+        //resultado = await Deportista.findByPk(dni);
+        [resultado] = await Deportista.update(body, { where: {dni} });
+        if(resultado === 0){
             this.desconectar();
             throw error;
         }
-        await resultado.update(body);
+        //await resultado.update(body);
         this.desconectar();
-        return resultado;
+        return { affectedRows: resultado };
     }
 
     borrarDeportista = async(dni) => {
         let resultado;
         this.conectar();
-        resultado = await Deportista.findByPk(dni);
-        if (!resultado) {
+//        resultado = await Deportista.findByPk(dni);
+        resultado = await Deportista.destroy({ where: {dni}});
+        if (resultado === 0) {
             this.desconectar();
             throw error;
         }
-        await resultado.destroy();
+        //await resultado.destroy();
         this.desconectar();
-        return resultado;
+        return { affectedRows: resultado };
     }
 }
 
