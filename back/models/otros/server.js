@@ -5,6 +5,7 @@ const cors = require('cors');
 class Server {
     constructor () {
         this.app = express();
+        this.authPath = '/api/auth';
         this.usuariosPath = '/api/usuarios'
         this.deportistasPath = '/api/deportistas';
 
@@ -22,6 +23,7 @@ class Server {
     }
 
     routes() {
+        this.app.use(this.authPath, require('../../routes/authRoutes'));
         this.app.use(this.usuariosPath, require('../../routes/usuarioRoutes'));
         this.app.use(this.deportistasPath, require('../../routes/deportistaRoutes'));
     }

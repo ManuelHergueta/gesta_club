@@ -1,6 +1,8 @@
 const Usuario = require('../../models/Usuario');
 const ConexionSequelize = require('../conexion/ConexionSequelize');
 
+const bcrypt = require('bcryptjs');
+
 class ConexionUsuario extends ConexionSequelize {
 
     constructor() {
@@ -27,11 +29,43 @@ class ConexionUsuario extends ConexionSequelize {
         return resultado;
     }
 
+/*     getUsuarioRegistrado = async (email,password) => {
+        let resultado = [];
+        this.conectar();
+        const usuarioDB = await Usuario.findByPk(email);
+        const passwordCorrecto = bcrypt.compareSync(password,usuarioDB.password);
+        if (!usuarioDB || !passwordCorrecto) {
+            this.desconectar();
+            throw new Error('Usuario o password incorrectos');
+        } else {
+            resultado = usuarioDB;
+        }
+        this.desconectar();
+        if (!resultado) {
+            throw new Error('Fallo autenticación');
+        }
+        return resultado;
+    } */
+
+    getUsuarioRegistrado = async (email, password) => {
+        this.conectar();
+        const usuarioDB = await Usuario.findByPk(email);
+        if (!usuarioDB || !bcrypt.compareSync(password, usuarioDB.password)) {
+            throw new Error('Usuario o password incorrectos');
+        }
+        this.desconectar();
+        return usuarioDB;
+    }
+
+    
     //Preparar para login ////----->>>>>>>>>>>>>>>>>>>>><
     registrarUsuario = async(body) => {
         let resultado = 0;
         this.conectar();
         const usuarioNuevo = new Usuario(body);
+        const passOriginal = usuarioNuevo.password;
+        const numAleatorio = bcrypt.genSaltSync();
+        usuarioNuevo.password = bcrypt.hashSync(passOriginal, numAleatorio);
         await usuarioNuevo.save();
         this.desconectar();
         return resultado;
