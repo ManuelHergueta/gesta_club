@@ -1,1 +1,75 @@
-<p>login works!</p>
+<div class="container h-100">
+
+  <div class="row h-100 d-flex align-items-center justify-content-evenly">
+
+    <div class="formulario m-5 col-md-8 col-lg-6">
+
+      <div class="logo m-5 text-center">
+        <img class="" src="../../../assets/logo_gestaclub_login.png" alt="Logo GestaClub App">
+      </div>
+
+      <form class="m-5 needs-validation" novalidate [formGroup]="this.formLogin" (ngSubmit)="hacerLogin()">
+
+        <h3 class="my-4">Login</h3>
+
+        <div *ngIf="this.errorLogin" class="form-text text-danger fs-5 my-4">
+          <p>Usuario o contraseña incorrectos</p>
+        </div>
+
+        <div class="form-outline my-4">
+          <span class="form-text text-danger fs-6"
+            *ngIf="this.formLogin.get('email')?.invalid && this.formLogin.get('email')?.touched">
+            Formato email incorrecto</span>
+
+          <input
+            type="email"
+            id="formLoginEmail"
+            name="formLoginEmail"
+            formControlName="email"
+            class="form-control"
+            autocomplete="off"
+            placeholder="Introduzca email"
+            [ngClass]="{'is-invalid': this.formLogin.get('email')?.invalid && this.formLogin.get('email')?.touched}"
+          />
+
+          <label class="form-label" for="formLoginEmail">Email</label>
+        </div>
+
+        <div class="form-outline my-4">
+          <span class="form-text text-danger fs-6"
+            *ngIf="this.formLogin.get('pass')?.invalid && this.formLogin.get('pass')?.touched">
+            Introduzca contraseña</span>
+
+          <input
+            type="password"
+            id="formLoginPass"
+            name="formLoginPass"
+            formControlName="pass"
+            class="form-control"
+            placeholder="Introduzca contraseña"
+            [ngClass]="{'is-invalid': this.formLogin.get('pass')?.invalid && this.formLogin.get('pass')?.touched}"
+          />
+
+          <label class="form-label" for="formLoginPass">Contraseña</label>
+        </div>
+
+        <div class="my-4 d-flex justify-content-center">
+            <a class="recuerdaPass" (click)="recordarPass()">¿Contraseña olvidada?</a>
+        </div>
+
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <button [disabled]="this.formLogin.invalid"
+          type="submit" class="btn btn-primary btn-block mb-4">Login</button>
+        </div>
+
+        <div class="text-center">
+          <p>¿No estás registrado? <a class="irARegistro" (click)="registrarse()">Registrarse</a></p>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

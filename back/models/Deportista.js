@@ -34,6 +34,9 @@ const Deportista = db.define('deportista', {
     email: {
         type: DataTypes.STRING
     },
+    email_verificado: {
+        type: DataTypes.TINYINT
+    },
     direccion: {
         type: DataTypes.STRING
     },

@@ -1,0 +1,56 @@
+<div class="container h-100">
+
+  <div class="row h-100 d-flex align-items-center justify-content-center">
+
+    <div class="formulario m-5 col-md-8 col-lg-6">
+
+      <div class="logo m-5 text-center">
+        <img class="" src="../../../assets/logo_gestaclub_email.png" alt="Logo GestaClub App">
+      </div>
+
+
+      <form class="needs-validation m-5" novalidate [formGroup]="this.formOlvidada" (ngSubmit)="solicitarCambio()">
+
+        <h3 class="my-4">Solicitud recuperacion contraseña</h3>
+
+        <!-- Se muestra esto tanto si existe el email en la BD como si no existe, POR SEGURIDAD -->
+        <div *ngIf="this.enviadasInstruc" class="form-text text-success fs-5 my-4">
+          <p>Enviado email con instrucciones para el cambio de contraseña</p>
+        </div>
+
+        <div class="form-outline my-4">
+          <span class="form-text text-danger fs-6"
+            *ngIf="this.formOlvidada.get('email')?.invalid && this.formOlvidada.get('email')?.touched">
+            Formato email incorrecto</span>
+
+          <input
+            type="email"
+            id="formOlvidadaEmail"
+            name="formOlvidadaEmail"
+            formControlName="email"
+            class="form-control"
+            autocomplete="off"
+            placeholder="Introduzca email"
+            [ngClass]="{'is-invalid': this.formOlvidada.get('email')?.invalid && this.formOlvidada.get('email')?.touched}"
+          />
+
+        </div>
+
+        <div *ngIf="!this.enviadasInstruc" class="d-grid gap-2 col-6 mx-auto mt-5">
+          <button [disabled]="this.formOlvidada.invalid"
+          type="submit" class="btn btn-primary btn-block mb-4">Enviar</button>
+        </div>
+
+        <div class="text-center my-4">
+          <p>¿Ya estás registrado? <a class="irARegistro" (click)="hacerLogin()">Login</a></p>
+        </div>
+
+        <div *ngIf="!this.enviadasInstruc" class="text-center">
+          <p>¿No estás registrado? <a class="irARegistro" (click)="registrarse()">Registrarse</a></p>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

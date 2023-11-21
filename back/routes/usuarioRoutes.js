@@ -9,6 +9,11 @@ router.post('/', controlador.usuarioPost);
 router.put('/:email?', controlador.usuarioPut);
 router.delete('/:email', controlador.usuarioDelete);
 
+//Ruta para comprobar si existe email en la bd:
+router.get('/existeEmail/:email', controlador.existeEmail);
+
+//Ruta para modificar la contraseña
+router.post('/cambioContra', controlador.modificarContra);
 
 
 module.exports = router;

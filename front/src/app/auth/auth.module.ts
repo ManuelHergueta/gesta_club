@@ -7,6 +7,8 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { InicioComponent } from './inicio/inicio.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { RecuperaPassComponent } from './recupera-pass/recupera-pass.component';
+import { CambioContraComponent } from './cambio-contra/cambio-contra.component';
 
 
 
@@ -14,7 +16,9 @@ import { RegisterComponent } from './register/register.component';
   declarations: [
     InicioComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    RecuperaPassComponent,
+    CambioContraComponent
   ],
   imports: [
     SharedModule,

@@ -1,6 +1,7 @@
+const RolAsignado = require('../../models/RolAsignado');
 const Usuario = require('../../models/Usuario');
 const ConexionSequelize = require('../conexion/ConexionSequelize');
-
+const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
 
 class ConexionUsuario extends ConexionSequelize {
@@ -29,24 +30,6 @@ class ConexionUsuario extends ConexionSequelize {
         return resultado;
     }
 
-/*     getUsuarioRegistrado = async (email,password) => {
-        let resultado = [];
-        this.conectar();
-        const usuarioDB = await Usuario.findByPk(email);
-        const passwordCorrecto = bcrypt.compareSync(password,usuarioDB.password);
-        if (!usuarioDB || !passwordCorrecto) {
-            this.desconectar();
-            throw new Error('Usuario o password incorrectos');
-        } else {
-            resultado = usuarioDB;
-        }
-        this.desconectar();
-        if (!resultado) {
-            throw new Error('Fallo autenticación');
-        }
-        return resultado;
-    } */
-
     getUsuarioRegistrado = async (email, password) => {
         this.conectar();
         const usuarioDB = await Usuario.findByPk(email);
@@ -57,8 +40,6 @@ class ConexionUsuario extends ConexionSequelize {
         return usuarioDB;
     }
 
-    
-    //Preparar para login ////----->>>>>>>>>>>>>>>>>>>>><
     registrarUsuario = async(body) => {
         let resultado = 0;
         this.conectar();
@@ -67,6 +48,25 @@ class ConexionUsuario extends ConexionSequelize {
         const numAleatorio = bcrypt.genSaltSync();
         usuarioNuevo.password = bcrypt.hashSync(passOriginal, numAleatorio);
         await usuarioNuevo.save();
+        const rolAsign = {
+            'email_usuario': usuarioNuevo.email,
+            'id_rol': 2
+        };
+        const nuevoRolAsignado = new RolAsignado(rolAsign);
+        await nuevoRolAsignado.save();
+        this.desconectar();
+        return resultado;
+    }
+
+    modificarContraUsuario = async(email, password) => {
+        this.conectar();
+        const numAleatorio = bcrypt.genSaltSync();
+        const passEncript = bcrypt.hashSync(password, numAleatorio);
+        let resultado = await Usuario.update({password: passEncript},
+            { where: {
+                email: { [Op.eq]: email } 
+                }
+            });
         this.desconectar();
         return resultado;
     }

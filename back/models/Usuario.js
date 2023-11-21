@@ -7,7 +7,7 @@ const Usuario = db.define('usuario', {
         type: DataTypes.STRING,
         primaryKey: true
     },
-    email_verificado: {
+    activado: {
         type: DataTypes.TINYINT
     },
     password: {
