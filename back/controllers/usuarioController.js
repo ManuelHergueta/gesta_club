@@ -1,6 +1,8 @@
 const { response,request } = require('express');
 const Conexion = require('../database/queries/ConexionUsuario');
 
+const cambioContra = require('../helpers/cambio_contra');
+
 const usuariosGet = (req, res = response) => {
     const conx = new Conexion();
     conx.getUsuarios()
@@ -27,21 +29,70 @@ const usuarioGet = (req, res = response) => {
         });
 }
 
-//TO-DO : Email de verificación, verificar si existe ya en la BD
 const usuarioPost = (req = request, res = response) => {
     const conx = new Conexion();
     conx.registrarUsuario(req.body)
         .then( msg => {
             console.log('Insertado correctamente!');
-            res.status(201).json(msg);
+            const resp = {
+                success: true,
+                msg: 'Usuario dado de alta'
+            }
+            res.status(201).json(resp);
         })
         .catch( err => {
-            console.log('Falló el registro!!');
-            res.status(203).json(err);
+            console.log(err);
+            const resp = {
+                success: false,
+                msg: 'Fallo en el registro'
+            }
+            res.status(203).json(resp);
         });
 }
 
-//TO-DO : Modificar contraseña
+const existeEmail = ( req, res = response ) => {
+    const conx = new Conexion();
+    conx.getUsuario(req.params.email)
+    .then( msg => {
+
+        console.log("msg: " + msg);
+        
+        const resp = {
+            success: true,
+            email: msg.email
+        }
+        cambioContra.cambioContrasenia(req.params.email);
+        res.status(201).json(resp);
+    })
+    .catch( err => {
+        const resp = {
+            success: false,
+            email: 0
+        }
+        res.status(203).json(resp);
+    })
+}
+
+const modificarContra = (req, res = response ) => {
+    const conx = new Conexion();
+    conx.modificarContraUsuario(req.body.email,req.body.password)
+        .then( msg => {
+            console.log('Contraseña modificada!');
+            const resp = {
+                success: true,
+                msg: 'Contraseña modificada!'
+            }
+            res.status(201).json(resp);
+        })
+        .catch( err => {
+            console.log(err);
+            const resp = {
+                success: false,
+                msg: 'Fallo en la modificación.'
+            }
+            res.status(203).json(resp);
+        });
+}
 
 const usuarioPut = (req, res = response) => {
     const conx = new Conexion();
@@ -73,6 +124,8 @@ module.exports = {
     usuariosGet,
     usuarioGet,
     usuarioPost,
+    existeEmail,
+    modificarContra,
     usuarioPut,
     usuarioDelete
 } 
