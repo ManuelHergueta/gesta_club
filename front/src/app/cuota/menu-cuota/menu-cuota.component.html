@@ -1,1 +1,47 @@
-<p>menu-cuota works!</p>
+<div class="container m-3">
+  <div id="menu" class="menu rounded-lg p-1">
+    <div class="my-3">
+      <div class="menu-item">
+        <img src="../../../assets/listados.png" alt="Listados" class="menu-icon">
+        <span class="menu-label">Listados</span>
+      </div>
+      <div class="ms-3">
+        <a routerLink="/cuota/listadoC" class="d-block py-2 text-decoration-none text-dark menu-link"
+          [class.active]="isActive('/cuota/listadoC')"
+          (click)="setActive('/cuota/listadoC')">
+          Listado total
+        </a>
+        <a routerLink="/cuota/datosC" class="d-block py-2 text-decoration-none text-dark menu-link"
+          [class.active]="isActive('/cuota/datosC')"
+          (click)="setActive('/cuota/datosC')">
+          Listado vencidas
+        </a>
+        <a href="#" class="d-block py-2 text-decoration-none text-dark menu-link"
+          [class.active]="isActive('/cuota/datosC')"
+          (click)="setActive('/cuota/datosC')">
+          Listado por persona
+        </a>
+      </div>
+    </div>
+    <div class="my-3">
+      <div class="menu-item">
+        <img src="../../../assets/cuotas.png" alt="Cuotas" class="menu-icon">
+        <span class="menu-label">Generación de cuotas</span>
+      </div>
+      <div class="ms-3">
+        <a href="#" class="d-block py-2 text-decoration-none text-dark">Generación masiva por mes</a>
+        <a href="#" class="d-block py-2 text-decoration-none text-dark">Generación individual</a>
+      </div>
+    </div>
+    <div class="my-3">
+      <div class="menu-item">
+        <img src="../../../assets/cobro.png" alt="Cobros" class="menu-icon">
+        <span class="menu-label">Cobro de cuotas</span>
+      </div>
+      <div class="ms-3">
+        <a href="#" class="d-block py-2 text-decoration-none text-dark">Generar recibo</a>
+        <a href="#" class="d-block py-2 text-decoration-none text-dark">Enviar recibo por email</a>
+      </div>
+    </div>
+  </div>
+</div>
