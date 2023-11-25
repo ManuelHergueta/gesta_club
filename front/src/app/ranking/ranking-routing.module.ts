@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PanelRankingComponent } from './panel-ranking/panel-ranking.component';
 
 
 
@@ -7,8 +8,9 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path:'',
+    component: PanelRankingComponent,
     children: [
-      { }
+      { path: 'ranking', component: PanelRankingComponent, data: { titulo: 'Ranking Deportistas', panel: 'Panel Ranking de Deportistas'}},
     ]
   }
 ]

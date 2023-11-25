@@ -1,0 +1,43 @@
+<div class="container m-3">
+  <div id="menu" class="menu rounded-lg p-1">
+    <div class="my-3">
+      <div class="menu-item">
+        <img src="../../../assets/listados.png" alt="Listados" class="menu-icon">
+        <span class="menu-label">Listados</span>
+      </div>
+      <div class="ms-3">
+        <a routerLink="/ranking" class="d-block py-2 text-decoration-none text-dark menu-link"
+          [class.active]="isActive('/ranking')"
+          (click)="setActive('/ranking')"><!-- Modificar rutas -->
+          Ranking Deportistas
+        </a>
+        <a routerLink="/ranking" class="d-block py-2 text-decoration-none text-dark menu-link"
+          [class.active]="isActive('/ranking')"
+          (click)="setActive('/ranking')"><!-- Modificar rutas -->
+          Ranking por categorias
+        </a>
+      </div>
+    </div>
+    <div class="my-3">
+      <div class="menu-item">
+        <img src="../../../assets/calificar.png" alt="Calificar" class="menu-icon">
+        <span class="menu-label">Operativa</span>
+      </div>
+      <div class="ms-3">
+        <a href="/ranking" class="d-block py-2 text-decoration-none text-dark">Generar competición</a>
+        <a href="/ranking" class="d-block py-2 text-decoration-none text-dark">Alineación</a>
+        <a href="/ranking" class="d-block py-2 text-decoration-none text-dark">Calificar</a>
+      </div>
+    </div>
+    <div class="my-3">
+      <div class="menu-item">
+        <img src="../../../assets/interrogante.png" alt="Otro" class="menu-icon">
+        <span class="menu-label">Otro apartado de ranking</span>
+      </div>
+      <div class="ms-3">
+        <a href="/ranking" class="d-block py-2 text-decoration-none text-dark">Opción 1 de menú</a>
+        <a href="/ranking" class="d-block py-2 text-decoration-none text-dark">Opción 2 de menú</a>
+      </div>
+    </div>
+  </div>
+</div>

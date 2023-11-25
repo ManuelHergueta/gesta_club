@@ -1,0 +1,42 @@
+<div class="container m-3">
+  <div id="menu" class="menu rounded-lg p-1">
+    <div class="my-3">
+      <div class="menu-item">
+        <img src="../../../assets/listados.png" alt="Listados" class="menu-icon">
+        <span class="menu-label">Listados</span>
+      </div>
+      <div class="ms-3">
+        <a routerLink="/presencia" class="d-block py-2 text-decoration-none text-dark menu-link"
+          [class.active]="isActive('/presencia')"
+          (click)="setActive('/presencia')"><!-- Modificar rutas -->
+          Asistencias por dia
+        </a>
+        <a routerLink="/presencia" class="d-block py-2 text-decoration-none text-dark menu-link"
+          [class.active]="isActive('/presencia')"
+          (click)="setActive('/presencia')"><!-- Modificar rutas -->
+          Faltas de asistencia
+        </a>
+      </div>
+    </div>
+    <div class="my-3">
+      <div class="menu-item">
+        <img src="../../../assets/asistencia.png" alt="Pasar lista" class="menu-icon">
+        <span class="menu-label">Operativa</span>
+      </div>
+      <div class="ms-3">
+        <a href="/presencia" class="d-block py-2 text-decoration-none text-dark">Pasar lista</a>
+        <a href="/presencia" class="d-block py-2 text-decoration-none text-dark">Modificar faltas</a>
+      </div>
+    </div>
+    <div class="my-3">
+      <div class="menu-item">
+        <img src="../../../assets/policia.png" alt="Policia" class="menu-icon">
+        <span class="menu-label">Informe de faltas</span>
+      </div>
+      <div class="ms-3">
+        <a href="/presencia" class="d-block py-2 text-decoration-none text-dark">Generar informe faltas</a>
+        <a href="/presencia" class="d-block py-2 text-decoration-none text-dark">Enviar informe de faltas</a>
+      </div>
+    </div>
+  </div>
+</div>

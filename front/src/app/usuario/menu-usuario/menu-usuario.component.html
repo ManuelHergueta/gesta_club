@@ -1,0 +1,42 @@
+<div class="container m-3">
+  <div id="menu" class="menu rounded-lg p-1">
+    <div class="my-3">
+      <div class="menu-item">
+        <img src="../../../assets/listados.png" alt="Listados" class="menu-icon">
+        <span class="menu-label">Listados</span>
+      </div>
+      <div class="ms-3">
+        <a routerLink="/usuario" class="d-block py-2 text-decoration-none text-dark menu-link"
+          [class.active]="isActive('/usuario')"
+          (click)="setActive('/usuario')"><!-- Modificar rutas -->
+          Listado entrenadores
+        </a>
+        <a routerLink="/usuario" class="d-block py-2 text-decoration-none text-dark menu-link"
+          [class.active]="isActive('/usuario')"
+          (click)="setActive('/usuario')"><!-- Modificar rutas -->
+          Listado administradores
+        </a>
+      </div>
+    </div>
+    <div class="my-3">
+      <div class="menu-item">
+        <img src="../../../assets/asistencia.png" alt="Pasar lista" class="menu-icon">
+        <span class="menu-label">Operativa</span>
+      </div>
+      <div class="ms-3">
+        <a href="/usuario" class="d-block py-2 text-decoration-none text-dark">Modificar usuarios</a>
+        <a href="/usuario" class="d-block py-2 text-decoration-none text-dark">Activar entrenadores</a>
+      </div>
+    </div>
+    <div class="my-3">
+      <div class="menu-item">
+        <img src="../../../assets/interrogante.png" alt="Otro" class="menu-icon">
+        <span class="menu-label">Otro apartado de usuario</span>
+      </div>
+      <div class="ms-3">
+        <a href="/usuario" class="d-block py-2 text-decoration-none text-dark">Opción 1 de menú</a>
+        <a href="/usuario" class="d-block py-2 text-decoration-none text-dark">Opción 2 de menú</a>
+      </div>
+    </div>
+  </div>
+</div>
