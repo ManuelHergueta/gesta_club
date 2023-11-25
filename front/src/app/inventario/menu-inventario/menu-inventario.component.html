@@ -1,0 +1,47 @@
+<div class="container m-3">
+  <div id="menu" class="menu rounded-lg p-1">
+    <div class="my-3">
+      <div class="menu-item">
+        <img src="../../../assets/listados.png" alt="Listados" class="menu-icon">
+        <span class="menu-label">Listados</span>
+      </div>
+      <div class="ms-3">
+        <a routerLink="/inventario" class="d-block py-2 text-decoration-none text-dark menu-link"
+          [class.active]="isActive('/inventario')"
+          (click)="setActive('/inventario')"><!-- Modificar rutas -->
+          Listado completo
+        </a>
+        <a routerLink="/inventario" class="d-block py-2 text-decoration-none text-dark menu-link"
+          [class.active]="isActive('/inventario')"
+          (click)="setActive('/inventario')"><!-- Modificar rutas -->
+          Listado material prestado
+        </a>
+        <a routerLink="/inventario" class="d-block py-2 text-decoration-none text-dark menu-link"
+          [class.active]="isActive('/inventario')"
+          (click)="setActive('/inventario')"><!-- Modificar rutas -->
+          Listado material en stock
+        </a>
+      </div>
+    </div>
+    <div class="my-3">
+      <div class="menu-item">
+        <img src="../../../assets/Material.png" alt="Fichas" class="menu-icon">
+        <span class="menu-label">Material</span>
+      </div>
+      <div class="ms-3">
+        <a href="/inventario" class="d-block py-2 text-decoration-none text-dark">Alta elemento</a>
+        <a href="/inventario" class="d-block py-2 text-decoration-none text-dark">Detalle elemento</a>
+      </div>
+    </div>
+    <div class="my-3">
+      <div class="menu-item">
+        <img src="../../../assets/prestamo.png" alt="Prestamo" class="menu-icon">
+        <span class="menu-label">Prestamos</span>
+      </div>
+      <div class="ms-3">
+        <a href="/inventario" class="d-block py-2 text-decoration-none text-dark">Prestamo material</a>
+        <a href="/inventario" class="d-block py-2 text-decoration-none text-dark">Devolución prestamo</a>
+      </div>
+    </div>
+  </div>
+</div>

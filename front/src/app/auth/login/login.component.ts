@@ -42,8 +42,8 @@ export class LoginComponent implements OnInit {
           if (resp.success) {
             sessionStorage.setItem('usuario', JSON.stringify(resp.data));
             this.errorLogin = false;
-            console.log('LOGIN CORRECTO');
-            this.router.navigate(['cuota/listadoC']);
+            //console.log('LOGIN CORRECTO');
+            this.router.navigate(['intro']);
           } else {
             this.errorLogin = true;
           }

@@ -7,17 +7,19 @@
       </a>
       <!-- Arreglar el resto de enlaces -->
       <ul class="nav col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 text-white">Usuarios</a></li>
-        <li><a routerLink="/cuota/datosC" class="nav-link px-2 text-white">Cuotas</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">Fichas</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">Inventario</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">Ranking</a></li>
+        <li class="mx-2"><a routerLink="/intro" class="nav-link px-2 text-white">Inicio</a></li>
+        <li class="mx-2"><a routerLink="/usuario" class="nav-link px-2 text-white">Usuarios</a></li>
+        <li class="mx-2"><a routerLink="/ficha" class="nav-link px-2 text-white">Deportistas</a></li>
+        <li class="mx-2"><a routerLink="/cuota" class="nav-link px-2 text-white">Cuotas</a></li>
+        <li class="mx-2"><a routerLink="/presencia" class="nav-link px-2 text-white">Presencia</a></li>
+        <li class="mx-2"><a routerLink="/inventario" class="nav-link px-2 text-white">Inventario</a></li>
+        <li class="mx-2"><a routerLink="/ranking" class="nav-link px-2 text-white">Ranking</a></li>
       </ul>
 
     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
       <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
     </form>
-    <img src="" alt="" width="40" height="40" class="rounded-circle">
+    <img src="../../../assets/troyanos.png" alt="" width="90" height="60" class="">
     <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 mx-3">
       <a routerLink="/login" class="btn btn-danger d-block px-4" (click)="cerrarSesion()">Salir</a>
     </div>

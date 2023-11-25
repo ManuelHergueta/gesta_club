@@ -1,0 +1,47 @@
+<div class="container m-3">
+  <div id="menu" class="menu rounded-lg p-1">
+    <div class="my-3">
+      <div class="menu-item">
+        <img src="../../../assets/listados.png" alt="Listados" class="menu-icon">
+        <span class="menu-label">Listados</span>
+      </div>
+      <div class="ms-3">
+        <a routerLink="/ficha" class="d-block py-2 text-decoration-none text-dark menu-link"
+          [class.active]="isActive('/ficha')"
+          (click)="setActive('/ficha')"><!-- Modificar rutas -->
+          Listado deportistas
+        </a>
+        <a routerLink="/ficha" class="d-block py-2 text-decoration-none text-dark menu-link"
+          [class.active]="isActive('/ficha')"
+          (click)="setActive('/ficha')"><!-- Modificar rutas -->
+          Listado por categoria
+        </a>
+        <a routerLink="/ficha" class="d-block py-2 text-decoration-none text-dark menu-link"
+          [class.active]="isActive('/ficha')"
+          (click)="setActive('/ficha')"><!-- Modificar rutas -->
+          Otro listado
+        </a>
+      </div>
+    </div>
+    <div class="my-3">
+      <div class="menu-item">
+        <img src="../../../assets/fichas.png" alt="Fichas" class="menu-icon">
+        <span class="menu-label">Fichas</span>
+      </div>
+      <div class="ms-3">
+        <a href="/ficha" class="d-block py-2 text-decoration-none text-dark">Detalle de ficha</a>
+        <a href="/ficha" class="d-block py-2 text-decoration-none text-dark">Otra opcion</a>
+      </div>
+    </div>
+    <div class="my-3">
+      <div class="menu-item">
+        <img src="../../../assets/interrogante.png" alt="Otro" class="menu-icon">
+        <span class="menu-label">Otro apartado de menu</span>
+      </div>
+      <div class="ms-3">
+        <a href="/ficha" class="d-block py-2 text-decoration-none text-dark">Opción 1 de menú</a>
+        <a href="/ficha" class="d-block py-2 text-decoration-none text-dark">Opción 2 de menú</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+<div class="d-flex justify-content-center align-items-center">
+
+  <div class="container py-5">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+      <div class="col">
+        <div class="card align-items-center justify-content-evenly">
+          <div class="face face1 usuario">
+            <div class="content">
+              <img src="../../../assets/entrenador.png">
+              <h3>Usuarios</h3>
+            </div>
+          </div>
+          <div class="face face2">
+            <div class="content">
+              <p>Gestión de entrenadores. Crear, activar, listar, modificar, borrar.</p>
+              <a routerLink="/usuario">Ir a usuarios</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card align-items-center justify-content-evenly">
+          <div class="face face1 deportista">
+            <div class="content">
+              <img src="../../../assets/deportistas.png">
+              <h3>Deportistas</h3>
+            </div>
+          </div>
+          <div class="face face2">
+            <div class="content">
+              <p>Gestión de los deportistas. Crear, modificar, borrar.
+                Subir fotos, consultar fichas, etc.</p>
+              <a routerLink="/ficha">Ir a deportistas</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card align-items-center justify-content-evenly">
+          <div class="face face1 cuota">
+            <div class="content">
+              <img src="../../../assets/cuota.png">
+              <h3>Cuotas</h3>
+            </div>
+          </div>
+          <div class="face face2">
+            <div class="content">
+              <p>Gestión de las cuotas. Generación masiva, cobros, generación de recibos, consulta de pendientes, etc.</p>
+              <a routerLink="/cuota/listadoC">Ir a cuotas</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card align-items-center justify-content-evenly">
+          <div class="face face1 presencia">
+            <div class="content">
+              <img src="../../../assets/presencia.png">
+              <h3>Presencia</h3>
+            </div>
+          </div>
+          <div class="face face2">
+            <div class="content">
+              <p>Control de presencia de los deportistas, pasar lista, poner faltas.</p>
+              <a routerLink="/presencia">Ir a presencia</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card align-items-center justify-content-evenly">
+          <div class="face face1 inventario">
+            <div class="content">
+              <img src="../../../assets/inventario.png">
+              <h3>Inventario</h3>
+            </div>
+          </div>
+          <div class="face face2">
+            <div class="content">
+              <p>Gestión de material deportivo. Alta de compras, bajas, préstamos de material, etc.</p>
+              <a routerLink="/inventario">Ir a inventario</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card align-items-center justify-content-evenly">
+          <div class="face face1 ranking">
+            <div class="content">
+              <img src="../../../assets/ranking.png">
+              <h3>Ranking</h3>
+            </div>
+          </div>
+          <div class="face face2">
+            <div class="content">
+              <p>Ranking de los deportistas. Puntuar desempeño en entrenamientos, competiciones, etc.</p>
+              <a routerLink="/ranking">Ir a ranking</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<div class="botonSalir d-flex justify-content-end p-5">
+  <a routerLink="/login" class="btn btn-danger btn-lg px-5" (click)="cerrarSesion()">Salir</a>
+</div>
+<div class = "mt-auto">
+  <app-footer></app-footer>
+</div>
+
