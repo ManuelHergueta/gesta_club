@@ -8,6 +8,7 @@ class Server {
         this.authPath = '/api/auth';
         this.usuariosPath = '/api/usuarios'
         this.deportistasPath = '/api/deportistas';
+        this.cuotasPath = '/api/cuotas';
 
         //Middlewares
         this.middlewares();
@@ -26,6 +27,7 @@ class Server {
         this.app.use(this.authPath, require('../../routes/authRoutes'));
         this.app.use(this.usuariosPath, require('../../routes/usuarioRoutes'));
         this.app.use(this.deportistasPath, require('../../routes/deportistaRoutes'));
+        this.app.use(this.cuotasPath, require('../../routes/cuotaRoutes'));
     }
 
     listen() {

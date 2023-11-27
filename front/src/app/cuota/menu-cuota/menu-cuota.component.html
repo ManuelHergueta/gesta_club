@@ -1,4 +1,4 @@
-<div class="container m-3">
+<div class="container m-2 pb-5">
   <div id="menu" class="menu rounded-lg p-1">
     <div class="my-3">
       <div class="menu-item">
@@ -11,12 +11,12 @@
           (click)="setActive('/cuota/listadoC')">
           Listado total
         </a>
-        <a routerLink="/cuota/datosC" class="d-block py-2 text-decoration-none text-dark menu-link"
-          [class.active]="isActive('/cuota/datosC')"
-          (click)="setActive('/cuota/datosC')">
+        <a routerLink="/cuota/listVencidasC" class="d-block py-2 text-decoration-none text-dark menu-link"
+          [class.active]="isActive('/cuota/listVencidasC')"
+          (click)="setActive('/cuota/listVencidasC')">
           Listado vencidas
         </a>
-        <a href="#" class="d-block py-2 text-decoration-none text-dark menu-link"
+        <a routerLink="/cuota/datosC" class="d-block py-2 text-decoration-none text-dark menu-link"
           [class.active]="isActive('/cuota/datosC')"
           (click)="setActive('/cuota/datosC')">
           Listado por persona

@@ -3,22 +3,23 @@ import { CuotaService } from '../services/cuota.service';
 import { Cuota } from '../interfaces/cuota.interface';
 
 @Component({
-  selector: 'app-listado-cuotas',
-  templateUrl: './listado-cuotas.component.html',
-  styleUrls: ['./listado-cuotas.component.css']
+  selector: 'app-vencidas-cuotas',
+  templateUrl: './vencidas-cuotas.component.html',
+  styleUrls: ['./vencidas-cuotas.component.css']
 })
-export class ListadoCuotasComponent implements OnInit {
+export class VencidasCuotasComponent implements OnInit {
 
   public cuotas: Cuota[] = [];
 
   constructor( private cuotaService: CuotaService ) { }
 
+
   ngOnInit(): void {
-    this.cargarHistoricoCuotas();
+    this.cargarCuotasPendientes();
   }
 
-  cargarHistoricoCuotas () {
-    this.cuotaService.listarHistoricoCuotas().subscribe( cuotas => {
+  cargarCuotasPendientes () {
+    this.cuotaService.listarCuotasPendientes().subscribe( cuotas => {
       this.cuotas = cuotas;
     })
   }

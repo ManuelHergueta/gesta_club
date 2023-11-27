@@ -74,27 +74,29 @@ class ConexionUsuario extends ConexionSequelize {
     modificarUsuario = async(email, body) => {
         let resultado;
         this.conectar();
-        resultado = await Usuario.findByPk(email);
-        if(!resultado){
+        //resultado = await Usuario.findByPk(email);
+        [resultado] = await Usuario.update(body, { where: {email} });
+        if(resultado === 0){
             this.desconectar();
             throw error;
         }
-        await resultado.update(body);
+        //await resultado.update(body);
         this.desconectar();
-        return resultado;
+        return { affectedRows: resultado };
     }
 
     borrarUsuario = async(email) => {
         let resultado;
         this.conectar();
-        resultado = await Usuario.findByPk(email);
-        if (!resultado) {
+        //resultado = await Usuario.findByPk(email);
+        resultado = await Usuario.destroy({ where: {email}});
+        if (resultado === 0) {
             this.desconectar();
             throw error;
         }
-        await resultado.destroy();
+        //await resultado.destroy();
         this.desconectar();
-        return resultado;
+        return { affectedRows: resultado };
     }
 }
 
