@@ -15,7 +15,16 @@ class ConexionCuota extends ConexionSequelize {
         return resultado;
     }
 
-    
+    getCuota = async(id) => {
+        let resultado = [];
+        this.conectar();
+        resultado = await Cuota.findByPk(id);
+        this.desconectar();
+        if(!resultado){
+            throw error;
+        } 
+        return resultado;
+    }
 
 }
 

@@ -14,6 +14,19 @@ const cuotasGet = (req, res = response) => {
         });
 }
 
+const cuotaGet = (req, res = response) => {
+    const conx = new Conexion();
+    conx.getCuota(req.params.id)
+        .then( msg => {
+            console.log('Encontrada la cuota!');
+            res.status(200).json(msg);
+        })
+        .catch( err => {
+            console.log('No existe el registro');
+            res.status(203).json({'msg': 'No se ha encontrado el registro'});
+        });
+}
 module.exports = {
-    cuotasGet
+    cuotasGet,
+    cuotaGet
 }
