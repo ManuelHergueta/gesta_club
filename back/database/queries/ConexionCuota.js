@@ -15,6 +15,23 @@ class ConexionCuota extends ConexionSequelize {
         return resultado;
     }
 
+    getCuotasPorDni = async(dni) => {
+        let resultados = [];
+        this.conectar();
+        resultados = await Cuota.findAll({
+            where: {
+                dni_deportista: dni
+            }
+        });
+        this.desconectar();
+        console.log('Hola');
+        if(resultados.length === 0){
+            throw new Error('No se encontraron cuotas para el DNI proporcionado');
+        }
+        
+        return resultados;
+    }
+    
     getCuota = async(id) => {
         let resultado = [];
         this.conectar();

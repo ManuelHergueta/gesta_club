@@ -8,6 +8,7 @@ import { MenuCuotaComponent } from './menu-cuota/menu-cuota.component';
 import { ListadoCuotasComponent } from './listado-cuotas/listado-cuotas.component';
 import { DetalleCuotaComponent } from './detalle-cuota/detalle-cuota.component';
 import { VencidasCuotasComponent } from './vencidas-cuotas/vencidas-cuotas.component';
+import { ListPorDniCuotasComponent } from './list-por-dni-cuotas/list-por-dni-cuotas.component';
 
 
 
@@ -17,7 +18,8 @@ import { VencidasCuotasComponent } from './vencidas-cuotas/vencidas-cuotas.compo
       MenuCuotaComponent,
       ListadoCuotasComponent,
       DetalleCuotaComponent,
-      VencidasCuotasComponent
+      VencidasCuotasComponent,
+      ListPorDniCuotasComponent
   ],
   imports: [
     SharedModule,

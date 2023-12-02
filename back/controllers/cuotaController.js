@@ -14,6 +14,19 @@ const cuotasGet = (req, res = response) => {
         });
 }
 
+const cuotasPorDniGet = (req, res = response) => {
+    const conx = new Conexion();
+    conx.getCuotasPorDni(req.params.dni)
+        .then( msg => {
+            console.log('Listado de cuotas por dni correcto');
+            res.status(203).json(msg);
+        })
+        .catch( err => {
+            console.log('No hay registros');
+            res.status(203).json({'msg':'No se han encontrado registros por dni'});
+        });
+}
+
 const cuotaGet = (req, res = response) => {
     const conx = new Conexion();
     conx.getCuota(req.params.id)
@@ -28,5 +41,6 @@ const cuotaGet = (req, res = response) => {
 }
 module.exports = {
     cuotasGet,
+    cuotasPorDniGet,
     cuotaGet
 }

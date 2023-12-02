@@ -5,6 +5,7 @@ import { PanelCuotaComponent } from './panel-cuota/panel-cuota.component';
 import { ListadoCuotasComponent } from './listado-cuotas/listado-cuotas.component';
 import { DetalleCuotaComponent } from './detalle-cuota/detalle-cuota.component';
 import { VencidasCuotasComponent } from './vencidas-cuotas/vencidas-cuotas.component';
+import { ListPorDniCuotasComponent } from './list-por-dni-cuotas/list-por-dni-cuotas.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
     component: PanelCuotaComponent,
     children: [
       { path:'listadoC', component: ListadoCuotasComponent, data: { titulo: 'Listado Cuotas', panel: 'Panel Cuotas'} },
-      { path:'listVencidasC', component: VencidasCuotasComponent, data: { titulo: 'Listado Cuotas Vencidas', panel: 'Panel Cuotas Vencidas'} },
+      { path:'listVencidasC', component: VencidasCuotasComponent, data: { titulo: 'Listado Cuotas Vencidas', panel: 'Panel Cuotas'} },
+      { path:'listXdni/:dni', component: ListPorDniCuotasComponent, data: { titulo: 'Listado Cuotas por deportista', panel: 'Panel Cuotas Por Deportista'} },
       { path:'datosC', component: DetalleCuotaComponent, data: { titulo: 'Detalle Cuota', panel: 'Panel Cuotas'} },
     ]
   }
