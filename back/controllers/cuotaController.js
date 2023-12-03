@@ -39,8 +39,23 @@ const cuotaGet = (req, res = response) => {
             res.status(203).json({'msg': 'No se ha encontrado el registro'});
         });
 }
+
+const cuotaPut = (req, res = response) => {
+    const conx = new Conexion();
+    conx.modificarCuota(req.params.id, req.body)
+        .then( msg => {
+            console.log('Cuota actualizada correctamente!');
+            res.status(202).json(msg);
+        })
+        .catch( err => {
+            console.log('Ha fallado la actualización!');
+            res.status(203).json(err);
+        });
+}
+
 module.exports = {
     cuotasGet,
     cuotasPorDniGet,
-    cuotaGet
+    cuotaGet,
+    cuotaPut
 }

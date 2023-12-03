@@ -43,6 +43,17 @@ class ConexionCuota extends ConexionSequelize {
         return resultado;
     }
 
+    modificarCuota = async(id, body) => {
+        let resultado;
+        this.conectar();
+        [resultado] = await Cuota.update(body, { where: {id} });
+        if(resultado === 0){
+            this.desconectar();
+            throw error;
+        }
+        this.desconectar();
+        return { affectedRows: resultado };
+    }
 }
 
 module.exports = ConexionCuota;

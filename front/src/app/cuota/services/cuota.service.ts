@@ -98,4 +98,21 @@ export class CuotaService {
     }
   }
 
+  obtenerCuotaPorId(id: number): Observable<interfaces.Cuota | null> {
+    if(this.verificarPermiso()) {
+      return this.http.get<interfaces.Cuota>(`${this.urlApi}/cuotas/${id}`, this.headers);
+    } else {
+      return of(null);
+    }
+  }
+
+  actualizarCuota(cuota: interfaces.Cuota): Observable<interfaces.Cuota | null> {
+    if(this.verificarPermiso()) {
+      return this.http.put<interfaces.Cuota>(`${this.urlApi}/cuotas/${cuota.id}`, cuota, this.headers);
+    } else {
+      return of(null);
+    }
+  }
+
+
 }

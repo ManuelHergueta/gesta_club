@@ -1,0 +1,96 @@
+<div class="row mt-4 animated fadeIn fast">
+  <div class="col-12">
+    <div class="card rounded-lg">
+      <div class="card-body">
+        <h4 class="card-title mb-3">Pago de la Cuota:</h4>
+        <form [formGroup]="pagoForm" (ngSubmit)="guardarPagoCuota()" class="form-inline">
+          <div class="row">
+            <div class="col-md-2 mb-3">
+              <label for="dni_deportista" class="form-label">DNI del Deportista</label>
+              <input type="text" class="form-control no-editable" id="dni_deportista"
+              [value]="cuota?.dni_deportista" disabled />
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="nombre_deportista" class="form-label">Nombre</label>
+              <input type="text" class="form-control no-editable" id="nombre_deportista"
+              [value]="deportista?.nombre" disabled />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="apellidos_deportista" class="form-label">Apellidos</label>
+              <input type="text" class="form-control no-editable" id="apellidos_deportista"
+              [value]="deportista?.apellidos" disabled />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2 mb-3">
+              <label for="id" class="form-label">ID de Cuota</label>
+              <input type="text" class="form-control no-editable" id="id"
+              [value]="cuota?.id" disabled />
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="temporada" class="form-label">Temporada</label>
+              <input type="text" class="form-control no-editable" id="temporada"
+              [value]="cuota?.temporada" disabled />
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="mes" class="form-label">Mes</label>
+              <input type="text" class="form-control no-editable" id="mes"
+              [value]="cuota?.mes" disabled />
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="importe" class="form-label">Importe</label>
+              <input type="text" class="form-control no-editable" id="importe"
+              [value]="cuota?.importe" disabled />
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="estado" class="form-label">Estado</label>
+              <input type="text" class="form-control no-editable" id="estado"
+              [value]="cuota?.estado" disabled />
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="row">
+            <h4 class="mb-3">Datos del pago:</h4>
+            <div class="col-md-4 mb-3">
+              <label for="fecha_pago" class="form-label">Fecha de Pago</label>
+              <input type="date"
+              formControlName="fecha_pago"
+              class="form-control"
+              id="fecha_pago" />
+            </div>
+
+            <div class="col-md-4 mb-3">
+              <label for="tipo_pago" class="form-label">Tipo de Pago</label>
+              <select
+              formControlName="tipo_pago"
+              class="form-select"
+              id="tipo_pago">
+                <option value="" disabled>Selecciona un tipo de pago</option>
+                <option value="efectivo">Efectivo</option>
+                <option value="tarjeta">Tarjeta</option>
+                <option value="transferencia">Transferencia</option>
+              </select>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-3 mb-3">
+              <button type="submit" class="btn btn-success w-100">Guardar</button>
+            </div>
+            <div class="col-md-3 mb-3">
+              <button type="button" class="btn btn-danger w-100">Cancelar</button>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>

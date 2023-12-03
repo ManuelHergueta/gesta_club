@@ -4,6 +4,12 @@
   box-shadow: 0 0 10px 0 rgba(55, 54, 54, 0.6);
 }
 
+.no-editable {
+  background-color: #e9ecef;
+  color: #6c757d;
+  cursor: not-allowed;
+}
+
 .icono {
   width: 28px;
   height: 28px;

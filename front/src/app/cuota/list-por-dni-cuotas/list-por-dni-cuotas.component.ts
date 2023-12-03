@@ -42,8 +42,4 @@ export class ListPorDniCuotasComponent implements OnInit {
     })
   }
 
-  funcionPendiente() {
-    console.log('funcion Pendiente')
-  }
-
 }

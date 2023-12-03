@@ -28,10 +28,10 @@
                               <td class="text-center">{{ cuota.importe }}</td>
                               <td class="text-center">{{ cuota.estado }}</td>
                               <td *ngIf="cuota.estado === 'pendiente' && cuota.fecha_pago === null
-                                        && cuota.tipo_pago === ''; else elsePagado" class="text-center">
-                                          <a routerLink=""
-                                          class="btn btn-success"
-                                          (click)="funcionPendiente()">Pagar</a>
+                                && cuota.tipo_pago === ''; else elsePagado" class="text-center">
+                                  <a style="cursor: pointer;"
+                                  routerLink="/cuota/formPago/{{ cuota.id }}"
+                                  class="btn btn-success">Pagar</a>
                               </td>
                               <ng-template #elsePagado>
                                 <td class="text-center">
