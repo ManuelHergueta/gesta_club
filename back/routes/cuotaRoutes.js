@@ -9,6 +9,9 @@ const midsJWT = require('../middlewares/validarJWT');
 //Todas las cuotas:
 router.get('/', [midsJWT.validarJWT],controlador.cuotasGet);
 
+//Todas las cuotas incluyendo nombre y apellidos del deportista.
+router.get('/nombre', [midsJWT.validarJWT], controlador.cuotasGetConNombre);
+
 //Cuotas de un dni:
 router.get('/dni/:dni', [midsJWT.validarJWT], controlador.cuotasPorDniGet);
 

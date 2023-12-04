@@ -1,4 +1,5 @@
 const Cuota = require('../../models/Cuota');
+const Deportista = require('../../models/Deportista');
 const ConexionSequelize = require('../conexion/ConexionSequelize');
 
 class ConexionCuota extends ConexionSequelize {
@@ -12,6 +13,32 @@ class ConexionCuota extends ConexionSequelize {
         this.conectar();
         resultado = await Cuota.findAll();
         this.desconectar();
+        return resultado;
+    }
+
+    getCuotasConNombre = async() => {
+        this.conectar();
+        const cuotas = await Cuota.findAll({
+            include: [{
+                model: Deportista,
+                attributes: ['nombre', 'apellidos']
+            }]
+        });
+        this.desconectar();
+        /* Reestructuramos los objetos para que esten todas sus propiedades al mismo nivel. */
+        //cuotas.map pasa cada cuota al bloque dentro de las llaves
+        const resultado = cuotas.map(cuota => {
+            //desestructuramos las propiedades y además usamos el operador de propagacion '...' para
+            //copiar todas las propiedades de cuotaData a ese objeto
+            //con cuota.get({plain:true}) "limpia" los objetos y deja solo las propiedades. Quita morralla.
+            const { deportistum, ...cuotaData } = cuota.get({ plain: true});
+            //retornamos fuera del map cuotaData añadiendo ya al mismo nivel nombre y apellidos
+            return {
+                ...cuotaData,
+                nombre: deportistum.nombre,
+                apellidos: deportistum.apellidos
+            };
+        });
         return resultado;
     }
 

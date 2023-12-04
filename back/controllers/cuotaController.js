@@ -14,6 +14,19 @@ const cuotasGet = (req, res = response) => {
         });
 }
 
+const cuotasGetConNombre = (req, res = response) => {
+    const conx = new Conexion();
+    conx.getCuotasConNombre()
+        .then( msg => {
+            console.log('Listado de cuotas correcto!');
+            res.status(200).json(msg);
+        })
+        .catch( err => {
+            console.log('No hay registros',err);
+            res.status(203).json({'msg': 'No se han encontrado registros'});
+        });
+}
+
 const cuotasPorDniGet = (req, res = response) => {
     const conx = new Conexion();
     conx.getCuotasPorDni(req.params.dni)
@@ -55,6 +68,7 @@ const cuotaPut = (req, res = response) => {
 
 module.exports = {
     cuotasGet,
+    cuotasGetConNombre,
     cuotasPorDniGet,
     cuotaGet,
     cuotaPut

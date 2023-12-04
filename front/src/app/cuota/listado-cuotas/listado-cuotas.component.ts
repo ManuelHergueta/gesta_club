@@ -18,7 +18,7 @@ export class ListadoCuotasComponent implements OnInit {
   }
 
   cargarHistoricoCuotas () {
-    this.cuotaService.listarHistoricoCuotas().subscribe( cuotas => {
+      this.cuotaService.listarHistoricoCuotasConNombre().subscribe( cuotas => {
       this.cuotas = cuotas;
     })
   }

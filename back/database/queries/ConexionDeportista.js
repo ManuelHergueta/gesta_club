@@ -1,4 +1,3 @@
-//const { body } = require('express-validator');
 const Deportista = require('../../models/Deportista');
 const ConexionSequelize = require('../conexion/ConexionSequelize');
 

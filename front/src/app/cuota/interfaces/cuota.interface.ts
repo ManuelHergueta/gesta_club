@@ -8,6 +8,8 @@ export interface Cuota {
   fecha_pago?: Date;
   tipo_pago?: string;
   affectedRows?: number;
+  nombre?: string;
+  apellidos?: string;
 }
 
 export interface Deportista {

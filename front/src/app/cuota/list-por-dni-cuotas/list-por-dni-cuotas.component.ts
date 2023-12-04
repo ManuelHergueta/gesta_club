@@ -31,9 +31,15 @@ export class ListPorDniCuotasComponent implements OnInit {
 
   cargarCuotasXdni(dni: string) {
     this.cuotaService.listarCuotasPorDni(dni).subscribe( (cuotas) => {
-      this.cuotas = cuotas;
-      //console.log(cuotas);
-    })
+      if (cuotas && 'msg' in cuotas) {
+        //Esto se hace para que no salte error si se le pasa, en el modal de Listado por persona,
+        //un dni que no exista en la BD porque cuotas espera una array no el mensaje de error que
+        //manda el back cuando no existe el dni.
+        this.cuotas = [];
+      } else {
+        this.cuotas = cuotas;
+      }
+    });
   }
 
   obtenerDeportista(dni: string) {

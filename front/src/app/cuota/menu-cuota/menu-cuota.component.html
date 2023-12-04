@@ -9,16 +9,16 @@
         <a routerLink="/cuota/listadoC" class="d-block py-2 text-decoration-none text-dark menu-link"
           [class.active]="isActive('/cuota/listadoC')"
           (click)="setActive('/cuota/listadoC')">
-          Listado total
+          Todas las Cuotas
         </a>
         <a routerLink="/cuota/listVencidasC" class="d-block py-2 text-decoration-none text-dark menu-link"
           [class.active]="isActive('/cuota/listVencidasC')"
           (click)="setActive('/cuota/listVencidasC')">
-          Listado vencidas
+          Cuotas Pendientes
         </a>
-        <a routerLink="/cuota/datosC" class="d-block py-2 text-decoration-none text-dark menu-link"
-          [class.active]="isActive('/cuota/datosC')"
-          (click)="setActive('/cuota/datosC')">
+        <a class="d-block py-2 text-decoration-none text-dark menu-link" style="cursor:pointer"
+          [class.active]="isActive('/cuota/listXdni/' + dni)"
+          (click)="preguntarDni()">
           Listado por persona
         </a>
       </div>
@@ -26,21 +26,21 @@
     <div class="my-3">
       <div class="menu-item">
         <img src="../../../assets/cuotas.png" alt="Cuotas" class="menu-icon">
-        <span class="menu-label">Generación de cuotas</span>
+        <span class="menu-label">Generar Cuotas</span>
       </div>
       <div class="ms-3">
-        <a href="#" class="d-block py-2 text-decoration-none text-dark">Generación masiva por mes</a>
-        <a href="#" class="d-block py-2 text-decoration-none text-dark">Generación individual</a>
+        <a href="#" class="d-block py-2 text-decoration-none text-dark">Masiva Mensual</a>
+        <a href="#" class="d-block py-2 text-decoration-none text-dark">Crear Individual</a>
       </div>
     </div>
     <div class="my-3">
       <div class="menu-item">
         <img src="../../../assets/cobro.png" alt="Cobros" class="menu-icon">
-        <span class="menu-label">Cobro de cuotas</span>
+        <span class="menu-label">Cobros</span>
       </div>
       <div class="ms-3">
-        <a href="#" class="d-block py-2 text-decoration-none text-dark">Generar recibo</a>
-        <a href="#" class="d-block py-2 text-decoration-none text-dark">Enviar recibo por email</a>
+        <a href="#" class="d-block py-2 text-decoration-none text-dark">Ver Recibos</a>
+        <a href="#" class="d-block py-2 text-decoration-none text-dark">Modificar Recibo</a>
       </div>
     </div>
   </div>

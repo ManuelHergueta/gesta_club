@@ -1,6 +1,8 @@
 const { Sequelize } = require("sequelize");
 require("dotenv").config();
 
+const setupAsociations = require('../../models/associations');
+
 class ConexionSequelize {
 
     constructor() {
@@ -15,6 +17,8 @@ class ConexionSequelize {
                 idle: 10000
              },
           });
+
+          setupAsociations();
     }
 
   conectar = () => {

@@ -3,9 +3,8 @@
       <div class="card rounded-lg">
           <div class="card-body">
               <h4 class="card-title"></h4>
-              <h5 class="card-subtitle">Hay {{ cuotas.length }}
-                  cuotas de {{ deportista?.nombre }} {{deportista?.apellidos}}.</h5>
-              <div class="table-responsive my-4">
+              <h5 class="card-subtitle">Cuotas de {{ deportista?.nombre }} {{deportista?.apellidos}}.</h5>
+              <div class="table-responsive mt-4">
                   <table class="table table-bordered">
                       <thead>
                           <tr>
@@ -44,7 +43,7 @@
                       </tbody>
                   </table>
               </div>
-
+              <h6 class="">{{ deportista?.nombre}} tiene {{ cuotas.length }} cuotas.</h6>
           </div>
       </div>
   </div>

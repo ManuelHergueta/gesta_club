@@ -69,6 +69,10 @@ export class CuotaService {
     return true;
   }
 
+  /**
+   * @deprecated Mejor usar listarHistoricoCuotasConNombre, que ya trae el nombre y apellidos
+   * del deportista
+   */
   listarHistoricoCuotas(): Observable<interfaces.Cuota[]> {
     if(this.verificarPermiso()) {
       return this.http.get<interfaces.Cuota[]>(`${this.urlApi}/cuotas`,this.headers);
@@ -77,9 +81,17 @@ export class CuotaService {
     }
   }
 
+  listarHistoricoCuotasConNombre(): Observable<interfaces.Cuota[]> {
+    if(this.verificarPermiso()) {
+      return this.http.get<interfaces.Cuota[]>(`${this.urlApi}/cuotas/nombre`,this.headers);
+    } else {
+      return of([]); //Devuelve observable con array vacia.
+    }
+  }
+
   listarCuotasPendientes(): Observable<interfaces.Cuota[]> {
     if(this.verificarPermiso()) {
-      return this.http.get<interfaces.Cuota[]>(`${this.urlApi}/cuotas`,this.headers)
+      return this.http.get<interfaces.Cuota[]>(`${this.urlApi}/cuotas/nombre`,this.headers)
       .pipe(
         map( (resp: Cuota[]) => resp.
         filter( cuota => cuota.estado === 'pendiente'))

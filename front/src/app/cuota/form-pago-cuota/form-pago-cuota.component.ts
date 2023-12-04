@@ -86,6 +86,11 @@ export class FormPagoCuotaComponent implements OnInit {
           this.recibo.tipo_pago = this.cuota.tipo_pago;
         } else {
           console.error('Fecha de pago o tipo de pago son undefined');
+          Swal.fire({
+            title: 'Error',
+            text: 'Datos de pago erroneos.',
+            icon: 'error'
+          })
           return;
         }
         this.recibo.id_cuota = this.cuota.id;
