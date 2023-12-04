@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environments';
 
 import * as interfaces from '../interfaces/cuota.interface';
 import { Cuota } from '../interfaces/cuota.interface';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -55,7 +56,13 @@ export class CuotaService {
 
   verificarPermiso(): boolean {
     if(!this.token) {
-      window.alert('No tienes permisos suficientes para acceder a esta funcion');
+      Swal.fire({
+        icon: "error",
+        title: "No autorizado",
+        text: "No tienes permisos suficientes para acceder a esta función",
+        showConfirmButton: false,
+        timer: 3000,
+      })
       this.router.navigate(['/login']);
       return false;
     }
@@ -114,5 +121,12 @@ export class CuotaService {
     }
   }
 
+  enviarReciboEmail(recibo: interfaces.Recibo): Observable<interfaces.Recibo | null> {
+    if(this.verificarPermiso()) {
+      return this.http.post<interfaces.Recibo>(`${this.urlApi}/recibos/`, recibo, this.headers);
+    } else {
+      return of(null);
+    }
+  }
 
 }

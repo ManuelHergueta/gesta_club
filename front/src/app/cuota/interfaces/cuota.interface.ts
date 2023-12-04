@@ -7,6 +7,7 @@ export interface Cuota {
   estado: string;
   fecha_pago?: Date;
   tipo_pago?: string;
+  affectedRows?: number;
 }
 
 export interface Deportista {
@@ -14,13 +15,13 @@ export interface Deportista {
   nombre: string;
   apellidos: string;
   foto?: string;
-  fecha_nacimiento: Date; //¿cambiar a string?
+  fecha_nacimiento: Date;
   temporada: number;
   categoria_id: number;
   dorsal: number;
   telefono: string;
   email: string;
-  email_verificado: boolean; //¿cambiar a number
+  email_verificado: boolean;
   direccion: string;
   poblacion: string;
   codigo_postal: string;
@@ -30,3 +31,16 @@ export interface Deportista {
   datos_medicos?: string;
 }
 
+export interface Recibo {
+  id?: number;
+  id_cuota: number;
+  dni_deportista: string;
+  email: string;
+  nombre_completo: string;
+  fecha_pago: Date;
+  temporada: number;
+  mes: string;
+  importe: number;
+  tipo_pago: string;
+  success?: boolean;
+}
