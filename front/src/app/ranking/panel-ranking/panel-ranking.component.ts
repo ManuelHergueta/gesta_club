@@ -1,5 +1,6 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { RankingService } from '../services/ranking.service';
 
 @Component({
   selector: 'app-panel-ranking',
@@ -23,9 +24,10 @@ export class PanelRankingComponent implements OnInit {
 
   sidebarState = 'hidden';
 
-  constructor() {}
+  constructor(private rankingService: RankingService) {}
 
   ngOnInit(): void {
+    this.rankingService.verificarPermiso();
     setTimeout(() => {
       this.sidebarState = 'visible';
     }, 100);

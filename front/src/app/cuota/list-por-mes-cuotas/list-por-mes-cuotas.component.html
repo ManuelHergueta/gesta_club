@@ -3,13 +3,15 @@
       <div class="card rounded-lg">
           <div class="card-body">
               <h4 class="card-title"></h4>
-              <h5 class="card-subtitle">Cuotas de {{ deportista?.nombre }} {{deportista?.apellidos}}.</h5>
+              <h5 class="card-subtitle">Cuotas de {{this.mes}}.</h5>
               <div class="table-responsive mt-4">
                   <table class="table table-bordered">
                       <thead>
                           <tr>
                               <th class="text-center">#</th>
                               <th class="text-center">dni</th>
+                              <th class="text-center">nombre</th>
+                              <th class="text-center">apellidos</th>
                               <th class="text-center">temporada</th>
                               <th class="text-center">mes</th>
                               <th class="text-center">importe</th>
@@ -21,15 +23,18 @@
                       <tbody>
                           <tr *ngFor="let cuota of cuotas">
                               <td class="text-center">{{ cuota.id }}</td>
-                              <td class="text-center">{{ cuota.dni_deportista }}</td>
-                              <td class="text-center">{{ cuota.temporada }}</td>
                               <td class="d-flex justify-content-between align-items-center">
-                                  {{ cuota.mes }}
-                                  <a routerLink="/cuota/listXmes/{{ cuota.mes }}">
-                                    <img class="icono" src="../../../assets/lupa.png"
-                                    alt="Icono mostrar cuotas por mes">
+                                  {{ cuota.dni_deportista }}
+                                  <a routerLink="/cuota/listXdni/{{ cuota.dni_deportista }}">
+                                      <img src="../../../assets/lupa.png"
+                                      alt="Icono mostrar cuotas por deportista"
+                                      class="icono">
                                   </a>
                               </td>
+                              <td class="text-center">{{ cuota.nombre }}</td>
+                              <td class="text-center">{{ cuota.apellidos }}</td>
+                              <td class="text-center">{{ cuota.temporada }}</td>
+                              <td class="text-center">{{ cuota.mes }}</td>
                               <td class="text-center">{{ cuota.importe }}</td>
                               <td class="text-center">{{ cuota.estado }}</td>
                               <td *ngIf="cuota.estado === 'pendiente' && cuota.fecha_pago === null
@@ -38,9 +43,9 @@
                                   class="btn btn-success">Pagar</a>
                               </td>
                               <ng-template #elsePagado>
-                                <td class="text-center">
-                                  {{ cuota.fecha_pago }}
-                                </td>
+                                  <td class="text-center">
+                                    {{ cuota.fecha_pago }}
+                                  </td>
                               </ng-template>
                               <td class="text-center">{{ cuota.tipo_pago }}</td>
                           </tr>
@@ -48,7 +53,7 @@
                       </tbody>
                   </table>
               </div>
-              <h6 class="">{{ deportista?.nombre}} tiene {{ cuotas.length }} cuotas.</h6>
+              <h6 class="">Hay {{ cuotas.length }} cuotas en {{this.mes}}.</h6>
           </div>
       </div>
   </div>

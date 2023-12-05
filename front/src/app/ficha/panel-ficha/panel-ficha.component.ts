@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { FichaService } from '../services/ficha.service';
 
 @Component({
   selector: 'app-panel-ficha',
@@ -23,9 +24,10 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 export class PanelFichaComponent implements OnInit {
   sidebarState = 'hidden';
 
-  constructor() {}
+  constructor(private fichaService: FichaService) {}
 
   ngOnInit(): void {
+    this.fichaService.verificarPermiso();
     setTimeout(() => {
       this.sidebarState = 'visible';
     }, 100);

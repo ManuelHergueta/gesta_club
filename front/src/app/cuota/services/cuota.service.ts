@@ -69,18 +69,6 @@ export class CuotaService {
     return true;
   }
 
-  /**
-   * @deprecated Mejor usar listarHistoricoCuotasConNombre, que ya trae el nombre y apellidos
-   * del deportista
-   */
-  listarHistoricoCuotas(): Observable<interfaces.Cuota[]> {
-    if(this.verificarPermiso()) {
-      return this.http.get<interfaces.Cuota[]>(`${this.urlApi}/cuotas`,this.headers);
-    } else {
-      return of([]); //Devuelve observable con array vacia.
-    }
-  }
-
   listarHistoricoCuotasConNombre(): Observable<interfaces.Cuota[]> {
     if(this.verificarPermiso()) {
       return this.http.get<interfaces.Cuota[]>(`${this.urlApi}/cuotas/nombre`,this.headers);
@@ -96,6 +84,17 @@ export class CuotaService {
         map( (resp: Cuota[]) => resp.
         filter( cuota => cuota.estado === 'pendiente'))
         )
+    } else {
+      return of([]);
+    }
+  }
+
+  listarCuotasPorMes(mesElegido: string): Observable<interfaces.Cuota[]> {
+    if(this.verificarPermiso()) {
+      return this.http.get<interfaces.Cuota[]>(`${this.urlApi}/cuotas/nombre`, this.headers)
+      .pipe(
+        map( (resp: Cuota[]) => resp.filter(cuota => cuota.mes === mesElegido))
+      )
     } else {
       return of([]);
     }

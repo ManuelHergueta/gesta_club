@@ -1,47 +1,39 @@
-<div class="container m-2 pb-5">
-  <div id="menu" class="menu rounded-lg p-1">
-    <div class="my-3">
-      <div class="menu-item">
+<nav class="navbar navbar-expand-lg navbar-light  mb-4">
+  <button class="navbar-toggler navbar-toggler-icon hamburguesa" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"></button>
+  <div id="navbarNav" class="menu rounded-lg p-1 collapse navbar-collapse flex-column">
+    <ul class="my-3 navbar-nav flex-column">
+      <li class="nav-item m-3">
         <img src="../../../assets/listados.png" alt="Listados" class="menu-icon">
         <span class="menu-label">Listados</span>
-      </div>
-      <div class="m-3">
-        <a routerLink="/cuota/listadoC" class="d-block py-2 text-decoration-none text-dark menu-link"
+        <a routerLink="/cuota/listadoC" class="d-block py-2 text-decoration-none text-dark nav-link"
           [class.active]="isActive('/cuota/listadoC')"
           (click)="setActive('/cuota/listadoC')">
           Todas las Cuotas
         </a>
-        <a routerLink="/cuota/listVencidasC" class="d-block py-2 text-decoration-none text-dark menu-link"
+        <a routerLink="/cuota/listVencidasC" class="d-block py-2 text-decoration-none text-dark nav-link"
           [class.active]="isActive('/cuota/listVencidasC')"
           (click)="setActive('/cuota/listVencidasC')">
           Cuotas Pendientes
         </a>
-        <a class="d-block py-2 text-decoration-none text-dark menu-link" style="cursor:pointer"
+        <a class="d-block py-2 text-decoration-none text-dark nav-link" style="cursor:pointer"
           [class.active]="isActive('/cuota/listXdni/' + dni)"
           (click)="preguntarDni()">
           Listado por persona
         </a>
-      </div>
-    </div>
-    <div class="my-3">
-      <div class="menu-item">
+      </li>
+      <li class="nav-item m-3">
         <img src="../../../assets/cuotas.png" alt="Cuotas" class="menu-icon">
         <span class="menu-label">Generar Cuotas</span>
-      </div>
-      <div class="ms-3">
-        <a href="#" class="d-block py-2 text-decoration-none text-dark">Masiva Mensual</a>
-        <a href="#" class="d-block py-2 text-decoration-none text-dark">Crear Individual</a>
-      </div>
-    </div>
-    <div class="my-3">
-      <div class="menu-item">
+        <a href="#" class="nav-link d-block py-2 text-decoration-none text-dark">Masiva Mensual</a>
+        <a href="#" class="nav-link d-block py-2 text-decoration-none text-dark">Crear Individual</a>
+      </li>
+      <li class="nav-item m-3">
         <img src="../../../assets/cobro.png" alt="Cobros" class="menu-icon">
         <span class="menu-label">Cobros</span>
-      </div>
-      <div class="ms-3">
-        <a href="#" class="d-block py-2 text-decoration-none text-dark">Ver Recibos</a>
-        <a href="#" class="d-block py-2 text-decoration-none text-dark">Modificar Recibo</a>
-      </div>
-    </div>
+        <a href="#" class="nav-link d-block py-2 text-decoration-none text-dark">Ver Recibos</a>
+        <a href="#" class="nav-link d-block py-2 text-decoration-none text-dark">Modificar Recibo</a>
+      </li>
+    </ul>
   </div>
-</div>
+</nav>

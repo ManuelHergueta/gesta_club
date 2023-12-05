@@ -1,5 +1,6 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from '../services/usuario.service';
 
 @Component({
   selector: 'app-panel-usuario',
@@ -23,9 +24,10 @@ export class PanelUsuarioComponent implements OnInit {
 
   sidebarState = 'hidden';
 
-  constructor() {}
+  constructor(private usuarioService: UsuarioService) {}
 
   ngOnInit(): void {
+    this.usuarioService.verificarPermiso();
     setTimeout(() => {
       this.sidebarState = 'visible';
     }, 100);
