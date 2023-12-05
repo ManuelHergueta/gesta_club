@@ -118,7 +118,7 @@ export class CuotaService {
 
   obtenerCuotaPorId(id: number): Observable<interfaces.Cuota | null> {
     if(this.verificarPermiso()) {
-      return this.http.get<interfaces.Cuota>(`${this.urlApi}/cuotas/${id}`, this.headers);
+      return this.http.get<interfaces.Cuota>(`${this.urlApi}/cuotas/detalle/${id}`, this.headers);
     } else {
       return of(null);
     }

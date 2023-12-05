@@ -16,7 +16,23 @@ router.get('/nombre', [midsJWT.validarJWT], controlador.cuotasGetConNombre);
 router.get('/dni/:dni', [midsJWT.validarJWT], controlador.cuotasPorDniGet);
 
 //Detalle de una cuota
-router.get('/:id', [midsJWT.validarJWT], controlador.cuotaGet);
+router.get('/detalle/:id', [midsJWT.validarJWT], controlador.cuotaGet);
+
+//Generacion masiva de cuotas. 
+router.get('/masiva', [midsJWT.validarJWT], controlador.generadorMasivoCuotas);
+
+//Crear una cuota
+router.post('/', 
+    [
+        check('dni_deportista', 'El dni del deportista es obligatorio').notEmpty(),
+        check('temporada', 'El dato temporada es numerico y obligatorio').notEmpty().isInt(),
+        check('mes', 'El mes es obligatorio').notEmpty(),
+        check('importe', 'El importe es numérico y obligatorio').notEmpty().isInt(),
+        check('estado', "El estado tiene que ser 'pagada' o 'pendiente'").notEmpty().isIn(['pagada','pendiente']),
+        validarCampos, 
+        midsJWT.validarJWT
+    ],
+    controlador.cuotaPost);
 
 //Actualizar una cuota
 router.put('/:id', 
@@ -33,6 +49,7 @@ router.put('/:id',
     ],
     controlador.cuotaPut);
 
-
+//Borrar una cuota
+router.delete('/:id', [midsJWT.validarJWT], controlador.cuotaDelete);
 
 module.exports = router;

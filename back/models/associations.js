@@ -1,9 +1,15 @@
 const Deportista = require('./Deportista');
 const Cuota = require('./Cuota');
+const Categoria = require('./Categoria');
 
 const setupAssociations = () => {
+
     Cuota.belongsTo(Deportista, { foreignKey: 'dni_deportista'});
     Deportista.hasMany(Cuota, {foreignKey: 'dni_deportista'});
+
+    Deportista.belongsTo(Categoria, { foreignKey: 'categoria_id'});
+    Categoria.hasMany(Deportista, {foreignKey: 'categoria_id'});
+    
 }
 
 module.exports = setupAssociations;

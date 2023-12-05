@@ -1,4 +1,5 @@
 .card {
+  max-height: 800px;
   background-color: #f8f9fa;
   border-radius: 8px;
   box-shadow: 0 0 10px 0 rgba(55, 54, 54, 0.6);

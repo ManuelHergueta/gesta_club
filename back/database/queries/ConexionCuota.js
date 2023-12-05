@@ -1,3 +1,4 @@
+const Categoria = require('../../models/Categoria');
 const Cuota = require('../../models/Cuota');
 const Deportista = require('../../models/Deportista');
 const ConexionSequelize = require('../conexion/ConexionSequelize');
@@ -51,13 +52,13 @@ class ConexionCuota extends ConexionSequelize {
             }
         });
         this.desconectar();
-        console.log('Hola');
         if(resultados.length === 0){
             throw new Error('No se encontraron cuotas para el DNI proporcionado');
         }
         
         return resultados;
     }
+
     
     getCuota = async(id) => {
         let resultado = [];
@@ -70,11 +71,120 @@ class ConexionCuota extends ConexionSequelize {
         return resultado;
     }
 
+    /**
+     * Este método es necesario para la generación masiva de cuotas, ya que devuelve
+     * los deportistas con la mensualidad que tiene que pagar cada uno dependiendo de la 
+     * categoría que tiene. El importe está en la tabla Categorias de la BD. Y este 
+     * se ayuda de asociacion belongsTo y Hasmany de Cuotas y Deportistas.
+     * @returns 
+     */
+    getDeportistasConPrecio = async() => {
+        this.conectar();
+        const deportistas =await Deportista.findAll({
+            include:[{
+                model: Categoria,
+                attributes: ['mensualidad']
+            }]
+        });
+        this.desconectar();
+        //Lo siguiente es para dejar todas las propiedades del objeto al mismo nivel.
+        const resultado = deportistas.map(deportista => {//mapeamos
+            //desestructuramos, con operador propagacion ... copiamos todas las propiedades
+            //de deportistaData a el objeto. plain:true quita morralla.
+            const { categorium, ...deportistaData } = deportista.get({ plain: true });
+            //por ultimo retornamos fuera del map deportistaData añadiendo mensualidad al mismo nivel
+            return {
+                ...deportistaData,
+                mensualidad: categorium.mensualidad
+            };
+        });
+        return resultado;
+    }
+
+    getCuotasExistentes = async(temp,m) => {
+        let resultados = [];
+        this.conectar();
+        resultados = await Cuota.findAll({
+            where: {
+                temporada: temp,
+                mes: m
+            }
+        });
+        this.desconectar();
+        if(resultados.length === 0){
+            throw new Error('No hay cuotas para esa temporada y mes');
+        }
+        return resultados;
+    }
+
+    generarCuotasMasivas = async (temporada,mes) => {
+        this.conectar();
+        try {
+            const deportistas = await this.getDeportistasConPrecio();
+            const cuotasExistentes = await Cuota.findAll({
+                where: {
+                    temporada: temporada,
+                    mes: mes
+                }
+            });
+            //Mapea las cuotas existentes:
+            const cuotasMap = new Map(cuotasExistentes.map(cuota => [cuota.dni_deportista, cuota]));
+            //JSON.stringify() no convierte los objetos Map, para ver lo que tiene cuotasMap se puede hacer:
+            //return Object.fromEntries(cuotasMap);
+
+            //Filtramos deportistas que ya tienen cuota
+            const deportistasSinCuota = deportistas.filter(deportista => !cuotasMap.has(deportista.dni));
+            
+            //Generamos las nuevas cuotas
+            const cuotasNuevas = deportistasSinCuota.map(deportista => {
+                return {
+                    dni_deportista: deportista.dni,
+                    temporada: temporada,
+                    mes: mes,
+                    importe: deportista.mensualidad,
+                    estado: 'pendiente'
+                };
+            });
+
+            //Guardamos las cuotas en la BD todas en una sola operacion
+            await Cuota.bulkCreate(cuotasNuevas);
+
+            return cuotasNuevas.length;
+        } catch (error) {
+            console.error("Error al generar cuotas masivas:", error);
+            throw error;
+        } finally {
+            this.desconectar();
+        }
+    }
+
+    registrarCuota = async(body) => {
+        let resultado = 0;
+        this.conectar();
+        const cuotaNueva = new Cuota(body);
+        await cuotaNueva.save();
+        this.desconectar();
+        return resultado;
+    }
+    
+
     modificarCuota = async(id, body) => {
         let resultado;
         this.conectar();
         [resultado] = await Cuota.update(body, { where: {id} });
         if(resultado === 0){
+            this.desconectar();
+            throw error;
+        }
+        this.desconectar();
+        return { affectedRows: resultado };
+    }
+
+    borrarCuota = async(id) => {
+        let resultado;
+        this.conectar();
+        resultado = await Cuota.destroy({ where: {id}});
+        if (resultado === 0) {
             this.desconectar();
             throw error;
         }

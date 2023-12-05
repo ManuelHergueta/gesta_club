@@ -53,6 +53,32 @@ const cuotaGet = (req, res = response) => {
         });
 }
 
+const generadorMasivoCuotas = (req, res = response) => {
+    const conx = new Conexion();
+    conx.generarCuotasMasivas(req.body.temporada, req.body.mes)
+        .then( msg => {
+            console.log('Generación masiva ejecutada con exito');
+            res.status(203).json(msg);
+        })
+        .catch( err => {
+            console.log('No se han generado registros');
+            res.status(203).json({'msg':'Error en la generación masiva',err});
+        });
+}
+
+const cuotaPost = (req, res = response) => {
+    const conx = new Conexion();
+    conx.registrarCuota(req.body)
+        .then( msg => {
+            console.log('Cuota insertada correctamente!');
+            res.status(202).json(msg);
+        })
+        .catch( err => {
+            console.log('Ha fallado el registro');
+            res.status(203).json(err);
+        });
+}
+
 const cuotaPut = (req, res = response) => {
     const conx = new Conexion();
     conx.modificarCuota(req.params.id, req.body)
@@ -66,10 +92,26 @@ const cuotaPut = (req, res = response) => {
         });
 }
 
+const cuotaDelete = (req, res = response) => {
+    const conx = new Conexion();
+    conx.borrarCuota(req.params.id)
+        .then ( msg => {
+            console.log('Cuota borrada correctamente!');
+            res.status(202).json(msg);
+        })
+        .catch( err => {
+            console.log('Fallo en el borrado!');
+            res.status(203).json(err);
+        })
+}
+
 module.exports = {
     cuotasGet,
     cuotasGetConNombre,
     cuotasPorDniGet,
     cuotaGet,
-    cuotaPut
+    generadorMasivoCuotas,
+    cuotaPost,
+    cuotaPut,
+    cuotaDelete
 }
