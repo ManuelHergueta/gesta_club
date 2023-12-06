@@ -46,3 +46,8 @@ export interface Recibo {
   tipo_pago: string;
   success?: boolean;
 }
+
+export interface PeticionMasiva {
+  temporada: number;
+  mes: string;
+}

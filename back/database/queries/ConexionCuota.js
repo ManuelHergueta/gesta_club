@@ -55,11 +55,36 @@ class ConexionCuota extends ConexionSequelize {
         if(resultados.length === 0){
             throw new Error('No se encontraron cuotas para el DNI proporcionado');
         }
-        
         return resultados;
     }
 
-    
+    getCuotasPorTemporadaYMes = async(temporada,mes) => {
+        this.conectar();
+        const cuotas = await Cuota.findAll({
+            where: {
+                temporada: temporada,
+                mes: mes
+            },
+            include: [{
+                model: Deportista,
+                attributes: ['nombre','apellidos']
+            }]
+        });
+        this.desconectar();
+        if(cuotas.length===0){
+            throw new Error('No existen cuotas para esa temporada y mes');
+        }
+        const resultados = cuotas.map(cuota => {
+            const { deportistum, ...cuotaData } = cuota.get({ plain: true });
+            return {
+                ...cuotaData,
+                nombre: deportistum.nombre,
+                apellidos: deportistum.apellidos
+            };
+        });
+        return resultados;
+    }
+
     getCuota = async(id) => {
         let resultado = [];
         this.conectar();
@@ -101,6 +126,12 @@ class ConexionCuota extends ConexionSequelize {
         return resultado;
     }
 
+    /**
+     * Se usa junto con getDeportistasConPrecio para la generación masiva de cuotas
+     * @param {temporada} temp 
+     * @param {mes} m 
+     * @returns Devuelve las cuotas que ya existen de una temporada y mes
+     */
     getCuotasExistentes = async(temp,m) => {
         let resultados = [];
         this.conectar();
@@ -117,7 +148,13 @@ class ConexionCuota extends ConexionSequelize {
         return resultados;
     }
 
-    generarCuotasMasivas = async (temporada,mes) => {
+    /**
+     * 
+     * @param {temporada} temporada 
+     * @param {mes} mes 
+     * @returns Cuotas de todos los deportistas que no tuvieran una cuota previamente.
+     */
+    postGenerarCuotasMasivas = async (temporada,mes) => {
         this.conectar();
         try {
             const deportistas = await this.getDeportistasConPrecio();
@@ -129,8 +166,8 @@ class ConexionCuota extends ConexionSequelize {
             });
             //Mapea las cuotas existentes:
             const cuotasMap = new Map(cuotasExistentes.map(cuota => [cuota.dni_deportista, cuota]));
-            //JSON.stringify() no convierte los objetos Map, para ver lo que tiene cuotasMap se puede hacer:
-            //return Object.fromEntries(cuotasMap);
+                    //JSON.stringify() no convierte los objetos Map, para ver lo que tiene cuotasMap se puede hacer:
+                    //return Object.fromEntries(cuotasMap);
 
             //Filtramos deportistas que ya tienen cuota
             const deportistasSinCuota = deportistas.filter(deportista => !cuotasMap.has(deportista.dni));

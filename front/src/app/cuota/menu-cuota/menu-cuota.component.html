@@ -21,12 +21,23 @@
           (click)="preguntarDni()">
           Listado por persona
         </a>
+        <a class="d-block py-2 text-decoration-none text-dark nav-link" style="cursor:pointer"
+          [class.active]="isActive('/cuota/listXtemporadaYMes/temporada,mes')"
+          (click)="listarTemporadaYMes()">
+          List.Temporada/mes
+        </a>
       </li>
       <li class="nav-item m-3">
         <img src="../../../assets/cuotas.png" alt="Cuotas" class="menu-icon">
         <span class="menu-label">Generar Cuotas</span>
-        <a href="#" class="nav-link d-block py-2 text-decoration-none text-dark">Masiva Mensual</a>
-        <a href="#" class="nav-link d-block py-2 text-decoration-none text-dark">Crear Individual</a>
+        <a class="d-block py-2 text-decoration-none text-dark nav-link" style="cursor:pointer"
+          [class.active]="isActive('/cuota/listXtemporadaYMes/temporada,mes')"
+          (click)="generarTemporadaYMes()">
+          Masiva Mensual
+        </a>
+        <a href="#" class="nav-link d-block py-2 text-decoration-none text-dark">
+          Crear Individual
+        </a>
       </li>
       <li class="nav-item m-3">
         <img src="../../../assets/cobro.png" alt="Cobros" class="menu-icon">

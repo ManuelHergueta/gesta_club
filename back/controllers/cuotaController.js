@@ -40,6 +40,19 @@ const cuotasPorDniGet = (req, res = response) => {
         });
 }
 
+const cuotasPorTemporadaYMesGet = (req, res = response) => {
+    const conx = new Conexion();
+    conx.getCuotasPorTemporadaYMes(req.params.temporada, req.params.mes)
+        .then( msg => {
+            console.log('Listado de cuotas por temporada y mes correcto');
+            res.status(203).json(msg);
+        })
+        .catch( err => {
+            console.log('No hay registros');
+            res.status(203).json({'msg':'No se han encontrado registros con esos datos'});
+        });
+}
+
 const cuotaGet = (req, res = response) => {
     const conx = new Conexion();
     conx.getCuota(req.params.id)
@@ -53,9 +66,9 @@ const cuotaGet = (req, res = response) => {
         });
 }
 
-const generadorMasivoCuotas = (req, res = response) => {
+const generadorMasivoCuotasPost = (req, res = response) => {
     const conx = new Conexion();
-    conx.generarCuotasMasivas(req.body.temporada, req.body.mes)
+    conx.postGenerarCuotasMasivas(req.body.temporada, req.body.mes)
         .then( msg => {
             console.log('Generación masiva ejecutada con exito');
             res.status(203).json(msg);
@@ -109,8 +122,9 @@ module.exports = {
     cuotasGet,
     cuotasGetConNombre,
     cuotasPorDniGet,
+    cuotasPorTemporadaYMesGet,
     cuotaGet,
-    generadorMasivoCuotas,
+    generadorMasivoCuotasPost,
     cuotaPost,
     cuotaPut,
     cuotaDelete

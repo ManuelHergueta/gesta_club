@@ -89,6 +89,14 @@ export class CuotaService {
     }
   }
 
+  /**
+   * Soy consciente que es preferible hacer este filtro en el back por eficiencia y rapidez
+   * y no tener que traerse todas las cuotas y filtrarlas aqui en el front.
+   * Este no lo modifico para que quede aqui un ejemplo de filtrar lo recibido.
+   * En el resto ya si que aplico esto, por ejemplo en listarCuotasPorDni o listarCuotasPorTemporadaYMes.
+   * @param mesElegido
+   * @returns
+   */
   listarCuotasPorMes(mesElegido: string): Observable<interfaces.Cuota[]> {
     if(this.verificarPermiso()) {
       return this.http.get<interfaces.Cuota[]>(`${this.urlApi}/cuotas/nombre`, this.headers)
@@ -103,6 +111,14 @@ export class CuotaService {
   listarCuotasPorDni(dni: string): Observable<interfaces.Cuota[]> {
     if(this.verificarPermiso()) {
       return this.http.get<interfaces.Cuota[]>(`${this.urlApi}/cuotas/dni/${dni}`, this.headers)
+    } else {
+      return of([]);
+    }
+  }
+
+  listarCuotasPorTemporadaYMes(temporada: number,mes:string): Observable<interfaces.Cuota[]> {
+    if(this.verificarPermiso()) {
+      return this.http.get<interfaces.Cuota[]>(`${this.urlApi}/cuotas/temporadaymes/${temporada},${mes}`, this.headers);
     } else {
       return of([]);
     }
@@ -140,4 +156,11 @@ export class CuotaService {
     }
   }
 
+  generarCuotasMasivo(peticionMasiva: interfaces.PeticionMasiva): Observable<number> {
+    if(this.verificarPermiso()) {
+      return this.http.post<number>(`${this.urlApi}/cuotas/masiva`, peticionMasiva,this.headers);
+    } else {
+      return of(0);
+    }
+  }
 }
