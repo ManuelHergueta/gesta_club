@@ -45,7 +45,7 @@ export class MenuCuotaComponent implements OnInit {
     this.currentRoute = route;
   }
 
-  async preguntarDni() {
+  async preguntarDniYContinuar(redirigir: () => void) {
     const { value: dni } = await Swal.fire({
         title: 'DNI',
         input: 'text',
@@ -63,8 +63,20 @@ export class MenuCuotaComponent implements OnInit {
     });
     if (dni) {
         this.dni = dni;
-        this.router.navigate([`/cuota/listXdni/${this.dni}`]);
+        redirigir();
     }
+  }
+
+  irListarXDni() {
+    this.preguntarDniYContinuar(() => {
+      this.router.navigate([`/cuota/listXdni/${this.dni}`]);
+    });
+  }
+
+  irCrearCuota() {
+    this.preguntarDniYContinuar(() => {
+      this.router.navigate([`/cuota/alta/${this.dni}`]);
+    })
   }
 
   async generarTemporadaYMes() {

@@ -13,7 +13,7 @@ import { CuotaService } from '../services/cuota.service';
 })
 export class FormPagoCuotaComponent implements OnInit {
 
-  pagoForm: FormGroup = new FormGroup({});
+  public pagoForm: FormGroup = new FormGroup({});
   public deportista: Deportista | null = null;
   public cuota: Cuota | null = null;
   public recibo: Recibo = {

@@ -18,7 +18,7 @@
         </a>
         <a class="d-block py-2 text-decoration-none text-dark nav-link" style="cursor:pointer"
           [class.active]="isActive('/cuota/listXdni/' + dni)"
-          (click)="preguntarDni()">
+          (click)="irListarXDni()">
           Listado por persona
         </a>
         <a class="d-block py-2 text-decoration-none text-dark nav-link" style="cursor:pointer"
@@ -35,7 +35,9 @@
           (click)="generarTemporadaYMes()">
           Masiva Mensual
         </a>
-        <a href="#" class="nav-link d-block py-2 text-decoration-none text-dark">
+        <a class="d-block py-2 text-decoration-none text-dark nav-link" style="cursor:pointer"
+        [class.active]="isActive('/cuota/alta,dni')"
+        (click)="irCrearCuota()">
           Crear Individual
         </a>
       </li>

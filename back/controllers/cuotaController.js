@@ -88,7 +88,13 @@ const cuotaPost = (req, res = response) => {
         })
         .catch( err => {
             console.log('Ha fallado el registro');
-            res.status(203).json(err);
+            if (err.message === 'cuota_duplicada') {
+                res.status(409).json({ message: 'La cuota ya está registrada.'});
+            } else if (err.message === 'deportista_no_existe'){
+                res.status(404).json({ message: 'El deportista no existe en la base de datos.'})
+            } else {
+                res.status(203).json({ message: 'Error al registrar la cuota'});
+            }
         });
 }
 

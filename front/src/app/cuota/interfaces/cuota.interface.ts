@@ -31,6 +31,8 @@ export interface Deportista {
   tutor?: string;
   telef_tutor?: string;
   datos_medicos?: string;
+  mensualidad?: number;
+  nombreCategoria?: string;
 }
 
 export interface Recibo {

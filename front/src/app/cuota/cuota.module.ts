@@ -12,6 +12,7 @@ import { ListPorDniCuotasComponent } from './list-por-dni-cuotas/list-por-dni-cu
 import { FormPagoCuotaComponent } from './form-pago-cuota/form-pago-cuota.component';
 import { ListPorMesCuotasComponent } from './list-por-mes-cuotas/list-por-mes-cuotas.component';
 import { ListPorTemporadaMesCuotasComponent } from './list-por-temporada-mes-cuotas/list-por-temporada-mes-cuotas.component';
+import { FormularioCuotasComponent } from './formulario-cuotas/formulario-cuotas.component';
 
 
 
@@ -25,7 +26,8 @@ import { ListPorTemporadaMesCuotasComponent } from './list-por-temporada-mes-cuo
       ListPorDniCuotasComponent,
       FormPagoCuotaComponent,
       ListPorMesCuotasComponent,
-      ListPorTemporadaMesCuotasComponent
+      ListPorTemporadaMesCuotasComponent,
+      FormularioCuotasComponent
   ],
   imports: [
     SharedModule,

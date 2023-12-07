@@ -132,6 +132,14 @@ export class CuotaService {
     }
   }
 
+  obtenerDeportistaConPrecio(dni: string): Observable<interfaces.Deportista | null>{
+    if(this.verificarPermiso()) {
+      return this.http.get<interfaces.Deportista>(`${this.urlApi}/deportistas/precio/${dni}`, this.headers);
+    } else {
+      return of(null); //Devuelve observable que emite null si no hay permisos
+    }
+  }
+
   obtenerCuotaPorId(id: number): Observable<interfaces.Cuota | null> {
     if(this.verificarPermiso()) {
       return this.http.get<interfaces.Cuota>(`${this.urlApi}/cuotas/detalle/${id}`, this.headers);
@@ -163,4 +171,13 @@ export class CuotaService {
       return of(0);
     }
   }
+
+  crearCuotaService(cuota: interfaces.Cuota): Observable<interfaces.Cuota | null> {
+    if(this.verificarPermiso()) {
+      return this.http.post<interfaces.Cuota>(`${this.urlApi}/cuotas/`, cuota, this.headers);
+    } else {
+      return of(null);
+    }
+  }
+
 }

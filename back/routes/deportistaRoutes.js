@@ -6,6 +6,7 @@ const router = Router();
 //Falta aplicar middlewares y validators
 
 router.get('/', controlador.deportistasGet);
+router.get('/precio/:dni', controlador.deportistaConPrecioGet);
 router.get('/:dni', controlador.deportistaGet);
 router.post('/', controlador.deportistaPost);
 router.put('/:dni?', controlador.deportistaPut);

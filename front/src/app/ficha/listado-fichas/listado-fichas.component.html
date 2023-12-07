@@ -1,0 +1,46 @@
+<div class="row my-4 animated fadeIn fast">
+  <div class="col-12">
+      <div class="card rounded-lg overflow-auto">
+          <div class="card-body">
+              <h4 class="card-title"></h4>
+              <h5 class="card-subtitle">Todas las Deportistas.</h5>
+              <div class="table-responsive mt-4">
+                  <table class="table table-bordered">
+                      <thead>
+                          <tr>
+                              <th class="text-center">dni</th>
+                              <th class="text-center">nombre</th>
+                              <th class="text-center">apellidos</th>
+                              <th class="text-center">fecha_nac</th>
+                              <th class="text-center">categoria</th>
+                              <th class="text-center">dorsa</th>
+                              <th class="text-center">telefono</th>
+                              <th class="text-center">email</th>
+                              <th class="text-center"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let deportista of deportistas">
+                              <td class="text-center">{{ deportista.dni }}</td>
+                              <td class="text-center">{{ deportista.nombre }}</td>
+                              <td class="text-center">{{ deportista.apellidos }}</td>
+                              <td class="text-center">{{ deportista.fecha_nacimiento }}</td>
+                              <td class="text-center">{{ deportista.categoria_id }}</td>
+                              <td class="text-center">{{ deportista.dorsal }}</td>
+                              <td class="text-center">{{ deportista.telefono }}</td>
+                              <td class="text-center">{{ deportista.email }}</td>
+                              <td class="text-center">
+                                <a routerLink="/cuota/alta/{{deportista.dni}}">
+                                  <img src="../../../assets/mensualidad.png" alt="" class="icono">
+                                </a>
+                              </td>
+                          </tr>
+
+                      </tbody>
+                  </table>
+              </div>
+              <h6 class="">Hay {{ deportistas.length }} deportistas registrados.</h6>
+          </div>
+      </div>
+  </div>
+</div>

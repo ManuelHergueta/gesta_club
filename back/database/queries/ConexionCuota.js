@@ -196,10 +196,24 @@ class ConexionCuota extends ConexionSequelize {
     }
 
     registrarCuota = async(body) => {
-        let resultado = 0;
         this.conectar();
+        const { dni_deportista, temporada, mes } = body;
+        const deportistaExistente = await Deportista.findOne({
+            where: {dni: dni_deportista}
+        });
+        if (!deportistaExistente) {
+            this.desconectar();
+            throw new Error('deportista_no_existe');
+        }
+        const cuotaEsistente = await Cuota.findOne({
+            where: {dni_deportista, temporada, mes}
+        });
+        if (cuotaEsistente){
+            this.desconectar();
+            throw new Error('cuota_duplicada');
+        }
         const cuotaNueva = new Cuota(body);
-        await cuotaNueva.save();
+        const resultado = await cuotaNueva.save();
         this.desconectar();
         return resultado;
     }

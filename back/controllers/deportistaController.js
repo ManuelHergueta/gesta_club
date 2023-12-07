@@ -27,6 +27,19 @@ const deportistaGet = (req, res = response) => {
         });
 }
 
+const deportistaConPrecioGet = (req, res = response) => {
+    const conx = new Conexion();
+    conx.getDeportistaConPrecio(req.params.dni)
+        .then( msg => {
+            console.log('Encontrado el deportista!');
+            res.status(200).json(msg);
+        }) 
+        .catch( err => {
+            console.log('No existe el registro');
+            res.status(203).json({'msg':'No se ha encontrado el registro'});
+        });
+}
+
 const deportistaPost = (req = request, res = response) => {
     const conx = new Conexion();
     conx.registrarDeportista(req.body)
@@ -69,6 +82,7 @@ const deportistaDelete = (req, res = response) => {
 module.exports = {
     deportistasGet,
     deportistaGet,
+    deportistaConPrecioGet,
     deportistaPost,
     deportistaPut,
     deportistaDelete

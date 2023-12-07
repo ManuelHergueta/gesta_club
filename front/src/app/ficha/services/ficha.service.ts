@@ -1,5 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
+
+import { environment } from 'src/environments/environments';
+
+import * as interfaces from '../../cuota/interfaces/cuota.interface';
+import { Deportista } from 'src/app/cuota/interfaces/cuota.interface';
 import Swal from 'sweetalert2';
 
 
@@ -9,7 +16,10 @@ import Swal from 'sweetalert2';
 
 export class FichaService {
 
-  constructor(
+  private urlApi = environment.apiUrl;
+
+  constructor (
+    private http: HttpClient,
     private router: Router ) { }
 
   get email(): string {
@@ -60,4 +70,13 @@ export class FichaService {
     }
     return true;
   }
+
+  listarDeportistas(): Observable<interfaces.Deportista[]> {
+    if(this.verificarPermiso()) {
+      return this.http.get<interfaces.Deportista[]>(`${this.urlApi}/deportistas`,this.headers);
+    } else {
+      return of([]);
+    }
+  }
+
 }

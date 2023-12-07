@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { PanelFichaComponent } from './panel-ficha/panel-ficha.component';
+import { ListadoFichasComponent } from './listado-fichas/listado-fichas.component';
 
 
 const routes: Routes = [
@@ -8,7 +10,7 @@ const routes: Routes = [
     path:'',
     component: PanelFichaComponent,
     children: [
-      { path: 'ficha', component: PanelFichaComponent, data: { titulo: 'Panel Deportista', panel: 'Panel de Deportistas'} },
+      { path: 'listadoF', component: ListadoFichasComponent, data: { titulo: 'Listado Deportistas', panel: 'Panel de Deportistas'} },
     ]
   }
 ]
