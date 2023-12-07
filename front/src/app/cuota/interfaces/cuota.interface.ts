@@ -53,3 +53,8 @@ export interface PeticionMasiva {
   temporada: number;
   mes: string;
 }
+
+export interface EliminarCuotaResponse {
+  affectedRows: number;
+}
+

@@ -107,7 +107,12 @@ const cuotaPut = (req, res = response) => {
         })
         .catch( err => {
             console.log('Ha fallado la actualización!');
-            res.status(203).json(err);
+            console.log(err.message);
+            if (err.message === 'cuota_duplicada') {
+                res.status(409).json({ message: 'La cuota ya esiste.'});
+            } else {
+                res.status(203).json({ message: 'Error al actualizar la cuota'});
+            }
         });
 }
 

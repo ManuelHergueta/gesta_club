@@ -46,7 +46,7 @@ router.put('/:id',
         check('mes', 'El mes es obligatorio').notEmpty(),
         check('importe', 'El importe es numérico y obligatorio').notEmpty().isInt(),
         check('estado', "El estado tiene que ser 'pagada' o 'pendiente'").notEmpty().isIn(['pagada','pendiente']),
-        check('tipo_pago', 'El tipo de pago puede ser').optional().isIn(['efectivo','tarjeta','transferencia']),
+        check('tipo_pago', 'El tipo de pago puede ser').isIn(['efectivo','tarjeta','transferencia','']),
         validarCampos, 
         midsJWT.validarJWT
     ],

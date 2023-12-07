@@ -89,7 +89,8 @@ export class FormPagoCuotaComponent implements OnInit {
           Swal.fire({
             title: 'Error',
             text: 'Datos de pago erroneos.',
-            icon: 'error'
+            icon: 'error',
+            confirmButtonText: 'OK, entendido'
           })
           return;
         }

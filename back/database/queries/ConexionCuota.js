@@ -2,6 +2,7 @@ const Categoria = require('../../models/Categoria');
 const Cuota = require('../../models/Cuota');
 const Deportista = require('../../models/Deportista');
 const ConexionSequelize = require('../conexion/ConexionSequelize');
+const { Op } = require('sequelize');
 
 class ConexionCuota extends ConexionSequelize {
 
@@ -205,10 +206,10 @@ class ConexionCuota extends ConexionSequelize {
             this.desconectar();
             throw new Error('deportista_no_existe');
         }
-        const cuotaEsistente = await Cuota.findOne({
+        const cuotaExistente = await Cuota.findOne({
             where: {dni_deportista, temporada, mes}
         });
-        if (cuotaEsistente){
+        if (cuotaExistente){
             this.desconectar();
             throw new Error('cuota_duplicada');
         }
@@ -220,12 +221,22 @@ class ConexionCuota extends ConexionSequelize {
     
 
     modificarCuota = async(id, body) => {
-        let resultado;
         this.conectar();
-        [resultado] = await Cuota.update(body, { where: {id} });
+        const { dni_deportista, temporada, mes } = body;
+        const cuotaExistente = await Cuota.findOne({
+            where: {dni_deportista, temporada, mes,
+            id: { [Op.ne]: id }}
+            //Op(operadores de Sequelize) ne(not equal): para evitar identificarse a
+            //ella misma como duplicada.
+        });
+        if (cuotaExistente){
+            this.desconectar();
+            throw new Error('cuota_duplicada');
+        }
+        const [resultado] = await Cuota.update(body, { where: {id} });
         if(resultado === 0){
             this.desconectar();
-            throw error;
+            throw new Error('actualizacion_fallida');
         }
         this.desconectar();
         return { affectedRows: resultado };

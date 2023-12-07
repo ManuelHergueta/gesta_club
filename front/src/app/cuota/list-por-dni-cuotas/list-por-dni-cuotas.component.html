@@ -16,6 +16,7 @@
                               <th class="text-center">estado</th>
                               <th class="text-center">fecha_pago</th>
                               <th class="text-center">tipo_pago</th>
+                              <th class="text-center"></th>
                           </tr>
                       </thead>
                       <tbody>
@@ -43,6 +44,12 @@
                                 </td>
                               </ng-template>
                               <td class="text-center">{{ cuota.tipo_pago }}</td>
+                              <td class="text-center">
+                                <a routerLink="/cuota/datosC/{{ cuota.id }}">
+                                  <img class="icono" src="../../../assets/ojo.png"
+                                  alt="Icono mostrar cuotas por mes">
+                                </a>
+                            </td>
                           </tr>
 
                       </tbody>

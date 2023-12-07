@@ -3,7 +3,7 @@
       <div class="card rounded-lg">
           <div class="card-body">
               <h4 class="card-title"></h4>
-              <h5 class="card-subtitle">Cuotas de {{this.mes}}.</h5>
+              <h5 class="card-subtitle">Cuotas de {{this.mes}} de {{this.temporada}}.</h5>
               <div class="table-responsive mt-4">
                   <table class="table table-bordered">
                       <thead>
@@ -18,6 +18,7 @@
                               <th class="text-center">estado</th>
                               <th class="text-center">fecha_pago</th>
                               <th class="text-center">tipo_pago</th>
+                              <th class="text-center"></th>
                           </tr>
                       </thead>
                       <tbody>
@@ -48,6 +49,12 @@
                                   </td>
                               </ng-template>
                               <td class="text-center">{{ cuota.tipo_pago }}</td>
+                              <td class="text-center">
+                                <a routerLink="/cuota/datosC/{{ cuota.id }}">
+                                  <img class="icono" src="../../../assets/ojo.png"
+                                  alt="Icono mostrar cuotas por mes">
+                                </a>
+                            </td>
                           </tr>
 
                       </tbody>

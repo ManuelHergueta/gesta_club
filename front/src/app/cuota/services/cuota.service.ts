@@ -156,6 +156,14 @@ export class CuotaService {
     }
   }
 
+  eliminarCuota(idCuota: number): Observable<interfaces.EliminarCuotaResponse> {
+    if(this.verificarPermiso()) {
+      return this.http.delete<interfaces.EliminarCuotaResponse>(`${this.urlApi}/cuotas/${idCuota}`,this.headers);
+    } else {
+      return of({ affectedRows: 0 });
+    }
+  }
+
   enviarReciboEmail(recibo: interfaces.Recibo): Observable<interfaces.Recibo | null> {
     if(this.verificarPermiso()) {
       return this.http.post<interfaces.Recibo>(`${this.urlApi}/recibos/`, recibo, this.headers);
