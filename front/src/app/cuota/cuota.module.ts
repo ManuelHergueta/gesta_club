@@ -13,6 +13,10 @@ import { FormPagoCuotaComponent } from './form-pago-cuota/form-pago-cuota.compon
 import { ListPorMesCuotasComponent } from './list-por-mes-cuotas/list-por-mes-cuotas.component';
 import { ListPorTemporadaMesCuotasComponent } from './list-por-temporada-mes-cuotas/list-por-temporada-mes-cuotas.component';
 import { FormularioCuotasComponent } from './formulario-cuotas/formulario-cuotas.component';
+import { ListadoRecibosComponent } from './listado-recibos/listado-recibos.component';
+import { ListPorDniRecibosComponent } from './list-por-dni-recibos/list-por-dni-recibos.component';
+import { ListPorMesRecibosComponent } from './list-por-mes-recibos/list-por-mes-recibos.component';
+import { ListPorPagoRecibosComponent } from './list-por-pago-recibos/list-por-pago-recibos.component';
 
 
 
@@ -27,7 +31,11 @@ import { FormularioCuotasComponent } from './formulario-cuotas/formulario-cuotas
       FormPagoCuotaComponent,
       ListPorMesCuotasComponent,
       ListPorTemporadaMesCuotasComponent,
-      FormularioCuotasComponent
+      FormularioCuotasComponent,
+      ListadoRecibosComponent,
+      ListPorDniRecibosComponent,
+      ListPorMesRecibosComponent,
+      ListPorPagoRecibosComponent
   ],
   imports: [
     SharedModule,

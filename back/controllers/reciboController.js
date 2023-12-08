@@ -28,6 +28,33 @@ const reciboGet = (req, res = response) => {
         });
 }
 
+const reenviarReciboGet = (req, res = response) => {
+    const conx = new Conexion();
+    conx.getRecibo(req.params.id)
+        .then( msg => {
+            envioRecibo.correoReciboDePago(msg);
+            console.log('Recibo reenviado por email');
+            res.status(200).json(msg);
+        }) 
+        .catch( err => {
+            console.log('Fallo en el reenvio del recibo');
+            res.status(203).json({'msg':'No se ha reenviado el recibo',err});
+        });
+}
+
+const recibosPorPeticionGet = async (req, res) => {
+    const { peticion, valor } = req.params;
+    const conx = new Conexion();
+    try {
+        const resultados = await conx.getRecibosPorPeticion(peticion, valor);
+        console.log(`Listado de recibos por ${peticion} correcto`);
+        res.status(200).json(resultados);
+    } catch (err) {
+        console.log(`No hay registros para ${peticion}`);
+        res.status(404).json({ msg: `No se han encontrado registros para ${peticion}`, err });
+    }
+}
+
 const reciboPost = (req = request, res = response) => {
     const conx = new Conexion();
     conx.registrarRecibo(req.body)
@@ -53,5 +80,7 @@ const reciboPost = (req = request, res = response) => {
 module.exports = {
     recibosGet,
     reciboGet,
+    reenviarReciboGet,
+    recibosPorPeticionGet,
     reciboPost
 }

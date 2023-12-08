@@ -15,7 +15,7 @@ class ConexionRecibo extends ConexionSequelize {
         this.desconectar();
         return resultado;
     }
-
+    
     getRecibo = async(id) => {
         let resultado = [];
         this.conectar();
@@ -25,6 +25,32 @@ class ConexionRecibo extends ConexionSequelize {
             throw error;
         }
         return resultado;
+    }
+
+    getRecibosPorPeticion = async(tipoBusqueda, valor) => {
+        let resultados = [];
+        this.conectar();
+        const whereClause = {};
+        switch (tipoBusqueda) {
+            case 'dni':
+                whereClause.dni_deportista = valor;
+                break;
+            case 'mes':
+                whereClause.mes = valor;
+                break;
+            case 'tipo_pago':
+                whereClause.tipo_pago = valor;
+                break;
+            default:
+                this.desconectar();
+                throw new Error('Tipo de búsqueda no válido');
+        }
+        resultados = await Recibo.findAll({ where: whereClause });
+        this.desconectar();
+        if (resultados.length === 0) {
+            throw new Error('No se encontraron recibos con los criterios proporcionados');
+        }
+        return resultados;
     }
 
     registrarRecibo = async(body) => {
@@ -39,6 +65,7 @@ class ConexionRecibo extends ConexionSequelize {
         this.desconectar();
         return resultado;      
     }
+
 }
 
 module.exports = ConexionRecibo;

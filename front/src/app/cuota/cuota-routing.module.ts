@@ -10,6 +10,10 @@ import { ListPorTemporadaMesCuotasComponent } from './list-por-temporada-mes-cuo
 import { FormPagoCuotaComponent } from './form-pago-cuota/form-pago-cuota.component';
 import { DetalleCuotaComponent } from './detalle-cuota/detalle-cuota.component';
 import { FormularioCuotasComponent } from './formulario-cuotas/formulario-cuotas.component';
+import { ListadoRecibosComponent } from './listado-recibos/listado-recibos.component';
+import { ListPorDniRecibosComponent } from './list-por-dni-recibos/list-por-dni-recibos.component';
+import { ListPorMesRecibosComponent } from './list-por-mes-recibos/list-por-mes-recibos.component';
+import { ListPorPagoRecibosComponent } from './list-por-pago-recibos/list-por-pago-recibos.component';
 
 
 const routes: Routes = [
@@ -25,6 +29,10 @@ const routes: Routes = [
       { path:'formPago/:id', component: FormPagoCuotaComponent, data: { titulo: 'Formulario de Pago de Cuotas', panel: 'Panel Cuotas'} },
       { path:'alta/:dni', component: FormularioCuotasComponent, data: { titulo: 'Alta de Cuota', panel: 'Panel Cuotas'} },
       { path:'datosC/:id', component: DetalleCuotaComponent, data: { titulo: 'Detalle Cuota', panel: 'Panel Cuotas'} },
+      { path:'listadoRcbos', component: ListadoRecibosComponent, data: { titulo: 'Listado de Recibos', panel: 'Panel Cuotas'} },
+      { path:'listRcbosXdni/:dni', component: ListPorDniRecibosComponent, data: { titulo: 'Listado de Recibos por deportista', panel: 'Panel Cuotas'} },
+      { path:'listRcbosXmes/:mes', component: ListPorMesRecibosComponent, data: { titulo: 'Listado de Recibos por mes', panel: 'Panel Cuotas'} },
+      { path:'listRcbosXpago/:tipoPago', component: ListPorPagoRecibosComponent, data: { titulo: 'Listado de Recibos por Tipo de Pago', panel: 'Panel Cuotas'} },
     ]
   }
 ]

@@ -44,8 +44,11 @@
       <li class="nav-item m-3">
         <img src="../../../assets/cobro.png" alt="Cobros" class="menu-icon">
         <span class="menu-label">Cobros</span>
-        <a href="#" class="nav-link d-block py-2 text-decoration-none text-dark">Ver Recibos</a>
-        <a href="#" class="nav-link d-block py-2 text-decoration-none text-dark">Modificar Recibo</a>
+        <a routerLink="/cuota/listadoRcbos" class="d-block py-2 text-decoration-none text-dark nav-link"
+          [class.active]="isActive('/cuota/listadoRcbos')"
+          (click)="setActive('/cuota/listadoRcbos')">
+          Listado Recibos
+        </a>
       </li>
     </ul>
   </div>

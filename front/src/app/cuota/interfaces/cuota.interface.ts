@@ -46,6 +46,7 @@ export interface Recibo {
   mes: string;
   importe: number;
   tipo_pago: string;
+  codigo_verificacion?: string;
   success?: boolean;
 }
 

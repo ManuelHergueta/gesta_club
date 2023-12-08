@@ -6,9 +6,17 @@ const controlador = require('../controllers/reciboController');
 const midsJWT = require('../middlewares/validarJWT');
 const { validarCampos } = require('../middlewares/validarMiddlewares');
 
+//Todos los recibos
 router.get('/', [midsJWT.validarJWT], controlador.recibosGet);
 
+//Un solo recibo por su id
 router.get('/:id', [midsJWT.validarJWT], controlador.reciboGet);
+
+//Reenviar recibo por email.
+router.get('/email/:id', [midsJWT.validarJWT], controlador.reenviarReciboGet);
+
+//Ruta para multiples peticiones
+router.get('/multiple/:peticion/:valor', [midsJWT.validarJWT] ,controlador.recibosPorPeticionGet);
 
 router.post('/',
     [

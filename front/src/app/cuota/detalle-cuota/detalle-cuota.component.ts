@@ -106,25 +106,20 @@ export class DetalleCuotaComponent implements OnInit {
           if (response && response.affectedRows === 1) {
             this.mostrarRespuestaExitosa();
           } else {
-            Swal.fire({
-              title: 'Error',
-              text: `Ocurrió un error al modificar la cuota: ${this.cuota.id}`,
-              icon: 'error'
-            }).then((result) => {
-              if (result.isConfirmed) {
-              }
-            });
+            this.errorAlModificar();
           }
         },
-        error: () => {
-          Swal.fire({
-            title: 'Error',
-            text: `Ocurrió un error al modificar la cuota: ${this.cuota.id}`,
-            icon: 'error'
-          }).then((result) => {
-            if (result.isConfirmed) {
-            }
-          });
+        error: (error) => {
+          if (error.error.message === 'La cuota ya esiste.') {
+            Swal.fire({
+              title: 'Error',
+              text: `La cuota del mes ${this.detalleCForm.get('mes')?.value} ya existe.`,
+              icon: 'error',
+              confirmButtonText: 'OK'
+            });
+          } else {
+            this.errorAlModificar();
+          }
         }
       });
     } else {
@@ -149,10 +144,17 @@ export class DetalleCuotaComponent implements OnInit {
     Swal.fire({
       title: 'Error',
       text: 'No se puede modificar la cuota. Revise los datos.',
-      icon: 'error'
-    }).then((result) => {
-      if (result.isConfirmed) {
-      }
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
+  }
+
+  errorAlModificar() {
+    Swal.fire({
+      title: 'Error',
+      text: `Ocurrió un error al modificar la cuota: ${this.cuota.id}`,
+      icon: 'error',
+      confirmButtonText: 'OK'
     });
   }
 
@@ -218,7 +220,7 @@ export class DetalleCuotaComponent implements OnInit {
             title: 'Error',
             text: `Ocurrió un error al eliminar la cuota: ${this.cuota.id}`,
             icon: 'error',
-            confirmButtonText: 'OK, entendido'
+            confirmButtonText: 'OK'
           });
         }
       },
@@ -227,7 +229,7 @@ export class DetalleCuotaComponent implements OnInit {
           title: 'Error',
           text: `Ocurrió un error al eliminar la cuota: ${this.cuota.id}`,
           icon: 'error',
-          confirmButtonText: 'OK, entendido'
+          confirmButtonText: 'OK'
         });
       }
     })
