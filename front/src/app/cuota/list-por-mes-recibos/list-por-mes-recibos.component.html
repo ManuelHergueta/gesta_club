@@ -1,0 +1,79 @@
+<div class="row my-4 animated fadeIn fast">
+  <div class="col-12">
+      <div class="card rounded-lg overflow-auto">
+          <div class="card-body">
+              <h4 class="card-title">Recibos de {{ this.mes }}</h4>
+              <h5 class="card-subtitle"></h5>
+              <div class="table-responsive mt-4">
+                  <table class="table table-bordered table-sm table-hover">
+                      <thead>
+                          <tr>
+                              <th class="text-center">#</th>
+                              <th class="text-center">id_cuota</th>
+                              <th class="text-center">dni_deportista</th>
+                              <th class="text-center">Nombre deportista</th>
+                              <th class="text-center">email</th>
+                              <th class="text-center">temporada</th>
+                              <th class="text-center">mes</th>
+                              <th class="text-center">importe</th>
+                              <th class="text-center">fecha_pago</th>
+                              <th class="text-center">tipo_pago</th>
+                              <th class="text-center"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let recibo of recibosPaginados">
+                              <td class="text-center">{{ recibo.id }}</td>
+                              <td class="text-center">
+                                <ng-container *ngIf="recibo.id_cuota; else iconoTemplate">
+                                    {{ recibo.id_cuota }}
+                                </ng-container>
+                                <ng-template #iconoTemplate>
+                                    <img src="../../../assets/nulo.png" alt="Icono" class="icono">
+                                </ng-template>
+                              </td>
+                              <td class="d-flex justify-content-between align-items-center">{{ recibo.dni_deportista }}
+                                <a routerLink="/cuota/listRcbosXdni/{{recibo.dni_deportista}}">
+                                  <img src="../../../assets/lupa.png" alt="Lupa buscar por dni" class="icono">
+                                </a>
+                              </td>
+                              <td class="text-center">{{ recibo.nombre_completo }}</td>
+                              <td class="text-center">{{ recibo.email }}</td>
+                              <td class="text-center">{{ recibo.temporada }}</td>
+                              <td class="text-center">{{ recibo.mes }}</td>
+                              <td class="text-center">{{ recibo.importe }}</td>
+                              <td class="text-center">{{ recibo.fecha_pago }}</td>
+                              <td class="d-flex justify-content-between align-items-center">
+                                {{ recibo.tipo_pago }}
+                                <a routerLink="/cuota/listRcbosXpago/{{recibo.tipo_pago}}">
+                                  <img class="icono" src="../../../assets/lupa.png"
+                                  alt="Icono mostrar recibos por tipo de pago">
+                                </a>
+                              </td>
+                              <td class="text-center">
+                                <a (click)="llamarMostrarCodigoVerificacion(recibo.codigo_verificacion!)">
+                                  <img class="icono" src="../../../assets/llave.png"
+                                  alt="Icono mostrar codigo verificacion">
+                                </a>
+                              </td>
+                              <td *ngIf="recibo.id_cuota !== null" class="text-center">
+                                <a (click)="llamarReenviarRecibo(recibo.id!)">
+                                  <img class="icono" src="../../../assets/enviar.png"
+                                  alt="Icono para reenviar recibo por email">
+                                </a>
+                              </td>
+                            </tr>
+
+                      </tbody>
+                  </table>
+              </div>
+              <div class="paginacion text-center" *ngIf="recibos.length > itemsXpagina">
+                <button class="btn btn-secondary btn-sm" (click)="anterior()" [disabled]="paginaActual === 1">Anterior</button>
+                <span>   Página {{ paginaActual }}   </span>
+                <button class="btn btn-secondary btn-sm" (click)="siguiente()" [disabled]="paginaActual * itemsXpagina >= recibos.length">Siguiente</button>
+              </div>
+              <h6 class="">Hay {{ recibos.length }} recibos registrados.</h6>
+          </div>
+      </div>
+  </div>
+</div>

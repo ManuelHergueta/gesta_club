@@ -1,47 +1,60 @@
-<div class="container m-3">
-  <div id="menu" class="menu rounded-lg p-1">
-    <div class="my-3">
-      <div class="menu-item">
+<nav class="navbar navbar-expand-lg navbar-light  mb-4">
+  <button class="navbar-toggler navbar-toggler-icon hamburguesa" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"></button>
+  <div id="navbarNav" class="menu rounded-lg p-1 collapse navbar-collapse flex-column">
+    <ul class="my-3 navbar-nav flex-column">
+      <li class="nav-item m-3">
         <img src="../../../assets/listados.png" alt="Listados" class="menu-icon">
         <span class="menu-label">Listados</span>
-      </div>
-      <div class="m-3">
-        <a routerLink="/cuota/listadoC" class="d-block py-2 text-decoration-none text-dark menu-link"
+        <a routerLink="/cuota/listadoC" class="d-block py-2 text-decoration-none text-dark nav-link"
           [class.active]="isActive('/cuota/listadoC')"
           (click)="setActive('/cuota/listadoC')">
-          Listado total
+          Todas las Cuotas
         </a>
-        <a routerLink="/cuota/datosC" class="d-block py-2 text-decoration-none text-dark menu-link"
-          [class.active]="isActive('/cuota/datosC')"
-          (click)="setActive('/cuota/datosC')">
-          Listado vencidas
+        <a routerLink="/cuota/listVencidasC" class="d-block py-2 text-decoration-none text-dark nav-link"
+          [class.active]="isActive('/cuota/listVencidasC')"
+          (click)="setActive('/cuota/listVencidasC')">
+          Cuotas Pendientes
         </a>
-        <a href="#" class="d-block py-2 text-decoration-none text-dark menu-link"
-          [class.active]="isActive('/cuota/datosC')"
-          (click)="setActive('/cuota/datosC')">
+        <a class="d-block py-2 text-decoration-none text-dark nav-link" style="cursor:pointer"
+          [class.active]="isActive('/cuota/listXdni/' + dni)"
+          (click)="irListarXDni()">
           Listado por persona
         </a>
-      </div>
-    </div>
-    <div class="my-3">
-      <div class="menu-item">
+        <a class="d-block py-2 text-decoration-none text-dark nav-link" style="cursor:pointer"
+          [class.active]="isActive('/cuota/listXtemporadaYMes/temporada,mes')"
+          (click)="listarTemporadaYMes()">
+          List.Temporada/mes
+        </a>
+      </li>
+      <li class="nav-item m-3">
         <img src="../../../assets/cuotas.png" alt="Cuotas" class="menu-icon">
-        <span class="menu-label">Generación de cuotas</span>
-      </div>
-      <div class="ms-3">
-        <a href="#" class="d-block py-2 text-decoration-none text-dark">Generación masiva por mes</a>
-        <a href="#" class="d-block py-2 text-decoration-none text-dark">Generación individual</a>
-      </div>
-    </div>
-    <div class="my-3">
-      <div class="menu-item">
+        <span class="menu-label">Generar Cuotas</span>
+        <a class="d-block py-2 text-decoration-none text-dark nav-link" style="cursor:pointer"
+          [class.active]="isActive('/cuota/listXtemporadaYMes/temporada,mes')"
+          (click)="generarTemporadaYMes()">
+          Masiva Mensual
+        </a>
+        <a class="d-block py-2 text-decoration-none text-dark nav-link" style="cursor:pointer"
+        [class.active]="isActive('/cuota/alta,dni')"
+        (click)="irCrearCuota()">
+          Crear Individual
+        </a>
+      </li>
+      <li class="nav-item m-3">
         <img src="../../../assets/cobro.png" alt="Cobros" class="menu-icon">
-        <span class="menu-label">Cobro de cuotas</span>
-      </div>
-      <div class="ms-3">
-        <a href="#" class="d-block py-2 text-decoration-none text-dark">Generar recibo</a>
-        <a href="#" class="d-block py-2 text-decoration-none text-dark">Enviar recibo por email</a>
-      </div>
-    </div>
+        <span class="menu-label">Cobros</span>
+        <a routerLink="/cuota/listadoRcbos" class="d-block py-2 text-decoration-none text-dark nav-link"
+          [class.active]="isActive('/cuota/listadoRcbos')"
+          (click)="setActive('/cuota/listadoRcbos')">
+          Listado Recibos
+        </a>
+        <a routerLink="/cuota/listadoRecla" class="d-block py-2 text-decoration-none text-dark nav-link"
+          [class.active]="isActive('/cuota/listadoRecla')"
+          (click)="setActive('/cuota/listadoRecla')">
+          Listado Reclamaciones
+        </a>
+      </li>
+    </ul>
   </div>
-</div>
+</nav>

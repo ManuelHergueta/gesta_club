@@ -1,0 +1,118 @@
+<div class="row animated fadeIn fast">
+  <div class="col-12">
+    <div class="card rounded-lg overflow-auto">
+      <div class="card-body">
+        <h4 class="card-title mb-3">Alta de cuota</h4>
+        <h5 class="card-subtitle"></h5>
+        <form [formGroup]="cuotaForm" (ngSubmit)="crearCuota()" class="form-inline">
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="dni_deportista" class="form-label">DNI del Deportista</label>
+              <input type="text" class="form-control no-editable" id="dni_deportista"
+              [value]="dni_deportista" disabled />
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="categoria_id" class="form-label">Categoria</label>
+              <input type="text" class="form-control no-editable" id="categoria_id"
+              [value]="deportista?.categoria_id" disabled />
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="nombre_categoria" class="form-label">Nombre categoria</label>
+              <input type="text" class="form-control no-editable" id="nombre_categoria"
+              [value]="deportista?.nombreCategoria" disabled />
+            </div>
+            <div class="col-md-1 mb-3">
+              <label for="dorsal" class="form-label">Dorsal</label>
+              <input type="text" class="form-control no-editable" id="dorsal"
+              [value]="deportista?.dorsal" disabled />
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="email" class="form-label">email</label>
+              <input type="text" class="form-control no-editable" id="email"
+              [value]="deportista?.email" disabled />
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="nombre_deportista" class="form-label">Nombre</label>
+              <input type="text" class="form-control no-editable" id="nombre_deportista"
+              [value]="deportista?.nombre" disabled />
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="apellidos_deportista" class="form-label">Apellidos</label>
+              <input type="text" class="form-control no-editable" id="apellidos_deportista"
+              [value]="deportista?.apellidos" disabled />
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="telefono_deportista" class="form-label">Teléfono</label>
+              <input type="text" class="form-control no-editable" id="telefono_deportista"
+              [value]="deportista?.telefono" disabled />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2 mb-3">
+              <label for="temporada" class="form-label">Temporada</label>
+              <input type="text"
+              formControlName="temporada"
+              class="form-control"
+              id="temporada" />
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="mes" class="form-label">Mes</label>
+              <select type="text"
+              formControlName="mes"
+              class="form-control"
+              id="mes">
+                <option value=""></option>
+                <option value="enero">Enero</option>
+                <option value="febrero">Febrero</option>
+                <option value="marzo">Marzo</option>
+                <option value="abril">Abril</option>
+                <option value="mayo">Mayo</option>
+                <option value="junio">Junio</option>
+                <option value="julio">Julio</option>
+                <option value="agosto">Agosto</option>
+                <option value="septiembre">Septiembre</option>
+                <option value="octubre">Octubre</option>
+                <option value="noviembre">Noviembre</option>
+                <option value="diciembre">Diciembre</option>
+              </select>
+            </div>
+            <div class="col-md-2 mb-3">
+              <label for="importe" class="form-label">Importe</label>
+              <input type="text"
+              formControlName="importe"
+              class="form-control"
+              id="importe"
+              [value]="deportista?.mensualidad" />
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="estado" class="form-label">Estado</label>
+              <input type="text" class="form-control no-editable" id="estado"
+              [value]="cuota.estado" disabled />
+            </div>
+          </div>
+
+
+          <hr>
+
+          <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-3 mb-3">
+              <button type="submit" class="btn btn-success w-100">
+                Guardar</button>
+            </div>
+            <div class="col-md-3 mb-3">
+              <button type="button" class="btn btn-danger w-100"
+                      (click)="salirAltaCuota()">Cancelar</button>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>

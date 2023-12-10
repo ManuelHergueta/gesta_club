@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { CuotaService } from '../services/cuota.service';
 
 @Component({
   selector: 'app-panel-cuota',
@@ -23,9 +24,10 @@ export class PanelCuotaComponent implements OnInit {
 
   sidebarState = 'hidden';
 
-  constructor() {}
+  constructor(private cuotaService: CuotaService,) {}
 
   ngOnInit(): void {
+    this.cuotaService.verificarPermiso();
     setTimeout(() => {
       this.sidebarState = 'visible';
     }, 100);

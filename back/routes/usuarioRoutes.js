@@ -23,6 +23,8 @@ router.put('/:email?',
     [
         midsJWT.validarJWT,
         check('email', 'Introduzca un email valido').isEmail(),
+        check('password', 'El password es obligatorio').notEmpty(),
+        check('nombre', 'El nombre es obligatorio').notEmpty(),
         validarCampos
     ], 
     controlador.usuarioPut);

@@ -13,8 +13,8 @@ const validarJWT = (req , res , next) => {
         const {uemail} = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
         req.emailToken = uemail;
 
-        console.log(uemail);
-        console.log(token);
+        //console.log(uemail);
+        //console.log(token);
         
         next();
         

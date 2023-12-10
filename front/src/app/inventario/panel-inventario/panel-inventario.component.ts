@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { InventarioService } from '../services/inventario.service';
 
 @Component({
   selector: 'app-panel-inventario',
@@ -24,9 +25,10 @@ export class PanelInventarioComponent implements OnInit {
 
   sidebarState = 'hidden';
 
-  constructor() {}
+  constructor(private inventarioService: InventarioService) {}
 
   ngOnInit(): void {
+    this.inventarioService.verificarPermiso();
     setTimeout(() => {
       this.sidebarState = 'visible';
     }, 100);

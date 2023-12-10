@@ -1,5 +1,6 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { PresenciaService } from '../services/presencia.service';
 
 @Component({
   selector: 'app-panel-presencia',
@@ -23,9 +24,10 @@ export class PanelPresenciaComponent implements OnInit {
 
   sidebarState = 'hidden';
 
-  constructor() {}
+  constructor(private presenciaService: PresenciaService) {}
 
   ngOnInit(): void {
+    this.presenciaService.verificarPermiso();
     setTimeout(() => {
       this.sidebarState = 'visible';
     }, 100);

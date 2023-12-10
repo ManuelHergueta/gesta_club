@@ -1,5 +1,5 @@
-//const { body } = require('express-validator');
 const Deportista = require('../../models/Deportista');
+const Categoria = require('../../models/Categoria');
 const ConexionSequelize = require('../conexion/ConexionSequelize');
 
 class ConexionDeportista extends ConexionSequelize {
@@ -25,6 +25,29 @@ class ConexionDeportista extends ConexionSequelize {
         if(!resultado){
             throw error;
         }
+        return resultado;
+    }
+
+    getDeportistaConPrecio = async(dni) => {
+        this.conectar();
+        const deportista = await Deportista.findByPk(dni, {
+            include: [{
+                model: Categoria,
+                attributes: ['nombre','mensualidad']
+            }]
+        });
+        this.desconectar();
+        if (!deportista){
+            return null;
+        }
+        const { categorium, ...deportistaData } = deportista.get({ plain: true });
+        //Añadimos la mensualidad al mismo nivel que el resto de propiedades de deportista
+        const resultado =  {
+                ...deportistaData,
+                nombreCategoria: categorium ? categorium.nombre : null,
+                mensualidad: categorium ? categorium.mensualidad : null,
+            };
+        
         return resultado;
     }
 
