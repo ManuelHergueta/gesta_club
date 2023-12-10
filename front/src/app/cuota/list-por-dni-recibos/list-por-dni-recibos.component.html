@@ -2,10 +2,10 @@
   <div class="col-12">
       <div class="card rounded-lg">
           <div class="card-body">
-              <h4 class="card-title"></h4>
-              <h5 class="card-subtitle">Recibos de {{ deportista?.nombre }} {{ deportista?.apellidos }}.</h5>
+              <h4 class="card-title">Recibos de {{ deportista?.nombre }} {{ deportista?.apellidos }}.</h4>
+              <h5 class="card-subtitle"></h5>
               <div class="table-responsive mt-4">
-                  <table class="table table-bordered">
+                  <table class="table table-bordered table-sm table-hover">
                       <thead>
                           <tr>
                             <th class="text-center">#</th>
@@ -22,7 +22,7 @@
                           </tr>
                       </thead>
                       <tbody>
-                          <tr *ngFor="let recibo of recibos">
+                          <tr *ngFor="let recibo of recibosPaginados">
                               <td class="text-center">{{ recibo.id }}</td>
                               <td class="text-center">
                                 <ng-container *ngIf="recibo.id_cuota; else iconoTemplate">
@@ -68,6 +68,11 @@
 
                       </tbody>
                   </table>
+              </div>
+              <div class="paginacion text-center" *ngIf="recibos.length > itemsXpagina">
+                <button class="btn btn-secondary btn-sm" (click)="anterior()" [disabled]="paginaActual === 1">Anterior</button>
+                <span>   Página {{ paginaActual }}   </span>
+                <button class="btn btn-secondary btn-sm" (click)="siguiente()" [disabled]="paginaActual * itemsXpagina >= recibos.length">Siguiente</button>
               </div>
               <h6 class="">{{ deportista?.nombre }} tiene {{ recibos.length}} recibos.</h6>
           </div>

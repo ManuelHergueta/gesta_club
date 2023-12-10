@@ -5,7 +5,7 @@
               <h4 class="card-title"></h4>
               <h5 class="card-subtitle">Cuotas de {{this.mes}} de {{this.temporada}}.</h5>
               <div class="table-responsive mt-4">
-                  <table class="table table-bordered">
+                  <table class="table table-bordered table-sm table-hover">
                       <thead>
                           <tr>
                               <th class="text-center">#</th>
@@ -22,7 +22,7 @@
                           </tr>
                       </thead>
                       <tbody>
-                          <tr *ngFor="let cuota of cuotas">
+                          <tr *ngFor="let cuota of cuotasPaginadas">
                               <td class="text-center">{{ cuota.id }}</td>
                               <td class="d-flex justify-content-between align-items-center">
                                   {{ cuota.dni_deportista }}
@@ -41,7 +41,7 @@
                               <td *ngIf="cuota.estado === 'pendiente' && cuota.fecha_pago === null
                                 && cuota.tipo_pago === ''; else elsePagado" class="text-center">
                                   <a routerLink="/cuota/formPago/{{ cuota.id }}"
-                                  class="btn btn-success">Pagar</a>
+                                  class="btn btn-success btn-sm">Pagar</a>
                               </td>
                               <ng-template #elsePagado>
                                   <td class="text-center">
@@ -49,7 +49,7 @@
                                   </td>
                               </ng-template>
                               <td *ngIf="cuota.tipo_pago===''; else elseTipo" class="text-center">
-                                <a (click)="llamarEnviarReclamacion(cuota)" class="btn btn-danger">Reclamar</a>
+                                <a (click)="llamarEnviarReclamacion(cuota)" class="btn btn-danger btn-sm">Reclamar</a>
                             </td>
                             <ng-template #elseTipo>
                               <td  class="d-flex justify-content-between align-items-center">
@@ -63,13 +63,18 @@
                               <td class="text-center">
                                 <a routerLink="/cuota/datosC/{{ cuota.id }}">
                                   <img class="icono" src="../../../assets/ojo.png"
-                                  alt="Icono mostrar cuotas por mes">
+                                  alt="Icono mostrar detalle de cuota">
                                 </a>
                             </td>
                           </tr>
 
                       </tbody>
                   </table>
+              </div>
+              <div class="paginacion text-center" *ngIf="cuotas.length > itemsXpagina">
+                <button class="btn btn-secondary btn-sm" (click)="anterior()" [disabled]="paginaActual === 1">Anterior</button>
+                <span>   Página {{ paginaActual }}   </span>
+                <button class="btn btn-secondary btn-sm" (click)="siguiente()" [disabled]="paginaActual * itemsXpagina >= cuotas.length">Siguiente</button>
               </div>
               <h6 class="">Hay {{ cuotas.length }} cuotas en {{this.mes}}.</h6>
           </div>

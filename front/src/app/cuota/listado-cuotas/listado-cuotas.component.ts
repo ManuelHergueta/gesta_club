@@ -11,6 +11,10 @@ import { ReclamacionService } from '../services/reclamacion.service';
 export class ListadoCuotasComponent implements OnInit {
 
   public cuotas: Cuota[] = [];
+  public cuotasPaginadas: Cuota[] = [];
+  public paginaActual: number = 1;
+  public itemsXpagina: number = 12;
+
 
   constructor(
     private cuotaService: CuotaService,
@@ -20,9 +24,28 @@ export class ListadoCuotasComponent implements OnInit {
     this.cargarHistoricoCuotas();
   }
 
+  actualizarPaginacion() {
+    const comienzo = (this.paginaActual - 1) * this.itemsXpagina;
+    const final = comienzo + this.itemsXpagina;
+    this.cuotasPaginadas = this.cuotas.slice(comienzo, final);
+  }
+
+  siguiente() {
+    this.paginaActual++;
+    this.actualizarPaginacion();
+  }
+
+  anterior() {
+    if (this.paginaActual > 1) {
+      this.paginaActual--;
+      this.actualizarPaginacion();
+    }
+  }
+
   cargarHistoricoCuotas () {
       this.cuotaService.listarHistoricoCuotasConNombre().subscribe( cuotas => {
       this.cuotas = cuotas;
+      this.actualizarPaginacion();
     })
   }
 
@@ -32,3 +55,4 @@ export class ListadoCuotasComponent implements OnInit {
 
 
 }
+

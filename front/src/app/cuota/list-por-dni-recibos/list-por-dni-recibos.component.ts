@@ -18,6 +18,9 @@ export class ListPorDniRecibosComponent implements OnInit {
   public recibos: Recibo[] = [];
   public deportista: Deportista | null = null;
   public dni: string = '';
+  public recibosPaginados: Recibo[] = [];
+  public paginaActual: number = 1;
+  public itemsXpagina: number = 12;
 
   constructor (
     private route: ActivatedRoute,
@@ -34,9 +37,28 @@ export class ListPorDniRecibosComponent implements OnInit {
     })
   }
 
+  actualizarPaginacion() {
+    const comienzo = (this.paginaActual - 1) * this.itemsXpagina;
+    const final = comienzo + this.itemsXpagina;
+    this.recibosPaginados = this.recibos.slice(comienzo, final);
+  }
+
+  siguiente() {
+    this.paginaActual++;
+    this.actualizarPaginacion();
+  }
+
+  anterior() {
+    if (this.paginaActual > 1) {
+      this.paginaActual--;
+      this.actualizarPaginacion();
+    }
+  }
+
   cargarRecibosXdni(dni: string) {
     this.reciboService.listarRecibosPorPeticion('dni',dni).subscribe((recibos) => {
       this.recibos = recibos;
+      this.actualizarPaginacion();
     })
   }
 

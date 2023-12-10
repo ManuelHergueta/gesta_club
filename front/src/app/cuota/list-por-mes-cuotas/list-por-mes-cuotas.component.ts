@@ -14,6 +14,9 @@ export class ListPorMesCuotasComponent implements OnInit {
 
   public cuotas: Cuota[] = [];
   public mes: string = '';
+  public cuotasPaginadas: Cuota[] = [];
+  public paginaActual: number = 1;
+  public itemsXpagina: number = 12;
 
   constructor (
     private route: ActivatedRoute,
@@ -30,9 +33,28 @@ export class ListPorMesCuotasComponent implements OnInit {
     })
   }
 
+  actualizarPaginacion() {
+    const comienzo = (this.paginaActual - 1) * this.itemsXpagina;
+    const final = comienzo + this.itemsXpagina;
+    this.cuotasPaginadas = this.cuotas.slice(comienzo, final);
+  }
+
+  siguiente() {
+    this.paginaActual++;
+    this.actualizarPaginacion();
+  }
+
+  anterior() {
+    if (this.paginaActual > 1) {
+      this.paginaActual--;
+      this.actualizarPaginacion();
+    }
+  }
+
   cargarCuotasXmes(mes: string) {
     this.cuotaService.listarCuotasPorMes(mes).subscribe( (cuotas) => {
       this.cuotas = cuotas;
+      this.actualizarPaginacion();
     });
   }
 

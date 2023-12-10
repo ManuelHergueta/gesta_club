@@ -13,6 +13,10 @@ export class ListPorPagoCuotasComponent implements OnInit {
 
   public cuotas: Cuota[] = [];
   public tipoPago: string = '';
+  public cuotasPaginadas: Cuota[] = [];
+  public paginaActual: number = 1;
+  public itemsXpagina: number = 12;
+
 
   constructor (
     private route: ActivatedRoute,
@@ -27,9 +31,29 @@ export class ListPorPagoCuotasComponent implements OnInit {
     });
   }
 
+  actualizarPaginacion() {
+    const comienzo = (this.paginaActual - 1) * this.itemsXpagina;
+    const final = comienzo + this.itemsXpagina;
+    this.cuotasPaginadas = this.cuotas.slice(comienzo, final);
+  }
+
+  siguiente() {
+    this.paginaActual++;
+    this.actualizarPaginacion();
+  }
+
+  anterior() {
+    if (this.paginaActual > 1) {
+      this.paginaActual--;
+      this.actualizarPaginacion();
+    }
+  }
+
+
   cargarCuotasXtipoPago(tipo: string) {
     this.cuotaService.listarCuotasPorTipo(tipo).subscribe((cuotas) => {
       this.cuotas = cuotas;
+      this.actualizarPaginacion();
     })
   }
 

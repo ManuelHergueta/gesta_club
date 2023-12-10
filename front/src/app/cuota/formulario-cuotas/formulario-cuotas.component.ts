@@ -99,7 +99,7 @@ export class FormularioCuotasComponent implements OnInit {
       confirmButtonText: 'Ver Cuotas',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.router.navigate(['/cuota/listadoC']);
+        this.router.navigate([`/cuota/listXdni/${this.dni_deportista}`]);
       }
     });
   }

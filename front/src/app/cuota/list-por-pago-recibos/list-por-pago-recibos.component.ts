@@ -15,6 +15,9 @@ export class ListPorPagoRecibosComponent implements OnInit {
 
   public recibos: Recibo[] = [];
   public tipoPago: string = '';
+  public recibosPaginados: Recibo[] = [];
+  public paginaActual: number = 1;
+  public itemsXpagina: number = 12;
 
   constructor (
     private route: ActivatedRoute,
@@ -29,10 +32,29 @@ export class ListPorPagoRecibosComponent implements OnInit {
     })
   }
 
+  actualizarPaginacion() {
+    const comienzo = (this.paginaActual - 1) * this.itemsXpagina;
+    const final = comienzo + this.itemsXpagina;
+    this.recibosPaginados = this.recibos.slice(comienzo, final);
+  }
+
+  siguiente() {
+    this.paginaActual++;
+    this.actualizarPaginacion();
+  }
+
+  anterior() {
+    if (this.paginaActual > 1) {
+      this.paginaActual--;
+      this.actualizarPaginacion();
+    }
+  }
+
   cargarRecibosXtipoPago(tipo: string) {
     this.reciboService.listarRecibosPorPeticion('tipo_pago',tipo)
     .subscribe((recibos) => {
       this.recibos = recibos;
+      this.actualizarPaginacion();
     })
   }
 

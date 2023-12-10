@@ -5,7 +5,7 @@
               <h4 class="card-title">Todas las Reclamaciones</h4>
               <h5 class="card-subtitle"></h5>
               <div class="table-responsive mt-4">
-                  <table class="table table-bordered">
+                  <table class="table table-bordered table-sm table-hover">
                       <thead>
                           <tr>
                               <th class="text-center">#</th>
@@ -21,7 +21,7 @@
                           </tr>
                       </thead>
                       <tbody>
-                          <tr *ngFor="let reclamacion of reclamaciones">
+                          <tr *ngFor="let reclamacion of reclamacionesPaginadas">
                               <td class="text-center">{{ reclamacion.id }}</td>
                               <td class="text-center">{{ reclamacion.id_cuota }}</td>
                               <td class="text-center">{{ reclamacion.dni_deportista }}</td>
@@ -35,6 +35,11 @@
 
                       </tbody>
                   </table>
+              </div>
+              <div class="paginacion text-center" *ngIf="reclamaciones.length > itemsXpagina">
+                <button class="btn btn-secondary btn-sm" (click)="anterior()" [disabled]="paginaActual === 1">Anterior</button>
+                <span>   Página {{ paginaActual }}   </span>
+                <button class="btn btn-secondary btn-sm" (click)="siguiente()" [disabled]="paginaActual * itemsXpagina >= reclamaciones.length">Siguiente</button>
               </div>
               <h6 class="">Hay {{ reclamaciones.length }} cuotas registradas.</h6>
           </div>

@@ -15,6 +15,9 @@ export class ListPorDniCuotasComponent implements OnInit {
   public cuotas: Cuota[] = [];
   public deportista: Deportista | null = null;
   public dni: string = '';
+  public cuotasPaginadas: Cuota[] = [];
+  public paginaActual: number = 1;
+  public itemsXpagina: number = 12;
 
   constructor (
     private route: ActivatedRoute,
@@ -31,6 +34,24 @@ export class ListPorDniCuotasComponent implements OnInit {
     })
   }
 
+  actualizarPaginacion() {
+    const comienzo = (this.paginaActual - 1) * this.itemsXpagina;
+    const final = comienzo + this.itemsXpagina;
+    this.cuotasPaginadas = this.cuotas.slice(comienzo, final);
+  }
+
+  siguiente() {
+    this.paginaActual++;
+    this.actualizarPaginacion();
+  }
+
+  anterior() {
+    if (this.paginaActual > 1) {
+      this.paginaActual--;
+      this.actualizarPaginacion();
+    }
+  }
+
   cargarCuotasXdni(dni: string) {
     this.cuotaService.listarCuotasPorDni(dni).subscribe( (cuotas) => {
       if (cuotas && 'msg' in cuotas) {
@@ -40,6 +61,7 @@ export class ListPorDniCuotasComponent implements OnInit {
         this.cuotas = [];
       } else {
         this.cuotas = cuotas;
+        this.actualizarPaginacion();
       }
     });
   }

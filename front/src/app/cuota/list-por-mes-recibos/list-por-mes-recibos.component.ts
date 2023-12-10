@@ -15,6 +15,9 @@ export class ListPorMesRecibosComponent implements OnInit {
 
   public recibos: Recibo[] = [];
   public mes: string = '';
+  public recibosPaginados: Recibo[] = [];
+  public paginaActual: number = 1;
+  public itemsXpagina: number = 12;
 
   constructor (
     private route: ActivatedRoute,
@@ -29,9 +32,28 @@ export class ListPorMesRecibosComponent implements OnInit {
     })
   }
 
+  actualizarPaginacion() {
+    const comienzo = (this.paginaActual - 1) * this.itemsXpagina;
+    const final = comienzo + this.itemsXpagina;
+    this.recibosPaginados = this.recibos.slice(comienzo, final);
+  }
+
+  siguiente() {
+    this.paginaActual++;
+    this.actualizarPaginacion();
+  }
+
+  anterior() {
+    if (this.paginaActual > 1) {
+      this.paginaActual--;
+      this.actualizarPaginacion();
+    }
+  }
+
   cargarRecibosXmes(mes: string) {
     this.reciboService.listarRecibosPorPeticion('mes',mes).subscribe( (recibos) => {
       this.recibos = recibos;
+      this.actualizarPaginacion();
     })
   }
 
