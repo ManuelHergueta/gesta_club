@@ -108,6 +108,17 @@ export class CuotaService {
     }
   }
 
+  listarCuotasPorTipo(tipo: string): Observable<interfaces.Cuota[]> {
+    if(this.verificarPermiso()) {
+      return this.http.get<interfaces.Cuota[]>(`${this.urlApi}/cuotas/nombre`, this.headers)
+      .pipe(
+        map( (resp: Cuota[]) => resp.filter(cuota => cuota.tipo_pago === tipo))
+      )
+    } else {
+      return of([]);
+    }
+  }
+
   listarCuotasPorDni(dni: string): Observable<interfaces.Cuota[]> {
     if(this.verificarPermiso()) {
       return this.http.get<interfaces.Cuota[]>(`${this.urlApi}/cuotas/dni/${dni}`, this.headers)

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CuotaService } from '../services/cuota.service';
 import { Cuota } from '../interfaces/cuota.interface';
+import { ReclamacionService } from '../services/reclamacion.service';
 
 @Component({
   selector: 'app-listado-cuotas',
@@ -11,7 +12,9 @@ export class ListadoCuotasComponent implements OnInit {
 
   public cuotas: Cuota[] = [];
 
-  constructor( private cuotaService: CuotaService ) { }
+  constructor(
+    private cuotaService: CuotaService,
+    private reclamacionService: ReclamacionService ) { }
 
   ngOnInit(): void {
     this.cargarHistoricoCuotas();
@@ -22,5 +25,10 @@ export class ListadoCuotasComponent implements OnInit {
       this.cuotas = cuotas;
     })
   }
+
+  llamarEnviarReclamacion(cuota: Cuota) {
+    this.reclamacionService.enviarReclamacion(cuota);
+  }
+
 
 }

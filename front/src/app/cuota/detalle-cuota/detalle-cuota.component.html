@@ -119,12 +119,22 @@
 
           <div class="row">
             <div class="col-md-6"></div>
+            <div *ngIf="!modoEdicion && detalleCForm.get('estado')?.value ==='pendiente'; else verBoton" class="col-md-2">
+
+            </div>
+              <ng-template #verBoton>
+                <div *ngIf="!modoEdicion" class="col-md-2 mb-3">
+                  <button type="button" class="btn btn-success  w-100"
+                  (click)="emitirRecibo()">
+                  Emitir Recibo</button>
+                </div>
+              </ng-template>
             <div *ngIf="modoEdicion" class="col-md-2 mb-3">
               <button type="button" class="btn btn-danger  w-100"
                 (click)="confirmarEliminacion()">
                 Eliminar cuota</button>
             </div>
-            <div *ngIf="!modoEdicion" class="col-md-3 mb-3">
+            <div *ngIf="!modoEdicion" class="col-md-2 mb-3">
               <button type="button" class="btn btn-primary  w-100"
                 (click)="habilitarEdicion()">
                 Editar cuota</button>
@@ -133,7 +143,7 @@
               <button type="submit" class="btn btn-success w-100">
                 Guardar</button>
             </div>
-            <div *ngIf="!modoEdicion" class="col-md-3 mb-3">
+            <div *ngIf="!modoEdicion" class="col-md-2 mb-3">
               <button type="button" class="btn btn-secondary w-100"
                       (click)="salirDetalleCuota()">Salir</button>
             </div>

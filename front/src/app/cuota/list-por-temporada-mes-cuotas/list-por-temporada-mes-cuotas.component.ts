@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cuota } from '../interfaces/cuota.interface';
 import { ActivatedRoute } from '@angular/router';
 import { CuotaService } from '../services/cuota.service';
+import { ReclamacionService } from '../services/reclamacion.service';
 
 @Component({
   selector: 'app-list-por-temporada-mes-cuotas',
@@ -18,7 +19,8 @@ export class ListPorTemporadaMesCuotasComponent implements OnInit{
 
   constructor(
     private route: ActivatedRoute,
-    private cuotaService: CuotaService ) {}
+    private cuotaService: CuotaService,
+    private reclamacionService: ReclamacionService ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -46,4 +48,9 @@ export class ListPorTemporadaMesCuotasComponent implements OnInit{
       }
     })
   }
+
+  llamarEnviarReclamacion(cuota: Cuota) {
+    this.reclamacionService.enviarReclamacion(cuota);
+  }
+
 }

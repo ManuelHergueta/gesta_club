@@ -1,0 +1,43 @@
+<div class="row my-4 animated fadeIn fast">
+  <div class="col-12">
+      <div class="card rounded-lg overflow-auto">
+          <div class="card-body">
+              <h4 class="card-title">Todas las Reclamaciones</h4>
+              <h5 class="card-subtitle"></h5>
+              <div class="table-responsive mt-4">
+                  <table class="table table-bordered">
+                      <thead>
+                          <tr>
+                              <th class="text-center">#</th>
+                              <th class="text-center">id cuota</th>
+                              <th class="text-center">dni</th>
+                              <th class="text-center">nombre</th>
+                              <th class="text-center">apellidos</th>
+                              <th class="text-center">email</th>
+                              <th class="text-center">temporada</th>
+                              <th class="text-center">mes</th>
+                              <th class="text-center">fecha reclamacion</th>
+                              <th class="text-center"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let reclamacion of reclamaciones">
+                              <td class="text-center">{{ reclamacion.id }}</td>
+                              <td class="text-center">{{ reclamacion.id_cuota }}</td>
+                              <td class="text-center">{{ reclamacion.dni_deportista }}</td>
+                              <td class="text-center">{{ reclamacion.nombre }}</td>
+                              <td class="text-center">{{ reclamacion.apellidos }}</td>
+                              <td class="text-center">{{ reclamacion.email }}</td>
+                              <td class="text-center">{{ reclamacion.temporada }}</td>
+                              <td class="text-center">{{ reclamacion.mes }}</td>
+                              <td class="text-center">{{ reclamacion.createdAt }}</td>
+                          </tr>
+
+                      </tbody>
+                  </table>
+              </div>
+              <h6 class="">Hay {{ reclamaciones.length }} cuotas registradas.</h6>
+          </div>
+      </div>
+  </div>
+</div>

@@ -49,6 +49,11 @@
           (click)="setActive('/cuota/listadoRcbos')">
           Listado Recibos
         </a>
+        <a routerLink="/cuota/listadoRecla" class="d-block py-2 text-decoration-none text-dark nav-link"
+          [class.active]="isActive('/cuota/listadoRecla')"
+          (click)="setActive('/cuota/listadoRecla')">
+          Listado Reclamaciones
+        </a>
       </li>
     </ul>
   </div>

@@ -54,14 +54,21 @@ class ConexionRecibo extends ConexionSequelize {
     }
 
     registrarRecibo = async(body) => {
-        let resultado = 0;
         this.conectar();
+        const { id_cuota } = body;
+        const reciboExistente = await Recibo.findOne({
+            where: { id_cuota: id_cuota }
+        });
+        if (reciboExistente){
+            this.desconectar();
+            throw new Error('recibo_duplicado');
+        }
         const reciboNuevo = new Recibo(body);
         const claveRecibo = 
             `${reciboNuevo.dni_deportista}${reciboNuevo.mes}${reciboNuevo.temporada}`;
         const numAleatorio = bcrypt.genSaltSync();
         reciboNuevo.codigo_verificacion = bcrypt.hashSync(claveRecibo, numAleatorio);
-        resultado = await reciboNuevo.save();
+        const resultado = await reciboNuevo.save();
         this.desconectar();
         return resultado;      
     }

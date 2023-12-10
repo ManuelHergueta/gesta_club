@@ -3,7 +3,7 @@
       <div class="card rounded-lg">
           <div class="card-body">
               <h4 class="card-title"></h4>
-              <h5 class="card-subtitle">Cuotas de {{this.mes}} de {{this.temporada}}.</h5>
+              <h5 class="card-subtitle">Cuotas pagadas en {{ tipoPago }}  .</h5>
               <div class="table-responsive mt-4">
                   <table class="table table-bordered">
                       <thead>
@@ -35,7 +35,13 @@
                               <td class="text-center">{{ cuota.nombre }}</td>
                               <td class="text-center">{{ cuota.apellidos }}</td>
                               <td class="text-center">{{ cuota.temporada }}</td>
-                              <td class="text-center">{{ cuota.mes }}</td>
+                              <td class="d-flex justify-content-between align-items-center">
+                                {{ cuota.mes }}
+                                <a routerLink="/cuota/listXmes/{{ cuota.mes }}">
+                                  <img class="icono" src="../../../assets/lupa.png"
+                                  alt="Icono mostrar cuotas por mes">
+                                </a>
+                              </td>
                               <td class="text-center">{{ cuota.importe }}</td>
                               <td class="text-center">{{ cuota.estado }}</td>
                               <td *ngIf="cuota.estado === 'pendiente' && cuota.fecha_pago === null
@@ -48,18 +54,7 @@
                                     {{ cuota.fecha_pago }}
                                   </td>
                               </ng-template>
-                              <td *ngIf="cuota.tipo_pago===''; else elseTipo" class="text-center">
-                                <a (click)="llamarEnviarReclamacion(cuota)" class="btn btn-danger">Reclamar</a>
-                            </td>
-                            <ng-template #elseTipo>
-                              <td  class="d-flex justify-content-between align-items-center">
-                                  {{ cuota.tipo_pago }}
-                                  <a *ngIf="cuota.tipo_pago!==''" routerLink="/cuota/listXpago/{{ cuota.tipo_pago }}">
-                                    <img class="icono" src="../../../assets/lupa.png"
-                                    alt="Icono mostrar cuotas por mes">
-                                  </a>
-                              </td>
-                            </ng-template>
+                              <td class="text-center">{{ cuota.tipo_pago }}</td>
                               <td class="text-center">
                                 <a routerLink="/cuota/datosC/{{ cuota.id }}">
                                   <img class="icono" src="../../../assets/ojo.png"
@@ -71,7 +66,7 @@
                       </tbody>
                   </table>
               </div>
-              <h6 class="">Hay {{ cuotas.length }} cuotas en {{this.mes}}.</h6>
+              <h6 class="">Hay {{ cuotas.length }} cuotas pagadas en {{ tipoPago }} .</h6>
           </div>
       </div>
   </div>

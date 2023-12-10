@@ -17,6 +17,8 @@ import { ListadoRecibosComponent } from './listado-recibos/listado-recibos.compo
 import { ListPorDniRecibosComponent } from './list-por-dni-recibos/list-por-dni-recibos.component';
 import { ListPorMesRecibosComponent } from './list-por-mes-recibos/list-por-mes-recibos.component';
 import { ListPorPagoRecibosComponent } from './list-por-pago-recibos/list-por-pago-recibos.component';
+import { ListPorPagoCuotasComponent } from './list-por-pago-cuotas/list-por-pago-cuotas.component';
+import { ListadoReclamacionesComponent } from './listado-reclamaciones/listado-reclamaciones.component';
 
 
 
@@ -35,7 +37,9 @@ import { ListPorPagoRecibosComponent } from './list-por-pago-recibos/list-por-pa
       ListadoRecibosComponent,
       ListPorDniRecibosComponent,
       ListPorMesRecibosComponent,
-      ListPorPagoRecibosComponent
+      ListPorPagoRecibosComponent,
+      ListPorPagoCuotasComponent,
+      ListadoReclamacionesComponent
   ],
   imports: [
     SharedModule,

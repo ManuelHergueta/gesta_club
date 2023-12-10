@@ -10,6 +10,7 @@ class Server {
         this.deportistasPath = '/api/deportistas';
         this.cuotasPath = '/api/cuotas';
         this.recibosPath = '/api/recibos';
+        this.reclamacionPath= '/api/reclama';
 
         //Middlewares
         this.middlewares();
@@ -30,6 +31,7 @@ class Server {
         this.app.use(this.deportistasPath, require('../../routes/deportistaRoutes'));
         this.app.use(this.cuotasPath, require('../../routes/cuotaRoutes'));
         this.app.use(this.recibosPath, require('../../routes/reciboRoutes'));
+        this.app.use(this.reclamacionPath, require('../../routes/reclamacionRoutes'));
     }
 
     listen() {

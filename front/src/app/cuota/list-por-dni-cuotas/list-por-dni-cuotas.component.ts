@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Cuota, Deportista } from '../interfaces/cuota.interface';
 import { CuotaService } from '../services/cuota.service';
+import { ReclamacionService } from '../services/reclamacion.service';
 
 @Component({
   selector: 'app-list-por-dni-cuotas',
@@ -17,7 +18,8 @@ export class ListPorDniCuotasComponent implements OnInit {
 
   constructor (
     private route: ActivatedRoute,
-    private cuotaService: CuotaService ) {}
+    private cuotaService: CuotaService,
+    private reclamacionService: ReclamacionService ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -46,6 +48,10 @@ export class ListPorDniCuotasComponent implements OnInit {
     this.cuotaService.obtenerDeportistaPorDni(dni).subscribe( (datosDeportista) => {
       this.deportista = datosDeportista;
     })
+  }
+
+  llamarEnviarReclamacion(cuota: Cuota) {
+    this.reclamacionService.enviarReclamacion(cuota);
   }
 
 }

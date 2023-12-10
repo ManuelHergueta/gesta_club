@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
-import { Cuota, Deportista } from '../interfaces/cuota.interface';
+import { Cuota, Deportista, Recibo } from '../interfaces/cuota.interface';
 import { CuotaService } from '../services/cuota.service';
 import Swal from 'sweetalert2';
 
@@ -19,6 +19,18 @@ export class DetalleCuotaComponent implements OnInit {
   public cuota: Cuota;
   public dni_deportista: string = '';
   public modoEdicion: boolean = false;
+  public recibo: Recibo = {
+    id_cuota: 0,
+    dni_deportista: '',
+    email: '',
+    nombre_completo: '',
+    fecha_pago: new Date(),
+    temporada: 0,
+    mes: '',
+    importe: 0,
+    tipo_pago: '',
+    success: false
+  };
 
   constructor (
     private route: ActivatedRoute,
@@ -246,6 +258,36 @@ export class DetalleCuotaComponent implements OnInit {
         this.router.navigate(['/cuota/listadoC']);
       }
     });
+  }
+
+  emitirRecibo(){
+    this.recibo.id_cuota = this.cuota.id;
+    this.recibo.dni_deportista = this.cuota.dni_deportista;
+    this.recibo.email = this.deportista!.email;
+    this.recibo.temporada = this.cuota.temporada;
+    this.recibo.mes = this.cuota.mes;
+    this.recibo.importe = this.cuota.importe;
+    this.recibo!.nombre_completo = `${this.deportista?.nombre} ${this.deportista?.apellidos}`;
+    this.recibo.fecha_pago = this.cuota.fecha_pago!;
+    this.recibo.tipo_pago = this.cuota.tipo_pago!;
+
+    this.cuotaService.enviarReciboEmail(this.recibo).subscribe( (respuesta) => {
+      if(respuesta!== null && respuesta.success) {
+        Swal.fire({
+          icon: "success",
+          title: "Recibo enviado por email con éxito.",
+          showConfirmButton: false,
+          timer: 2000,
+        })
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "A ocurrido un error en el envío del recibo.",
+          text: "Revise los datos ¿Email correcto, recibo ya generado?",
+          confirmButtonText: 'OK, entendido'
+        })
+      }
+    })
   }
 
 }

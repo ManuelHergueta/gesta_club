@@ -59,3 +59,14 @@ export interface EliminarCuotaResponse {
   affectedRows: number;
 }
 
+export interface Reclamacion {
+  id?: number;
+  id_cuota: number;
+  dni_deportista: string;
+  email: string;
+  nombre: string;
+  apellidos: string;
+  temporada: number;
+  mes: string;
+  createdAt?: Date;
+}
