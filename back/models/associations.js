@@ -1,6 +1,10 @@
 const Deportista = require('./Deportista');
 const Cuota = require('./Cuota');
 const Categoria = require('./Categoria');
+const Partido = require('./Partido');
+const Alineacion = require('./Alineacion');
+const Anotacion = require('./Anotacion');
+const Jugada = require('./Jugada');
 
 const setupAssociations = () => {
 
