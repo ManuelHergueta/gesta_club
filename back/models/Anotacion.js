@@ -17,6 +17,9 @@ const Anotacion = db.define('anotacion', {
     id_jugada: {
         type: DataTypes.INTEGER
     },
+    puntos: {
+        type: DataTypes.INTEGER
+    },
 },
 {
     tableName: 'anotaciones'
