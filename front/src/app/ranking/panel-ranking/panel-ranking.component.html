@@ -8,7 +8,7 @@
       <app-menu-ranking></app-menu-ranking>
     </div>
     <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
-      <div class="container">
+      <div [@slideInAnimation]="sidebarState" class="container">
         <router-outlet></router-outlet>
       </div>
     </div>

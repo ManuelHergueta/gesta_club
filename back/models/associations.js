@@ -1,14 +1,36 @@
 const Deportista = require('./Deportista');
 const Cuota = require('./Cuota');
 const Categoria = require('./Categoria');
+const Partido = require('./Partido');
+const Alineacion = require('./Alineacion');
+const Anotacion = require('./Anotacion');
+const Jugada = require('./Jugada');
 
 const setupAssociations = () => {
 
-    Cuota.belongsTo(Deportista, { foreignKey: 'dni_deportista'});
     Deportista.hasMany(Cuota, {foreignKey: 'dni_deportista'});
+    Cuota.belongsTo(Deportista, { foreignKey: 'dni_deportista'});
 
-    Deportista.belongsTo(Categoria, { foreignKey: 'categoria_id'});
     Categoria.hasMany(Deportista, {foreignKey: 'categoria_id'});
+    Deportista.belongsTo(Categoria, { foreignKey: 'categoria_id'});
+
+    Partido.hasMany(Alineacion, { foreignKey: 'id_partido' });
+    Alineacion.belongsTo(Partido, { foreignKey: 'id_partido' });
+
+    Deportista.hasMany(Alineacion, { foreignKey: 'dni_deportista' });
+    Alineacion.belongsTo(Deportista, { foreignKey: 'dni_deportista' });
+
+    Partido.hasMany(Anotacion, { foreignKey: 'id_partido' });
+    Anotacion.belongsTo(Partido, { foreignKey: 'id_partido' });
+
+    Deportista.hasMany(Anotacion, { foreignKey: 'dni_deportista' });
+    Anotacion.belongsTo(Deportista, { foreignKey: 'dni_deportista' });
+
+    Jugada.hasMany(Anotacion, { foreignKey: 'id_jugada' });
+    Anotacion.belongsTo(Jugada, { foreignKey: 'id_jugada' });
+
+    Categoria.hasMany(Partido, { foreignKey: 'categoria_id' });
+    Partido.belongsTo(Categoria, { foreignKey: 'categoria_id' });
     
 }
 
@@ -19,4 +41,4 @@ al ponerlas dentro de los modelos en algunas ocasiones habia importaciones
 ciclicas (en cuota importabamos deportista, y en deportista importabamos cuota)
 De esta manera se soluciona. Hay que importar associations preferiblemente una
 sola vez, en vez de importarlo en los queries que las necesitemos, las importo en
-conexionSequelize para que solo sea una vez.  */
+conexionSequelize (por herencia ya está en todas las queries)para que solo sea una vez.  */

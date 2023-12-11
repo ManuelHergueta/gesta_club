@@ -6,16 +6,12 @@
         <span class="menu-label">Listados</span>
       </div>
       <div class="m-3">
-        <a routerLink="/ranking" class="d-block py-2 text-decoration-none text-dark menu-link"
-          [class.active]="isActive('/ranking')"
-          (click)="setActive('/ranking')"><!-- Modificar rutas -->
-          Ranking Deportistas
+        <a routerLink="/ranking/listPartidos" class="d-block py-2 text-decoration-none text-dark menu-link"
+          [class.active]="isActive('/ranking/listPartidos')"
+          (click)="setActive('/ranking/listPartidos')">
+          Partidos
         </a>
-        <a routerLink="/ranking" class="d-block py-2 text-decoration-none text-dark menu-link"
-          [class.active]="isActive('/ranking')"
-          (click)="setActive('/ranking')"><!-- Modificar rutas -->
-          Ranking por categorias
-        </a>
+        
       </div>
     </div>
     <div class="my-3">
@@ -24,7 +20,10 @@
         <span class="menu-label">Operativa</span>
       </div>
       <div class="ms-3">
-        <a href="/ranking" class="d-block py-2 text-decoration-none text-dark">Generar competición</a>
+        <a class="d-block py-2 text-decoration-none text-dark" style="cursor:pointer"
+        [class.active]="isActive('/ranking/partido')"
+        (click)="irDetallePartido()">
+        Crear partido</a>
         <a href="/ranking" class="d-block py-2 text-decoration-none text-dark">Alineación</a>
         <a href="/ranking" class="d-block py-2 text-decoration-none text-dark">Calificar</a>
       </div>
