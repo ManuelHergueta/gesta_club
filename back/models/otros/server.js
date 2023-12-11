@@ -12,6 +12,7 @@ class Server {
         this.recibosPath = '/api/recibos';
         this.reclamacionPath= '/api/reclama';
         this.partidosPath = '/api/partidos';
+        this.alineacionPath = '/api/alineacion';
 
         //Middlewares
         this.middlewares();
@@ -34,6 +35,7 @@ class Server {
         this.app.use(this.recibosPath, require('../../routes/reciboRoutes'));
         this.app.use(this.reclamacionPath, require('../../routes/reclamacionRoutes'));
         this.app.use(this.partidosPath, require('../../routes/partidoRoutes'));
+        this.app.use(this.alineacionPath, require('../../routes/alineacionRoutes'));
     }
 
     listen() {
