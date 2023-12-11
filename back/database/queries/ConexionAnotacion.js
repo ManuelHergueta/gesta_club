@@ -71,7 +71,7 @@ class ConexionAnotacion extends ConexionSequelize {
                 ],
                 group: ['dni_deportista'],
                 order: [[Sequelize.fn('sum', Sequelize.col('puntos')), 'DESC']],
-                
+                limit: 3
             })
             return topJugadores;
         } catch (error) {

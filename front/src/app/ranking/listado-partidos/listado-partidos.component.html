@@ -1,0 +1,41 @@
+<div class="row my-4 animated fadeIn fast">
+  <div class="col-12">
+      <div class="card rounded-lg overflow-auto">
+          <div class="card-body">
+              <h4 class="card-title">Listado de todos los Partidos</h4>
+              <h5 class="card-subtitle"></h5>
+              <div class="table-responsive mt-4">
+                  <table class="table table-bordered table-sm table-hover">
+                      <thead>
+                          <tr>
+                              <th class="text-center">#</th>
+                              <th class="text-center">Id.categ.</th>
+                              <th class="text-center">Categoria</th>
+                              <th class="text-center">Contrincante</th>
+                              <th class="text-center">Competicion</th>
+                              <th class="text-center">Fecha de partido</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let partido of partidosPaginados">
+                              <td class="text-center">{{ partido.id }}</td>
+                              <td class="text-center">{{ partido.categoria_id }}</td>
+                              <td class="text-center">{{ partido.nombre }}</td>
+                              <td class="text-center">{{ partido.contrincante }}</td>
+                              <td class="text-center">{{ partido.competicion }}</td>
+                              <td class="text-center">{{ partido.fecha_partido }}</td>
+                          </tr>
+
+                      </tbody>
+                  </table>
+              </div>
+              <div class="paginacion text-center" *ngIf="partidos.length > itemsXpagina">
+                <button class="btn btn-secondary btn-sm" (click)="anterior()" [disabled]="paginaActual === 1">Anterior</button>
+                <span>   Página {{ paginaActual }}   </span>
+                <button class="btn btn-secondary btn-sm" (click)="siguiente()" [disabled]="paginaActual * itemsXpagina >= partidos.length">Siguiente</button>
+              </div>
+              <h6 class="">Hay {{ partidos.length }} partidos registrados.</h6>
+          </div>
+      </div>
+  </div>
+</div>

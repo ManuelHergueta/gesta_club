@@ -14,6 +14,19 @@ const partidosGet = (req, res = response) => {
         }); 
 }
 
+const partidosGetConCategoria = (req, res = response) => {
+    const conx = new Conexion();
+    conx.getPartidosConCategoria()
+        .then( msg => {
+            console.log('Listado de partidos correcto!');
+            res.status(200).json(msg);
+        })
+        .catch( err => {
+            console.log('No hay registros',err);
+            res.status(203).json({'msg': 'No se han encontrado registros'});
+        });
+}
+
 const partidoGet = (req, res = response) => {
     const conx = new Conexion();
     conx.getPartido(req.params.id)
@@ -76,6 +89,7 @@ const partidoDelete = (req, res = response) => {
 
 module.exports = {
     partidosGet,
+    partidosGetConCategoria,
     partidoGet,
     partidoPost,
     partidoPut,

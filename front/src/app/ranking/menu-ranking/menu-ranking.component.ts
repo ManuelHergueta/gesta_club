@@ -10,7 +10,9 @@ export class MenuRankingComponent {
 
   currentRoute: string = '';
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router ) {
+
     this.router.events.subscribe(event => {
       if(event instanceof NavigationEnd) {
         this.currentRoute = event.url;
@@ -26,4 +28,7 @@ export class MenuRankingComponent {
     this.currentRoute = route;
   }
 
+  irDetallePartido() {
+    this.router.navigate(['/ranking/formPartido/']);
+  }
 }

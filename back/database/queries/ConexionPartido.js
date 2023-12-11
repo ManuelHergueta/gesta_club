@@ -1,5 +1,6 @@
 const ConexionSequelize = require("../conexion/ConexionSequelize");
 const Partido = require('../../models/Partido');
+const Categoria = require("../../models/Categoria");
 
 class ConexionPartido extends ConexionSequelize {
     
@@ -14,6 +15,28 @@ class ConexionPartido extends ConexionSequelize {
         this.desconectar();
         return resultado;
     }
+
+    getPartidosConCategoria = async () => {
+        this.conectar();
+        const partidos = await Partido.findAll({
+            include: [{
+                model: Categoria,
+                attributes: ['nombre']
+            }]
+        });
+        this.desconectar();
+        /* Explicación en ConexionCuotas. */
+        const resultado = partidos.map(partido => {
+            const { categorium, ...partidoData } = partido.get({ plain: true});
+            return {
+                ...partidoData,
+                nombre: categorium.nombre,
+            };
+        });
+        return resultado;
+    }
+
+
 
     getPartido = async(id) => {
         let resultado = [];

@@ -28,6 +28,9 @@ const setupAssociations = () => {
 
     Jugada.hasMany(Anotacion, { foreignKey: 'id_jugada' });
     Anotacion.belongsTo(Jugada, { foreignKey: 'id_jugada' });
+
+    Categoria.hasMany(Partido, { foreignKey: 'categoria_id' });
+    Partido.belongsTo(Categoria, { foreignKey: 'categoria_id' });
     
 }
 
