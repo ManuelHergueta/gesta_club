@@ -98,9 +98,9 @@ export class DetalleCuotaComponent implements OnInit {
   obtenerDeportista(dni: string) {
     this.cuotaService.obtenerDeportistaConPrecio(dni).subscribe( (datosDeportista) => {
       this.deportista = datosDeportista;
-      if (this.deportista && this.deportista.mensualidad) {
+      /* if (this.deportista && this.deportista.mensualidad) {
         this.detalleCForm.get('importe')?.setValue(this.deportista.mensualidad);
-      }
+      } */
     })
   }
 
