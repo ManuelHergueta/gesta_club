@@ -67,4 +67,19 @@ export class PartidoService {
     }
   }
 
+  obtenerCategorias(): Observable<interfaces.Categoria[]> {
+    if( this.verificarPermiso()) {
+      return this.http.get<interfaces.Categoria[]>(`${this.urlApi}/categorias`, this.headers);
+    } else {
+      return of([]);
+    }
+  }
+
+  crearPartido(partido: interfaces.Partido): Observable<interfaces.Partido | null> {
+    if(this.verificarPermiso()) {
+      return this.http.post<interfaces.Partido>(`${this.urlApi}/partidos`, partido, this.headers);
+    } else {
+      return of(null);
+    }
+  }
 }

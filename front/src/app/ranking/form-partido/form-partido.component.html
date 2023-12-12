@@ -2,29 +2,45 @@
   <div class="col-12">
     <div class="card rounded-lg overflow-auto">
       <div class="card-body">
-        <h4 class="card-title mb-3">Alta de cuota</h4>
-        <h5 class="card-subtitle"></h5>
+        <h4 class="card-title mb-3">Alta de Partido</h4>
         <form [formGroup]="partidoForm" (ngSubmit)="onSubmit()">
-          <div class="mb-3">
-            <label for="categoria_id" class="form-label">Categoría</label>
-            <input type="number" id="categoria_id" class="form-control" formControlName="categoria_id">
+          <div class="card mb-3">
+            <div class="card-body">
+              <label for="categoria_id" class="form-label">Categoría</label>
+              <select formControlName="categoria_id" id="categoria_id" class="form-control">
+                <option *ngFor="let categoria of categorias" [value]="categoria.id">
+                  {{ categoria.nombre }}
+                </option>
+              </select>
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="contrincante" class="form-label">Contrincante</label>
-            <input type="text" id="contrincante" class="form-control" formControlName="contrincante">
+          <div class="card mb-3">
+            <div class="card-body">
+              <label for="contrincante" class="form-label">Contrincante</label>
+              <input type="text" id="contrincante" class="form-control" formControlName="contrincante">
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="competicion" class="form-label">Competición</label>
-            <input type="text" id="competicion" class="form-control" formControlName="competicion">
+          <div class="card mb-3">
+            <div class="card-body">
+              <label for="competicion" class="form-label">Competición</label>
+              <input type="text" id="competicion" class="form-control" formControlName="competicion">
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="fecha_partido" class="form-label">Fecha del Partido</label>
-            <input type="date" id="fecha_partido" class="form-control" formControlName="fecha_partido">
+          <div class="card mb-3">
+            <div class="card-body">
+              <label for="fecha_partido" class="form-label">Fecha del Partido</label>
+              <input type="date" id="fecha_partido" class="form-control" formControlName="fecha_partido">
+            </div>
           </div>
-          <button type="submit" class="btn btn-primary">Crear Partido</button>
+          <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-3"></div><!-- Para luego los otros botones -->
+            <div class="col-md-3">
+              <button type="submit" class="btn btn-success w-100">Crear Partido</button>
+            </div>
+          </div>
         </form>
       </div>
     </div>
   </div>
 </div>
-

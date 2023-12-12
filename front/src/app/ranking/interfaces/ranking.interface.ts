@@ -6,3 +6,12 @@ export interface Partido {
   fecha_partido: Date;
   nombre?: string;
 }
+
+export interface Categoria
+ {
+   id: number;
+   nombre: string;
+   edad_minima?: number;
+   edad_maxima?: number;
+   mensualidad?: number;
+ }
