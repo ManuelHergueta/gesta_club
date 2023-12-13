@@ -8,6 +8,7 @@ import { MenuRankingComponent } from './menu-ranking/menu-ranking.component';
 import { FormPartidoComponent } from './form-partido/form-partido.component';
 import { ListadoPartidosComponent } from './listado-partidos/listado-partidos.component';
 import { PanelAlineacionComponent } from './panel-alineacion/panel-alineacion.component';
+import { PanelAnotacionComponent } from './panel-anotacion/panel-anotacion.component';
 
 
 
@@ -17,7 +18,8 @@ import { PanelAlineacionComponent } from './panel-alineacion/panel-alineacion.co
         MenuRankingComponent,
         FormPartidoComponent,
         ListadoPartidosComponent,
-        PanelAlineacionComponent
+        PanelAlineacionComponent,
+        PanelAnotacionComponent
   ],
   imports: [
     SharedModule,

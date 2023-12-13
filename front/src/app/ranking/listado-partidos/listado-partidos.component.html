@@ -14,7 +14,8 @@
                               <th class="text-center">Contrincante</th>
                               <th class="text-center">Competicion</th>
                               <th class="text-center">Fecha de partido</th>
-                              <th class="text-center">Convocados</th>
+                              <th class="text-center"></th>
+                              <th class="text-center"></th>
                           </tr>
                       </thead>
                       <tbody>
@@ -28,6 +29,11 @@
                               <td class="text-center">
                                 <a routerLink="/ranking/panelAlineacion/{{ partido.id }}">
                                   <img class="icono" src="../../../assets/equipo.png" alt="Icono alineacion">
+                                </a>
+                              </td>
+                              <td class="text-center">
+                                <a routerLink="/ranking/panelAnotacion/{{ partido.id }}">
+                                  <img class="icono" src="../../../assets/anotacion.png" alt="Icono alineacion">
                                 </a>
                               </td>
                           </tr>

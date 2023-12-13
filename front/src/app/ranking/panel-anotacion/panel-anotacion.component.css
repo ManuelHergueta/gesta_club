@@ -1,0 +1,43 @@
+.container {
+  min-height: 450px;
+}
+.card {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 0 10px 0 rgba(55, 54, 54, 0.6);
+}
+
+.icono {
+  width: 28px;
+  height: 28px;
+}
+
+.list-group {
+  min-height: 50px;
+}
+
+.cdk-drop-list:hover,
+.cdk-drag-preview,
+.cdk-drag-placeholder {
+  cursor: pointer;
+}
+
+.cdk-drop-list.cdk-drop-list-dragging {
+  background-color: #ebf1f7;
+}
+
+.cdk-drag-preview {
+  transform: rotate(15deg);
+  transition: transform 0.3s ease-out;
+  opacity: 0.8;
+  border-radius: 6px;
+  box-shadow: 5px 5px 12px rgba(0,0,0,0.8);
+  background-color: white;
+  padding: 10px;
+  box-sizing: border-box;
+
+}
+
+.cdk-drag-preview > * {
+  pointer-events: none;
+}

@@ -44,3 +44,15 @@ export interface Alineacion {
   dni_deportista: string;
   success?: boolean;
 }
+
+export interface Jugada {
+  id: number;
+  nombre: string;
+  puntos: number;
+}
+
+export interface Anotacion {
+  id_partido: number;
+  id_jugada: number;
+  dni_deportistas: string[];
+}

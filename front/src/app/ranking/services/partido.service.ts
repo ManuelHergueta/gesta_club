@@ -115,4 +115,19 @@ export class PartidoService {
     }
   }
 
+  obtenerJugadas(): Observable<interfaces.Jugada[]> {
+    if( this.verificarPermiso()) {
+      return this.http.get<interfaces.Jugada[]>(`${this.urlApi}/jugadas`, this.headers);
+    } else {
+      return of([]);
+    }
+  }
+
+  registrarAnotacion(anotacion: interfaces.Anotacion): Observable<interfaces.Anotacion> {
+    if(this.verificarPermiso()) {
+      return this.http.post<interfaces.Anotacion>(`${this.urlApi}/anotaciones`, anotacion, this.headers);
+    } else {
+      return of();
+    }
+  }
 }
