@@ -19,12 +19,19 @@ class ConexionAlineacion extends ConexionSequelize {
         return resultado;
     }
 
-    registrarAlineacion = async(body) => {
+    registrarAlineacion = async(alineaciones) => {
         this.conectar();
-        const nuevaAlineacion = new Alineacion(body);
-        const resultado = await nuevaAlineacion.save();
-        this.desconectar();
-        return resultado;
+        try {
+            //Primero borra las que pudiera tener y vuelve a escribirlas en la BD
+            const idPartido = alineaciones[0].id_partido;
+            await Alineacion.destroy({ where: { id_partido: idPartido }});
+            const resultado = await Alineacion.bulkCreate(alineaciones);
+            this.desconectar();
+            return resultado;
+        } catch (error) {
+            this.desconectar();
+            throw error;
+        }
     }
 
     borrarAlineacion = async(id_partido,dni_deportista) => {

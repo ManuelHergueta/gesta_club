@@ -15,3 +15,32 @@ export interface Categoria
    edad_maxima?: number;
    mensualidad?: number;
  }
+
+ export interface Deportista {
+  dni: string;
+  nombre: string;
+  apellidos: string;
+  foto?: string;
+  fecha_nacimiento: Date;
+  temporada: number;
+  categoria_id: number;
+  dorsal: number;
+  telefono: string;
+  email: string;
+  email_verificado: boolean;
+  direccion: string;
+  poblacion: string;
+  codigo_postal: string;
+  provincia: string;
+  tutor?: string;
+  telef_tutor?: string;
+  datos_medicos?: string;
+  mensualidad?: number;
+  nombreCategoria?: string;
+}
+
+export interface Alineacion {
+  id_partido: number;
+  dni_deportista: string;
+  success?: boolean;
+}

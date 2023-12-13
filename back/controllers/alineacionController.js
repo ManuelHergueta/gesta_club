@@ -18,18 +18,17 @@ const alineacionPost = (req = request, res = response) => {
     const conx = new Conexion();
     conx.registrarAlineacion(req.body)
         .then( msg => {
-            console.log('Insertada correctamente!');
+            console.log('Insertadas correctamente!');
             const resp = {
                 success: true,
-                msg: 'Alineacion dada de alta'
+                msg: 'Alineaciones actualizadas correctamente!'
             }
             res.status(201).json(resp);
         })
         .catch( err => {
-            console.log(err);
             const resp = {
                 success: false,
-                msg: 'Fallo en el registro'
+                msg: 'Error al actualizar las alineaciones'
             }
             res.status(203).json(resp);
         });

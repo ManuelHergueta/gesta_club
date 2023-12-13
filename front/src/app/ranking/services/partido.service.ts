@@ -82,4 +82,37 @@ export class PartidoService {
       return of(null);
     }
   }
+
+  listarDeportistas(): Observable<interfaces.Deportista[]> {
+    if(this.verificarPermiso()) {
+      return this.http.get<interfaces.Deportista[]>(`${this.urlApi}/deportistas`, this.headers);
+    } else {
+      return of([])
+    }
+  }
+
+  obtenerDatosPartido(partido: number): Observable<interfaces.Partido> {
+    if(this.verificarPermiso()) {
+      return this.http.get<interfaces.Partido>(`${this.urlApi}/partidos/${partido}`,this.headers);
+    } else {
+      return of();
+    }
+  }
+
+  guardarAlineacionPartido(alineaciones: interfaces.Alineacion[]): Observable<interfaces.Alineacion[]> {
+    if(this.verificarPermiso()) {
+      return this.http.post<interfaces.Alineacion[]>(`${this.urlApi}/alineacion/`,alineaciones,this.headers);
+    } else {
+      return of()
+    }
+  }
+
+  obtenerAlineacionPartido(idPartido: number): Observable<interfaces.Alineacion[]> {
+    if(this.verificarPermiso()) {
+      return this.http.get<interfaces.Alineacion[]>(`${this.urlApi}/alineacion/${idPartido}`, this.headers);
+    } else {
+      return of([]);
+    }
+  }
+
 }
