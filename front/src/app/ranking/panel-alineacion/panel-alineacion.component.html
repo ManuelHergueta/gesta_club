@@ -1,0 +1,52 @@
+<div class="">
+
+  <div class="container pb-5">
+    <h4>Partido nº {{ id_partido }}</h4>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h4>Jugadores Disponibles</h4>
+          </div>
+          <div cdkDropList id="listaJugadores" class="list-group" [cdkDropListData]="jugadores"
+            [cdkDropListConnectedTo]="['listaAlineacion']" (cdkDropListDropped)="drop($event)">
+            <div class="list-group-item"
+              *ngFor="let jugador of jugadores" cdkDrag>
+              <div class="">
+                {{ jugador.nombre }} {{ jugador.apellidos }}
+                <span class="text-muted ms-3">Dorsal: {{ jugador.dorsal }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h4>Alineación partido contra {{ partido?.contrincante }} {{ partido?.fecha_partido }}</h4>
+          </div>
+          <div cdkDropList id="listaAlineacion" class="list-group" [cdkDropListData]="alineacion"
+          [cdkDropListConnectedTo]="['listaJugadores']" (cdkDropListDropped)="drop($event)">
+            <div class="list-group-item" *ngFor="let jugador of alineacion" cdkDrag>
+              <div class="">
+                {{ jugador.nombre }} {{ jugador.apellidos }}
+                <span class="text-muted ms-3">Dorsal: {{ jugador.dorsal }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6"></div>
+    <div class="col-md-3 mb-3">
+      <button class="btn btn-success w-100" (click)="guardarAlineacion()">Guardar Alineación</button>
+    </div>
+    <div class="col-md-3 mb-3">
+      <button class="btn btn-danger w-100" (click)="salir()">Salir</button>
+    </div>
+  </div>
+</div>

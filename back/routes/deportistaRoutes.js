@@ -1,11 +1,12 @@
 const { Router } = require('express');
-const controlador = require('../controllers/deportistaController');
 const router = Router();
+const controlador = require('../controllers/deportistaController');
+const midsJWT = require('../middlewares/validarJWT');
 
 //TO-DO
 //Falta aplicar middlewares y validators
 
-router.get('/', controlador.deportistasGet);
+router.get('/', [midsJWT.validarJWT], controlador.deportistasGet);
 router.get('/precio/:dni', controlador.deportistaConPrecioGet);
 router.get('/:dni', controlador.deportistaGet);
 router.post('/', controlador.deportistaPost);

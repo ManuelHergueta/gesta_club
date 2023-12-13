@@ -14,6 +14,8 @@ class Server {
         this.partidosPath = '/api/partidos';
         this.alineacionPath = '/api/alineacion';
         this.anotacionesPath = '/api/anotaciones';
+        this.categoriasPath = '/api/categorias';
+        this.jugadasPath = '/api/jugadas';
 
         //Middlewares
         this.middlewares();
@@ -38,6 +40,8 @@ class Server {
         this.app.use(this.partidosPath, require('../../routes/partidoRoutes'));
         this.app.use(this.alineacionPath, require('../../routes/alineacionRoutes'));
         this.app.use(this.anotacionesPath, require('../../routes/anotacionRoutes'));
+        this.app.use(this.categoriasPath, require('../../routes/categoriaRoutes'));
+        this.app.use(this.jugadasPath, require('../../routes/jugadaRoutes'));
     }
 
     listen() {

@@ -67,4 +67,67 @@ export class PartidoService {
     }
   }
 
+  obtenerCategorias(): Observable<interfaces.Categoria[]> {
+    if( this.verificarPermiso()) {
+      return this.http.get<interfaces.Categoria[]>(`${this.urlApi}/categorias`, this.headers);
+    } else {
+      return of([]);
+    }
+  }
+
+  crearPartido(partido: interfaces.Partido): Observable<interfaces.Partido | null> {
+    if(this.verificarPermiso()) {
+      return this.http.post<interfaces.Partido>(`${this.urlApi}/partidos`, partido, this.headers);
+    } else {
+      return of(null);
+    }
+  }
+
+  listarDeportistas(): Observable<interfaces.Deportista[]> {
+    if(this.verificarPermiso()) {
+      return this.http.get<interfaces.Deportista[]>(`${this.urlApi}/deportistas`, this.headers);
+    } else {
+      return of([])
+    }
+  }
+
+  obtenerDatosPartido(partido: number): Observable<interfaces.Partido> {
+    if(this.verificarPermiso()) {
+      return this.http.get<interfaces.Partido>(`${this.urlApi}/partidos/${partido}`,this.headers);
+    } else {
+      return of();
+    }
+  }
+
+  guardarAlineacionPartido(alineaciones: interfaces.Alineacion[]): Observable<interfaces.Alineacion[]> {
+    if(this.verificarPermiso()) {
+      return this.http.post<interfaces.Alineacion[]>(`${this.urlApi}/alineacion/`,alineaciones,this.headers);
+    } else {
+      return of()
+    }
+  }
+
+  obtenerAlineacionPartido(idPartido: number): Observable<interfaces.Alineacion[]> {
+    if(this.verificarPermiso()) {
+      return this.http.get<interfaces.Alineacion[]>(`${this.urlApi}/alineacion/${idPartido}`, this.headers);
+    } else {
+      return of([]);
+    }
+  }
+
+  obtenerJugadas(): Observable<interfaces.Jugada[]> {
+    if( this.verificarPermiso()) {
+      return this.http.get<interfaces.Jugada[]>(`${this.urlApi}/jugadas`, this.headers);
+    } else {
+      return of([]);
+    }
+  }
+
+  registrarAnotacion(anotacion: interfaces.Anotacion): Observable<interfaces.Anotacion> {
+    if(this.verificarPermiso()) {
+      return this.http.post<interfaces.Anotacion>(`${this.urlApi}/anotaciones`, anotacion, this.headers);
+    } else {
+      return of();
+    }
+  }
 }
