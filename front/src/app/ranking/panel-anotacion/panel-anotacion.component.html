@@ -1,9 +1,25 @@
 <div class="">
 
   <div class="container pb-5">
-    <h4>Partido nº {{ id_partido }}</h4>
     <div class="row">
       <div class="col-md-6">
+        <h4>Partido nº {{ id_partido }}</h4>
+        <button class="btn btn-success me-1" (click)="iniciarCronometro()">Iniciar</button>
+        <button class="btn btn-danger me-1" (click)="pausarCronometro()">Pausar</button>
+        <button class="btn btn-warning me-1" (click)="resetCronometro()">Reiniciar</button>
+        <button class="btn btn-secondary" (click)="solicitarTiempoPartida()">Minutos</button>
+
+      </div>
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-4">
+        <div class="cronometro">
+          <h2>{{ obtenerTiempoFormato(tiempoRestante) }}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
 
           <div class="card">
             <div class="card-header">
@@ -21,7 +37,10 @@
             </div>
           </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
+
+      </div>
+      <div class="col-md-4">
         <div class="card">
           <div class="card-header">
             <h4>Registrar Jugada</h4>

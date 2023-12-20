@@ -41,3 +41,12 @@
 .cdk-drag-preview > * {
   pointer-events: none;
 }
+
+.cronometro h2 {
+  font-family: 'Digital', sans-serif; /* Asegúrate de tener esta fuente o una similar */
+  font-size: 3rem;
+  color: #0f0; /* Color verde típico de los displays digitales */
+  background-color: #000; /* Fondo negro */
+  padding: 10px;
+  text-align: center;
+}

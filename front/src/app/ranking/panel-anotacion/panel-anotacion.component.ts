@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { PartidoService } from '../services/partido.service';
 import { Anotacion, Deportista, Jugada } from '../interfaces/ranking.interface';
 import { ActivatedRoute } from '@angular/router';
@@ -19,10 +19,15 @@ export class PanelAnotacionComponent implements OnInit {
   afectados: Deportista[] = [];
   id_partido: number = 0;
   jugadaSeleccionada: number = 0;
+  tiempoRestante: number = 0;
+  cronometro: any;
+  cronometroActivo: boolean = false;
+
 
   constructor(
     private partidoService: PartidoService,
-    private route: ActivatedRoute ) { }
+    private route: ActivatedRoute,
+    private cdRef: ChangeDetectorRef ) { }
 
 
   ngOnInit(): void {
@@ -99,5 +104,66 @@ export class PanelAnotacionComponent implements OnInit {
       }
     });
   }
+
+  solicitarTiempoPartida() {
+    Swal.fire({
+      title: 'Ingresa la duración del partido (minutos)',
+      input: 'number',
+      inputAttributes: {
+        min: '1',
+        max: '120',
+        step: '1'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Establecer',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        this.tiempoRestante = result.value * 60; // Convertir minutos a segundos
+        // Puedes llamar aquí a una función para mostrar el cronómetro o simplemente mostrarlo en el template
+      }
+    });
+  }
+
+  iniciarCronometro() {
+    console.log('INICIADO EL CRONOMETOR');
+    if (!this.cronometroActivo) {
+      this.cronometro = setInterval(() => {
+        console.log(`Tiempo restante: ${this.tiempoRestante}`);
+        if (this.tiempoRestante > 0) {
+          this.tiempoRestante--;
+          this.cdRef.detectChanges(); // Detecta los cambios manualmente
+        } else {
+          this.pausarCronometro();
+        }
+      }, 1000);
+      this.cronometroActivo = true;
+    }
+  }
+
+  obtenerTiempoFormato(tiempo: number): string {
+    const minutos = Math.floor(tiempo / 60);
+    const segundos = tiempo % 60;
+    return `${minutos < 10 ? '0' + minutos : minutos}:${segundos < 10 ? '0' + segundos : segundos}`;
+  }
+
+  pausarCronometro() {
+    if (this.cronometro) {
+      clearInterval(this.cronometro);
+      this.cronometroActivo = false;
+    }
+  }
+
+  resetCronometro() {
+    if (!this.cronometroActivo) {
+      this.tiempoRestante = 0;
+      // También podrías establecer aquí un tiempo predeterminado si lo deseas
+      // Por ejemplo, para 30 minutos: this.tiempoRestante = 30 * 60;
+    } else {
+      console.warn("El cronómetro debe estar detenido para reiniciarlo");
+    }
+  }
+
+  // Funciones adicionales como resetearCronometro, pausarCronometro, etc., según tus necesidades
 
 }
