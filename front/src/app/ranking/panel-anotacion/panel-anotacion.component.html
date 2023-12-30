@@ -4,18 +4,22 @@
     <div class="row">
       <div class="col-md-6">
         <h4>Partido nº {{ id_partido }}</h4>
-        <button class="btn btn-success me-1" (click)="iniciarCronometro()">Iniciar</button>
-        <button class="btn btn-danger me-1" (click)="pausarCronometro()">Pausar</button>
-        <button class="btn btn-warning me-1" (click)="resetCronometro()">Reiniciar</button>
-        <button class="btn btn-secondary" (click)="solicitarTiempoPartida()">Minutos</button>
 
       </div>
       <div class="col-md-2">
       </div>
       <div class="col-md-4">
-        <div class="cronometro">
-          <h2>{{ obtenerTiempoFormato(tiempoRestante) }}</h2>
-        </div>
+        <!-- <div id="cronometro" class="card">
+          <div class="cronometro">
+            <h2>{{ obtenerTiempoFormato(tiempoRestante) }}</h2>
+          </div>
+          <div class="d-flex justify-content-around botonesCrono">
+            <button class="btn btn-success btn-sm" (click)="iniciarCronometro()">Iniciar</button>
+            <button class="btn btn-danger btn-sm" (click)="pausarCronometro()">Pausar</button>
+            <button class="btn btn-warning btn-sm" (click)="resetCronometro()">Reiniciar</button>
+            <button class="btn btn-secondary btn-sm" (click)="solicitarTiempoPartida()">Minutos</button>
+          </div>
+        </div> -->
       </div>
     </div>
     <div class="row">
@@ -23,10 +27,10 @@
 
           <div class="card">
             <div class="card-header">
-              <h4>Jugadores en Juego</h4>
+              <h4>Jugadores Disponibles</h4>
             </div>
             <div cdkDropList id="listaAlineacion" class="list-group" [cdkDropListData]="alineacion"
-              [cdkDropListConnectedTo]="['listaAfectados']" (cdkDropListDropped)="drop($event)">
+              [cdkDropListConnectedTo]="['listaEnPista']" (cdkDropListDropped)="drop($event)">
               <div class="list-group-item"
                 *ngFor="let jugador of alineacion" cdkDrag>
                 <div class="">
@@ -38,12 +42,41 @@
           </div>
       </div>
       <div class="col-md-4">
+        <div class="card">
+          <div class="card-header">
+            <h4>Jugadores en pista</h4>
+          </div>
+          <div cdkDropList id="listaEnPista" class="list-group" [cdkDropListData]="afectados"
+          [cdkDropListConnectedTo]="['listaAlineacion']" (cdkDropListDropped)="drop($event)">
+            <div class="list-group-item" *ngFor="let jugador of afectados" cdkDrag>
+              <div class="">
+                {{ jugador.nombre }} {{ jugador.apellidos }}
+                <span class="text-muted ms-3">Dorsal: {{ jugador.dorsal }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-around botonesGrupo">
+            <button type="button" class="btn btn-success btn-sm w-50 m-1">Gol a favor</button>
+            <button type="button" class="btn btn-primary btn-sm w-50 m-1">Gol en contra</button>
+          </div>
+        </div>
 
       </div>
       <div class="col-md-4">
+        <div id="cronometro" class="card mb-3">
+          <div class="cronometro m-1">
+            <h2 class="mb-0">{{ obtenerTiempoFormato(tiempoRestante) }}</h2>
+          </div>
+          <div class="d-flex justify-content-around botonesCrono m-1">
+            <button class="btn btn-success btn-sm w-25" (click)="iniciarCronometro()">Iniciar</button>
+            <button class="btn btn-danger btn-sm w-25 ms-1" (click)="pausarCronometro()">Pausar</button>
+            <button class="btn btn-warning btn-sm ms-5" (click)="resetCronometro()">Reiniciar</button>
+            <button class="btn btn-secondary btn-sm ms-1" (click)="solicitarTiempoPartida()">Minutos</button>
+          </div>
+        </div>
         <div class="card">
           <div class="card-header">
-            <h4>Registrar Jugada</h4>
+            <h4>Jugador individual</h4>
           </div>
           <div cdkDropList id="listaAfectados" class="list-group" [cdkDropListData]="afectados"
           [cdkDropListConnectedTo]="['listaAlineacion']" (cdkDropListDropped)="drop($event)">
@@ -54,12 +87,17 @@
               </div>
             </div>
           </div>
-          <div class="selectorJugada p-2">
+          <div class="d-flex justify-content-around botonesIndividual m-1">
+            <button type="button" class="btn btn-success btn-sm mx-auto w-25">Gol</button>
+            <button type="button" class="btn btn-primary btn-sm mx-auto w-25">Asistencia</button>
+            <button type="button" class="btn btn-secondary btn-sm mx-auto w-25">Expulsión</button>
+          </div>
+          <!-- <div class="selectorJugada p-2">
             <label for="selectorCategoria" class="form-label">Elige jugada</label>
             <select class="form-select my-2" id="selectorCategoria" [(ngModel)]="jugadaSeleccionada">
               <option *ngFor="let jugada of jugadas" [ngValue]="jugada.id">{{ jugada.nombre }}</option>
             </select>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

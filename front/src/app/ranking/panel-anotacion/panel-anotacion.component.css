@@ -44,9 +44,20 @@
 
 .cronometro h2 {
   font-family: 'Digital', sans-serif; /* Asegúrate de tener esta fuente o una similar */
-  font-size: 3rem;
+  font-size: 2rem;
   color: #0f0; /* Color verde típico de los displays digitales */
   background-color: #000; /* Fondo negro */
-  padding: 10px;
+  padding: 4px;
   text-align: center;
+  border-radius: 6px;
 }
+
+/* #cronometro {
+  position: fixed;
+  top: -70px;
+  z-index: 1000;
+  background-color: white; /* Fondo para visibilidad 
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+} */
